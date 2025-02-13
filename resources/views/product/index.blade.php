@@ -6,11 +6,11 @@ $categoryList = \App\Models\Category::getActiveAsTree();
 <x-app-layout>
     <!-- Header Section -->
     <div class="container mx-auto mt-4 mb-6">
-        <h1 class="text-gray-700 text-2xl font-bold">Shop</h1>
+        <h1 class="text-gray-700 text-2xl font-bold">ร้านค้า</h1>
         <div class="mt-2">
-            <a href="{{ route('home') }}" class="text-gray-700 hover:text-indigo-500">Home</a>
+            <a href="{{ route('home') }}" class="text-gray-700 hover:text-indigo-500">หน้าหลัก</a>
             <span class="text-gray-700">/</span>
-            <span class="text-gray-700">Shop</span>
+            <span class="text-gray-700">ร้านค้า</span>
         </div>
     </div>
     <div class="flex gap-2 items-center p-3 pb-0" x-data="{
@@ -34,16 +34,16 @@ $categoryList = \App\Models\Category::getActiveAsTree();
         }
     }">
         <form action="" method="GET" class="flex-1" @submit.prevent="updateUrl">
-            <x-input type="text" name="search" placeholder="Search for the products" x-model="searchKeyword" />
+            <x-input type="text" name="search" placeholder="ค้นหาสินค้า" x-model="searchKeyword" />
         </form>
         <x-input x-model="selectedSort" @change="updateUrl" type="select" name="sort"
             class="w-full focus:border-indigo-500 focus:ring-indigo-600 border-gray-300 rounded">
-            <option value="price">Lowest Price First</option>
-            <option value="-price">Highest Price First</option>
-            <option value="title">Title: A to Z</option>
-            <option value="-title">Title: Z to A</option>
-            <option value="-updated_at">Newest Updates First</option>
-            <option value="updated_at">Oldest Updates First</option>
+            <option value="price">ราคาต่ำสุดก่อน</option>
+            <option value="-price">ราคาสูงสุดก่อน</option>
+            <option value="title">เรียงตามตัวอักษร: จาก A ถึง Z, จาก ก ถึง ฮ</option>
+            <option value="-title">เรียงตามตัวอักษร: จาก Z ถึง A, จาก ฮ ถึง ก</option>
+            <option value="-updated_at">รายการล่าสุด</option>
+            <option value="updated_at">รายการเก่าสุด</option>
         </x-input>
         <x-category-list :category-list="$categoryList" />
     </div>
@@ -89,7 +89,7 @@ $categoryList = \App\Models\Category::getActiveAsTree();
                         class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-emerald-500 rounded shadow flex items-center space-x-2"
                         @click="addToCart()">
                         <i class="fas fa-cart-plus"></i>
-                        Add to Cart
+                        เพิ่มลงในตะกร้า
                     </button>
                 </div>
             </div>

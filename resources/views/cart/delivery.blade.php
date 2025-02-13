@@ -1,27 +1,27 @@
 <x-app-layout>
     <!-- Header Section -->
     <div class="mb-6">
-        <h1 class="text-gray-700 text-3xl font-bold">Delivery Details</h1>
+        <h1 class="text-gray-700 text-3xl font-bold">รายละเอียดการจัดส่ง</h1>
         <nav class="mt-2">
-            <a href="{{ route('home') }}" class="text-gray-700 hover:text-indigo-500">Home</a>
+            <a href="{{ route('home') }}" class="text-gray-700 hover:text-indigo-500">หน้าหลัก</a>
             <span class="text-gray-700">/</span>
-            <a href="{{ route('cart.index') }}" class="text-gray-700 hover:text-indigo-500">Shopping Cart</a>
+            <a href="{{ route('cart.index') }}" class="text-gray-700 hover:text-indigo-500">ตะกร้าสินค้า</a>
             <span class="text-gray-700">/</span>
-            <span class="text-gray-700">Delivery</span>
+            <span class="text-gray-700">การจัดส่ง</span>
         </nav>
     </div>
     <div class="container mx-auto my-10 px-4">
         <div class="flex flex-col lg:flex-row gap-8">
             <!-- Your Order Details Panel -->
             <div class="w-full bg-white rounded-lg shadow p-4">
-                <h2 class="text-xl font-semibold mb-4 text-gray-800">Your Order Details</h2>
+                <h2 class="text-xl font-semibold mb-4 text-gray-800">รายละเอียดคำสั่งซื้อของคุณ</h2>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left table-auto">
                         <thead class="bg-gray-100">
                             <tr>
-                                <th class="px-4 py-2 text-gray-600 font-medium">Product</th>
-                                <th class="px-4 py-2 text-gray-600 font-medium text-center">Quantity</th>
-                                <th class="px-4 py-2 text-gray-600 font-medium text-right">Total</th>
+                                <th class="px-4 py-2 text-gray-600 font-medium">สินค้า</th>
+                                <th class="px-4 py-2 text-gray-600 font-medium text-center">ปริมาณ</th>
+                                <th class="px-4 py-2 text-gray-600 font-medium text-right">รวม</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,7 +46,7 @@
                         </tbody>
                         <tfoot class="bg-gray-100">
                             <tr>
-                                <td class="px-4 py-2 font-semibold">Totals</td>
+                                <td class="px-4 py-2 font-semibold">ยอดรวม</td>
                                 <td class="px-4 py-2 text-center font-semibold"></td>
                                 <td class="px-4 py-2 font-semibold text-right">{{ number_format($totalAmount, 2) }} baht
                                 </td>
@@ -60,11 +60,11 @@
                     @csrf
                     <button type="submit"
                         class="w-full btn-primary text-white font-semibold py-2 rounded-lg shadow transition">
-                        Confirm Order for Delivery
+                        ยืนยันคำสั่งซื้อสำหรับการจัดส่ง
                     </button>
                 </form>
                 <a href="{{ route('cart.index') }}" class="inline-block mt-4 text-indigo-600 hover:underline">
-                    Back to Shopping Cart
+                    กลับสู่ตะกร้าสินค้า
                 </a>
             </div>
         </div>

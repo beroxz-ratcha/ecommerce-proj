@@ -1,11 +1,11 @@
 <x-app-layout>
     <!-- Header Section -->
     <div class="container mx-auto mt-6 mb-6">
-        <h1 class="text-gray-800 text-3xl font-extrabold">Product Details</h1>
+        <h1 class="text-gray-800 text-3xl font-extrabold">รายละเอียดสินค้า</h1>
         <div class="mt-2">
-            <a href="{{ route('home') }}" class="text-gray-600 hover:text-indigo-600">Home</a>
+            <a href="{{ route('home') }}" class="text-gray-600 hover:text-indigo-600">หน้าหลัก</a>
             <span class="text-gray-600"> / </span>
-            <a href="{{ route('shop') }}" class="text-gray-700 hover:text-indigo-500">Shop</a>
+            <a href="{{ route('shop') }}" class="text-gray-700 hover:text-indigo-500">ร้านค้า</a>
             <span class="text-gray-600"> / </span>
             <span class="text-gray-600 font-medium">{{ $product->title }}</span>
         </div>
@@ -76,7 +76,7 @@
                 <h1 class="text-xl font-semibold text-gray-800">{{ $product->title }}</h1>
                 <div class="text-2xl font-bold text-gray-500 mb-4">฿{{ number_format($product->price, 2) }}</div>
                 <div class="mb-4">
-                    <span class="text-lg font-semibold">Store:</span>
+                    <span class="text-lg font-semibold">ร้าน :</span>
                     <span class="text-gray-700">{{ $seller->store_name }}</span>
                 </div>
                 @if ($product->quantity === 0)
@@ -85,7 +85,7 @@
                     </div>
                 @endif
                 <div class="flex items-center justify-between mb-5">
-                    <label for="quantity" class="block font-bold text-gray-700">Quantity</label>
+                    <label for="quantity" class="block font-bold text-gray-700">จำนวน</label>
                     <input type="number" name="quantity" x-ref="quantityEl" value="1" min="1"
                         class="w-32 border border-gray-300 focus:border-indigo-500 focus:outline-none rounded" />
                 </div>
@@ -97,7 +97,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
-                    Add to Cart
+                    เพิ่มลงในตะกร้า
                 </button>
                 <div class="mb-6" x-data="{ expanded: false }">
                     <div x-show="expanded" x-collapse.min.120px class="text-gray-600 wysiwyg-content">
@@ -106,13 +106,13 @@
                     <p class="text-right">
                         <a @click="expanded = !expanded" href="javascript:void(0)"
                             class="text-indigo-500 hover:text-indigo-700"
-                            x-text="expanded ? 'Read Less' : 'Read More'"></a>
+                            x-text="expanded ? 'อ่านน้อยลง' : 'อ่านเพิ่มเติม'"></a>
                     </p>
                 </div>
 
                 <!-- Star Rating Section -->
                 <div class="mt-6" x-data="{ hoveredStar: null }">
-                    <h2 class="text-lg font-semibold text-gray-800">Rate this Product</h2>
+                    <h2 class="text-lg font-semibold text-gray-800">ให้คะแนนสินค้านี้</h2>
                     <div class="flex items-center">
                         <template x-for="star in [1, 2, 3, 4, 5]" :key="star">
                             <svg @mouseover="hoveredStar = star" @mouseleave="hoveredStar = null"
@@ -132,11 +132,11 @@
 
         <!-- Review Section -->
         <div class="container mx-auto mt-16">
-            <h2 class="text-gray-800 text-xl font-bold mb-4">Reviews</h2>
+            <h2 class="text-gray-800 text-xl font-bold mb-4">รีวิว</h2>
             <div class="space-y-6">
                 <div @if ($reviews->isEmpty()) class="text-gray-500" @endif>
                     @if ($reviews->isEmpty())
-                        No reviews available
+                        ไม่มีรีวิวในขณะนี้ แต่คุณสามารถช่วยเพิ่มรีวิวให้กับเราได้
                     @else
                         @php
                             $visibleReviewsCount = 3; // จำนวนรีวิวที่จะแสดงเริ่มต้น

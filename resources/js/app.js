@@ -60,13 +60,15 @@ document.addEventListener('alpine:init', async () => {
           .then((result) => {
             this.$dispatch('cart-change', { count: result.count });
             this.$dispatch('notify', {
-              message: 'The item was added into the cart',
+              message: 'สินค้าถูกเพิ่มเข้าในตะกร้า',
             });
           })
           .catch((response) => {
             console.log(response);
             this.$dispatch('notify', {
-              message: response.message || 'Server Error. Please try again.',
+              message:
+                response.message ||
+                'เกิดข้อผิดพลาดที่เซิร์ฟเวอร์ กรุณาลองอีกครั้ง',
               type: 'error',
             });
           });
@@ -74,7 +76,7 @@ document.addEventListener('alpine:init', async () => {
       removeItemFromCart() {
         post(this.product.removeUrl).then((result) => {
           this.$dispatch('notify', {
-            message: 'The item was removed from cart',
+            message: 'สินค้าถูกนำออกจากตะกร้า',
           });
           this.$dispatch('cart-change', { count: result.count });
           this.cartItems = this.cartItems.filter((p) => p.id !== product.id);
@@ -85,12 +87,14 @@ document.addEventListener('alpine:init', async () => {
           .then((result) => {
             this.$dispatch('cart-change', { count: result.count });
             this.$dispatch('notify', {
-              message: 'The item quantity was updated',
+              message: 'ปริมาณสินค้าถูกอัปเดต',
             });
           })
           .catch((response) => {
             this.$dispatch('notify', {
-              message: response.message || 'Server Error. Please try again.',
+              message:
+                response.message ||
+                'เกิดข้อผิดพลาดที่เซิร์ฟเวอร์ กรุณาลองอีกครั้ง',
               type: 'error',
             });
           });

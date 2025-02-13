@@ -2,11 +2,11 @@
     <div class="container lg:w-2/3 xl:w-2/3 mx-auto p-4">
         <!-- Header Section -->
         <div class="mb-6">
-            <h1 class="text-gray-700 text-3xl font-bold">Shopping Cart</h1>
+            <h1 class="text-gray-700 text-3xl font-bold">ตะกร้าสินค้า</h1>
             <nav class="mt-2">
-                <a href="{{ route('home') }}" class="text-gray-700 hover:text-indigo-500">Home</a>
+                <a href="{{ route('home') }}" class="text-gray-700 hover:text-indigo-500">หน้าหลัก</a>
                 <span class="text-gray-700">/</span>
-                <span class="text-gray-700">Shopping Cart</span>
+                <span class="text-gray-700">ตะกร้าสินค้า</span>
             </nav>
         </div>
 
@@ -71,7 +71,7 @@
                                                         class="ml-3 py-1 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-purple-600 w-16" />
                                                 </div>
                                                 <a href="#" @click.prevent="removeItemFromCart()"
-                                                    class="text-indigo-700 hover:text-indigo-600">Remove</a>
+                                                    class="text-indigo-700 hover:text-indigo-600">ลบ</a>
                                             </div>
                                         </div>
                                     </div>
@@ -82,39 +82,39 @@
 
                     <div class="border-t border-gray-300 pt-4">
                         <div class="flex justify-between mb-2">
-                            <span class="font-semibold">Subtotal</span>
+                            <span class="font-semibold">ยอดรวม</span>
                             <span class="text-xl" x-text="formatPrice(cartTotal)"></span>
                         </div>
                         <p class="text-gray-500 mb-6">
-                            Shipping and taxes calculated at checkout.
+                            ค่าขนส่งและภาษีจะคำนวณที่หน้าชำระเงิน
                         </p>
 
                         <form action="{{ route('cart.checkout') }}" method="post">
                             @csrf
                             <div class="flex justify-between mb-4">
-                                <span class="font-semibold">Payment Method</span>
+                                <span class="font-semibold">วิธีการชำระเงิน</span>
                             </div>
                             <div class="mb-4">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <button type="submit" class="btn-primary w-full py-3 text-lg">
+                                    {{-- <button type="submit" class="btn-primary w-full py-3 text-lg">
                                         Credit Card
-                                    </button>
+                                    </button> --}}
                                     <a href="{{ route('cart.delivery') }}"
                                         class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-emerald-500 rounded shadow text-center w-full py-3 text-lg">
-                                        Cash on Delivery
+                                        เก็บเงินปลายทาง
                                     </a>
                                 </div>
                             </div>
                         </form>
                         <a href="{{ route('shop') }}" class="inline-block mt-4 text-indigo-600 hover:underline">
-                            Continue Shopping
+                            กลับไปช็อปต่อ
                         </a>
                     </div>
                 </div>
             </template>
             <template x-if="!Object.keys(groupedCartItems).length">
                 <div class="text-center py-8 text-gray-500">
-                    You don't have any items in cart
+                    คุณไม่มีสินค้าในตะกร้า
                 </div>
             </template>
         </div>

@@ -1,36 +1,37 @@
 <x-app-layout>
     <div class="bg-white py-12">
         <div class="container mx-auto px-4">
-            <h1 class="text-4xl font-bold text-gray-700 mb-6 text-center">Well-coordinated Teamwork Speaks About Us</h1>
+            <h1 class="text-4xl font-bold text-gray-700 mb-6 text-center">การทำงานเป็นทีมที่ประสานกันอย่างดีบ่งบอกถึงเรา
+            </h1>
+            <br>
             <div style="width: 100%; max-width: 1000px; margin: auto; text-align: center; margin-bottom: 50px;">
-                <img src="https://shofi-grocery.vercel.app/images/about/about-big-1.jpg" alt="About Us"
+                <img src="https://shofi-grocery.vercel.app/images/about/about-big-1.jpg" alt="เกี่ยวกับเรา"
                     style="width: 100%; height: auto; border-radius: 8px;">
             </div>
 
             <p class="text-lg text-gray-700 mb-4">
-                Welcome to Perdis Shop Website ! We are a platform that offers high-quality plant sales for all plant
-                lovers.
-                Whether you are a beginner or an expert in plant care, this is the perfect place for you to find the
-                plants you desire.
+                ยินดีต้อนรับสู่เว็บไซต์ Perdis Shop! เราคือแพลตฟอร์มที่จำหน่ายพืชคุณภาพสูงสำหรับคนรักพืช
+                ไม่ว่าคุณจะเป็นมือใหม่หรือผู้เชี่ยวชาญในการดูแลพืช
+                ที่นี่คือที่ที่สมบูรณ์แบบสำหรับคุณในการค้นหาพืชที่คุณต้องการ
             </p>
 
-            <h2 class="text-2xl font-semibold text-green-600 mt-8 mb-4">Our Mission</h2>
+            <h2 class="text-2xl font-semibold text-green-600 mt-8 mb-4">ภารกิจของเรา</h2>
             <p class="text-lg text-gray-700 mb-4">
-                Our mission is to promote a love for planting and provide the best experience for our customers by
-                offering high-quality products, friendly service, and knowledge about plant care.
+                ภารกิจของเราคือการส่งเสริมความรักในการปลูกพืชและมอบประสบการณ์ที่ดีที่สุดให้กับลูกค้าของเรา
+                โดยการนำเสนอผลิตภัณฑ์คุณภาพสูง บริการที่เป็นมิตร และความรู้เกี่ยวกับการดูแลพืช
             </p>
 
-            <h2 class="text-2xl font-semibold text-green-600 mt-8 mb-4">Why Choose Us?</h2>
+            <h2 class="text-2xl font-semibold text-green-600 mt-8 mb-4">ทำไมต้องเลือกเรา?</h2>
             <ul class="list-disc list-inside text-lg text-gray-700 mb-4">
-                <li>High-quality plants carefully selected</li>
-                <li>Guidance and support from a team of experts</li>
-                <li>Fast and secure delivery service</li>
-                <li>Satisfaction guarantee</li>
+                <li>พืชคุณภาพสูงที่คัดสรรมาอย่างดี</li>
+                <li>คำแนะนำและการสนับสนุนจากทีมงานผู้เชี่ยวชาญ</li>
+                <li>บริการจัดส่งที่รวดเร็วและปลอดภัย</li>
+                <li>การรับประกันความพึงพอใจ</li>
             </ul>
 
-            <h2 class="text-2xl font-semibold text-green-600 mt-8 mb-4">Contact Us</h2>
+            <h2 class="text-2xl font-semibold text-green-600 mt-8 mb-4">ติดต่อเรา</h2>
             <p class="text-lg text-gray-700 mb-4">
-                If you have any questions or inquiries about our products, please contact us at: <a
+                หากคุณมีคำถามหรือข้อสงสัยเกี่ยวกับผลิตภัณฑ์ของเรา โปรดติดต่อเราที่: <a
                     href="mailto:perdis.info@tultiseller.com"
                     class="text-green-500 underline">perdis.info@tultiseller.com</a>
             </p>
@@ -47,7 +48,7 @@
 
                             </div>
                             <h3 class="text-4xl font-bold text-green-600">750+</h3>
-                            <p class="text-lg text-gray-700">Customers</p>
+                            <p class="text-lg text-gray-700">ลูกค้า</p>
                         </div>
                         <div class="stat-item bg-green-100 p-6 rounded-lg shadow text-center">
                             <div class="flex justify-center mb-4">
@@ -60,7 +61,7 @@
 
                             </div>
                             <h3 class="text-4xl font-bold text-green-600">2023</h3>
-                            <p class="text-lg text-gray-700">Founding Year</p>
+                            <p class="text-lg text-gray-700">ปีที่ก่อตั้ง</p>
                         </div>
                         <div class="stat-item bg-green-100 p-6 rounded-lg shadow text-center">
                             <div class="flex justify-center mb-4">
@@ -71,7 +72,7 @@
                                 </svg>
                             </div>
                             <h3 class="text-4xl font-bold text-green-600">120+</h3>
-                            <p class="text-lg text-gray-700">Product Orders</p>
+                            <p class="text-lg text-gray-700">คำสั่งซื้อ</p>
                         </div>
                         <div class="stat-item bg-green-100 p-6 rounded-lg shadow text-center">
                             <div class="flex justify-center mb-4">
@@ -89,7 +90,7 @@
                                 </svg>
                             </div>
                             <h3 class="text-4xl font-bold text-green-600">60+</h3>
-                            <p class="text-lg text-gray-700">Quality Products</p>
+                            <p class="text-lg text-gray-700">สินค้าคุณภาพ</p>
                         </div>
                     </div>
                 </div>

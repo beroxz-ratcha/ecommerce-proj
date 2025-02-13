@@ -1,33 +1,34 @@
 <footer class="bg-footer-custom text-white py-4">
     <div class="container mx-auto px-4">
+        <br>
+        <br>
         <div class="flex justify-between items-start">
             <div class="w-1/3 mx-2">
-                <h2 class="text-lg font-bold">About Us</h2>
+                <h2 class="text-lg font-bold">เกี่ยวกับเรา</h2>
                 <p class="mt-2">
-                    Our passion for nature
-                    drives us to offer a wide selection of high-quality plants and trees that can enhance any space,
-                    whether it’s your home, garden, or office.
+                    ความหลงใหลในธรรมชาติของเราผลักดันให้เรานำเสนอการเลือกพันธุ์ไม้และต้นไม้คุณภาพสูงหลากหลายชนิดที่สามารถเพิ่มความสวยงามให้กับทุกพื้นที่
+                    ไม่ว่าจะเป็นบ้าน สวน หรือออฟฟิศของคุณ.
                 </p>
             </div>
             <div class="w-1/3 mx-2">
-                <h2 class="text-lg font-bold">Quick Links</h2>
+                <h2 class="text-lg font-bold">ลิงก์สำคัญ</h2>
                 <ul class="mt-2 space-y-1">
                     <li>
-                        <a href="{{ route('home') }}" class="text-white hover:text-slate-600">Home</a>
+                        <a href="{{ route('home') }}" class="text-white hover:text-slate-600">หน้าหลัก</a>
                     </li>
                     <li>
-                        <a href="{{ route('shop') }}" class="text-white hover:text-slate-600">Shop</a>
+                        <a href="{{ route('shop') }}" class="text-white hover:text-slate-600">ร้านค้า</a>
                     </li>
                     <li>
-                        <a href="{{ route('about') }}" class="text-white hover:text-slate-600">About Us</a>
+                        <a href="{{ route('about') }}" class="text-white hover:text-slate-600">เกี่ยวกับเรา</a>
                     </li>
                     <li>
-                        <a href="{{ route('about') }}" class="text-white hover:text-slate-600">Contact</a>
+                        <a href="{{ route('about') }}" class="text-white hover:text-slate-600">ติดต่อ</a>
                     </li>
                 </ul>
             </div>
             <div class="w-1/3 mx-2">
-                <h2 class="text-lg font-bold">Follow Us</h2>
+                <h2 class="text-lg font-bold">ติดตามเรา</h2>
                 <ul class="flex space-x-4 justify-center mt-6">
                     <li>
                         <a href="#" class="text-white hover:text-slate-600">

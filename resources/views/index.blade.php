@@ -10,11 +10,11 @@
                     <span class="text-gray-800">Your </span>
                     <span class="text-green-primary">Home </span>
                 </h1>
-                <p class="text-2xl mb-12">
-                    Discover our curated collection of plants, perfect for any space.
-                    Brighten your day and purify your air with the beauty of nature.
+                <p class="text-2xl mb-12 text-gray-800">
+                    ค้นพบคอลเลกชันพืชที่เราได้คัดสรรมาอย่างดี ซึ่งเหมาะสำหรับทุกพื้นที่
+                    เติมความสดใสให้กับวันของคุณและฟอกอากาศให้บริสุทธิ์ด้วยความงามจากธรรมชาติ
                 </p>
-                <a href="{{ route('shop') }}" class="btn-primary" style="padding: 15px 20px;">Shop Now</a>
+                <a href="{{ route('shop') }}" class="btn-primary" style="padding: 15px 20px;">เข้าหน้าร้านค้าตอนนี้</a>
             </div>
             <div class="hero-section lg:w-1/2">
                 <img src="{{ asset('/storage/imgfront/hero-image.png') }}" alt="Hero image"
@@ -26,7 +26,7 @@
     <!-- Categories Section -->
     <section class="categories py-12 bg-white rounded-xl">
         <div class="container mx-auto text-center">
-            <h2 class="text-3xl text-gray-700 font-bold mb-8">Categories</h2>
+            <h2 class="text-3xl text-gray-700 font-bold mb-8">หมวดหมู่</h2>
             <div class="flex items-center justify-center gap-4 relative">
                 <button
                     class="w-12 h-12 text-3xl bg-gray-200 rounded-full flex items-center justify-center border border-gray-300 hover:bg-gray-300 transition-colors duration-200"
@@ -59,13 +59,13 @@
     <!-- Products Section -->
     <section class="products py-12 bg-gray rounded-xl">
         <div class="container mx-auto text-center">
-            <h2 class="text-3xl text-gray-700 font-bold mb-8">Featured Products</h2>
+            <h2 class="text-3xl text-gray-700 font-bold mb-8">รายการสินค้า</h2>
 
             <!-- Tabs -->
             <div class="tabs mb-6">
-                <button class="text-gray-700 tab-button active" onclick="showTab('all')">All Products</button>
-                <button class="text-gray-700 tab-button" onclick="showTab('bestseller')">Best Sellers</button>
-                <button class="text-gray-700 tab-button" onclick="showTab('new')">New Arrivals</button>
+                <button class="text-gray-700 tab-button active" onclick="showTab('all')">สินค้าทั้งหมด</button>
+                <button class="text-gray-700 tab-button" onclick="showTab('bestseller')">สินค้าขายดี</button>
+                <button class="text-gray-700 tab-button" onclick="showTab('new')">สินค้ามาใหม่</button>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6" id="product-grid">
@@ -298,7 +298,7 @@
     <!-- Plant Care Tips Section -->
     <section class="plant-care-tips py-12 bg-white rounded-xl">
         <div class="container mx-auto text-center">
-            <h2 class="text-3xl text-gray-700 font-bold mb-8">Plant Care Tips</h2>
+            <h2 class="text-3xl text-gray-700 font-bold mb-8">เคล็ดลับการดูแลต้นไม้</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 @foreach ($tools as $tip)
                     <div class="tip-item bg-gray-100 p-6 rounded-lg shadow hover:shadow-lg">
@@ -316,7 +316,7 @@
     <!-- Plant Care Videos Section -->
     <section class="plant-care-videos py-12 bg-white rounded-xl">
         <div class="container mx-auto text-center">
-            <h2 class="text-3xl text-gray-700 font-bold mb-8">Plant Care Videos</h2>
+            <h2 class="text-3xl text-gray-700 font-bold mb-8">วิดีโอการดูแลต้นไม้</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Video 1 -->
                 <div class="video-item bg-gray-100 p-6 rounded-lg shadow hover:shadow-lg">
@@ -325,8 +325,9 @@
                             frameborder="0" allowfullscreen>
                         </iframe>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4">How to Care for Indoor Plants</h3>
-                    <p class="text-gray-600">Learn the best tips to keep your indoor plants thriving.</p>
+                    <h3 class="text-xl font-semibold mb-4">วิธีการดูแลต้นไม้ในร่ม</h3>
+                    <p class="text-gray-600">เรียนรู้เคล็ดลับที่ดีที่สุดในการดูแลต้นไม้ในร่มให้เติบโตอย่างมีชีวิตชีวา
+                    </p>
                 </div>
                 <!-- Video 2 -->
                 <div class="video-item bg-gray-100 p-6 rounded-lg shadow hover:shadow-lg">
@@ -335,8 +336,8 @@
                             frameborder="0" allowfullscreen>
                         </iframe>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4">Watering Guide for Succulents</h3>
-                    <p class="text-gray-600">Find out the proper way to water your succulents.</p>
+                    <h3 class="text-xl font-semibold mb-4">คู่มือการรดน้ำต้นไม้</h3>
+                    <p class="text-gray-600">ค้นพบวิธีการรดน้ำต้นไม้ซักคิวเลนท์อย่างถูกต้อง</p>
                 </div>
                 <!-- Video 3 -->
                 <div class="video-item bg-gray-100 p-6 rounded-lg shadow hover:shadow-lg">
@@ -345,8 +346,8 @@
                             frameborder="0" allowfullscreen>
                         </iframe>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4">Plant Pruning Techniques</h3>
-                    <p class="text-gray-600">Master the art of pruning your plants for optimal growth.</p>
+                    <h3 class="text-xl font-semibold mb-4">เทคนิคการตัดแต่งต้นไม้</h3>
+                    <p class="text-gray-600">เชี่ยวชาญศิลปะการตัดแต่งต้นไม้ของคุณเพื่อการเติบโตที่ดีที่สุด</p>
                 </div>
             </div>
         </div>
@@ -355,7 +356,7 @@
     <!-- Our Features Section -->
     <section class="features py-12 bg-white rounded-xl mt-10">
         <div class="container mx-auto text-center">
-            <h2 class="text-3xl text-gray-700 font-bold mb-8">Our Features</h2>
+            <h2 class="text-3xl text-gray-700 font-bold mb-8">การทำงานของเรา</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
                 <div class="feature-item flex flex-col items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -363,7 +364,7 @@
                         <path strokeLinecap="round" strokeLinejoin="round"
                             d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
                     </svg>
-                    <h3 class="text-gray-700 text-lg font-semibold">Delivery Service</h3>
+                    <h3 class="text-gray-700 text-lg font-semibold">บริการจัดส่ง</h3>
                 </div>
 
                 <div class="feature-item flex flex-col items-center">
@@ -372,7 +373,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z" />
                     </svg>
-                    <h3 class="text-gray-700 text-lg font-semibold">100% Money Back</h3>
+                    <h3 class="text-gray-700 text-lg font-semibold">การคืนเงิน 100%</h3>
                 </div>
 
                 <div class="feature-item flex flex-col items-center">
@@ -381,7 +382,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" />
                     </svg>
-                    <h3 class="text-gray-700 text-lg font-semibold">Secure Payment</h3>
+                    <h3 class="text-gray-700 text-lg font-semibold">การชำระเงินที่ปลอดภัย</h3>
                 </div>
 
 
@@ -391,7 +392,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
                     </svg>
-                    <h3 class="text-gray-700 text-lg font-semibold">24 Hour Support</h3>
+                    <h3 class="text-gray-700 text-lg font-semibold">การสนับสนุนตลอด 24 ชั่วโมง</h3>
                 </div>
             </div>
         </div>

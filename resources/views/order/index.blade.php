@@ -4,17 +4,17 @@
 
 <x-app-layout>
     <div class="container mx-auto lg:w-2/3 p-5">
-        <h1 class="text-gray-800 text-3xl font-bold mb-6">My Orders</h1>
+        <h1 class="text-gray-800 text-3xl font-bold mb-6">คำสั่งซื้อของฉัน</h1>
         <div class="bg-white shadow-md rounded-lg overflow-hidden">
             <table class="table-auto w-full text-left border-collapse">
                 <thead class="bg-gray-200">
                     <tr>
-                        <th class="text-center text-gray-600 py-3 px-4">Order #</th>
-                        <th class="text-center text-gray-600 py-3 px-4">Date</th>
-                        <th class="text-center text-gray-600 py-3 px-4">Status</th>
-                        <th class="text-center text-gray-600 py-3 px-4">SubTotal</th>
-                        <th class="text-center text-gray-600 py-3 px-4">Items</th>
-                        <th class="text-center text-gray-600 py-3 px-4">Actions</th>
+                        <th class="text-center text-gray-600 py-3 px-4">คำสั่งซื้อ #</th>
+                        <th class="text-center text-gray-600 py-3 px-4">วันที่</th>
+                        <th class="text-center text-gray-600 py-3 px-4">สถานะ</th>
+                        <th class="text-center text-gray-600 py-3 px-4">ยอดรวม</th>
+                        <th class="text-center text-gray-600 py-3 px-4">รายการ</th>
+                        <th class="text-center text-gray-600 py-3 px-4">การดำเนินการ</th>
                     </tr>
                 </thead>
                 <tbody>
