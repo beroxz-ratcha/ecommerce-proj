@@ -396,6 +396,54 @@
                 </div>
             </div>
         </div>
+
+        <!-- chat bot -->
+        <div class="chatbot-container fixed bottom-4 right-4 z-50">
+            <button id="chatbot-button"
+                class="bg-green-700 text-white p-4 rounded-full shadow-lg hover:bg-green-800 transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+            </button>
+
+            <!-- แชทบอท -->
+            <div id="chatbot-window"
+                class="hidden bg-white rounded-lg shadow-lg w-80 h-96 fixed bottom-20 right-4 p-4">
+                <div class="chatbot-header flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-semibold">แชทบอท</h3>
+                    <button id="close-chatbot" class="text-gray-500 hover:text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="chatbot-body overflow-y-auto h-64 mb-4">
+                    <!-- ข้อความแชท -->
+                    <div class="message mb-2 flex items-start">
+                        <!-- ใช้รูปภาพจากลิงก์ที่คุณให้มา -->
+                        {{-- <img src="https://freesvg.org/img/1538298822.png" alt="Bot Avatar"
+                            class="w-8 h-8 rounded-full mr-2"> --}}
+                        <img src="{{ asset('/storage/imgfront/chat-bot.png') }}" alt="Bot Avatar"
+                            class="w-8 h-8 rounded-full mr-2">
+                        <p class="bg-gray-100 p-2 rounded-lg">สวัสดี! มีอะไรให้ช่วยไหมคะ?</p>
+                    </div>
+                    {{-- <div class="chatbot-body overflow-y-auto h-64 mb-4">
+                        <!-- LINE Chat Plugin -->
+                        <a href="https://line.me/R/ti/p/@YOUR_LINE_ID" target="_blank">
+                            <img src="https://scdn.line-apps.com/n/line_add_friends/btn/th.png" alt="เพิ่มเพื่อน"
+                                height="36" border="0">
+                        </a>
+                    </div> --}}
+                </div>
+                <div class="chatbot-footer">
+                    <input type="text" class="w-full p-2 border rounded-lg" placeholder="พิมพ์ข้อความ..." />
+                </div>
+            </div>
+        </div>
     </section>
 </x-app-layout>
 
@@ -448,6 +496,15 @@
             localStorage.setItem('selectedCategory', url);
         });
     });
+
+    // JavaScript สำหรั บการเปิด / ปิดแชทบอท
+    document.getElementById('chatbot-button').addEventListener('click', function() {
+        document.getElementById('chatbot-window').classList.toggle('hidden');
+    });
+
+    document.getElementById('close-chatbot').addEventListener('click', function() {
+        document.getElementById('chatbot-window').classList.add('hidden');
+    });
 </script>
 
 {{-- fix style on page index --}}
@@ -459,5 +516,12 @@
     .no-scrollbar {
         -ms-overflow-style: none;
         scrollbar-width: none;
+    }
+
+    .message img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
     }
 </style>
