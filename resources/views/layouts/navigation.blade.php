@@ -127,19 +127,19 @@
         <ul class="grid grid-flow-col items-center">
             <li class="mr-2">
                 <a href="{{ route('home') }}"
-                    class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl font-bold hover:underline">
+                    class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl hover:after:content-['•'] hover:after:absolute hover:after:left-1/2 hover:after:bottom-[5px] hover:after:transform hover:after:-translate-x-1/2">
                     หน้าหลัก
                 </a>
             </li>
             <li class="mr-2">
                 <a href="{{ route('shop') }}"
-                    class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl font-bold hover:underline">
+                    class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl hover:after:content-['•'] hover:after:absolute hover:after:left-1/2 hover:after:bottom-[5px] hover:after:transform hover:after:-translate-x-1/2">
                     ร้านค้า
                 </a>
             </li>
             <li class="mr-2">
                 <a href="{{ route('about') }}"
-                    class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl font-bold hover:underline">
+                    class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl hover:after:content-['•'] hover:after:absolute hover:after:left-1/2 hover:after:bottom-[5px] hover:after:transform hover:after:-translate-x-1/2">
                     เกี่ยวกับเรา
                 </a>
             </li>
@@ -218,7 +218,7 @@
             @else
                 <li class="mr-4">
                     <a href="{{ route('login') }}"
-                        class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl font-bold hover:underline">
+                        class="relative inline-flex items-center py-navbar-item px-navbar-item text-xl hover:after:content-['•'] hover:after:absolute hover:after:left-1/2 hover:after:bottom-[5px] hover:after:transform hover:after:-translate-x-1/2">
                         เข้าสู่ระบบ
                     </a>
                 </li>
