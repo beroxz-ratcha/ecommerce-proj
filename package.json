@@ -2,7 +2,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "npm-run-all --parallel serve:backend serve:web serve:frontend",
+    "start": "npm-run-all --parallel serve:backend serve:web serve:frontend",
     "serve:backend": "php artisan serve",
     "serve:web": "vite --port=3001",
     "serve:frontend": "cd backend && npm run dev",

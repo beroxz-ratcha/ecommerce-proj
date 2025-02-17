@@ -14,7 +14,7 @@
                     ค้นพบคอลเลกชันพืชที่เราได้คัดสรรมาอย่างดี ซึ่งเหมาะสำหรับทุกพื้นที่
                     เติมความสดใสให้กับวันของคุณและฟอกอากาศให้บริสุทธิ์ด้วยความงามจากธรรมชาติ
                 </p>
-                <a href="{{ route('shop') }}" class="btn-primary" style="padding: 15px 20px;">เข้าหน้าร้านค้าตอนนี้</a>
+                {{-- <a href="{{ route('shop') }}" class="btn-primary" style="padding: 15px 20px;">Shopping Now!!</a> --}}
             </div>
             <div class="hero-section lg:w-1/2">
                 <img src="{{ asset('/storage/imgfront/hero-image.png') }}" alt="Hero image"

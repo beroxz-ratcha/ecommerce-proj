@@ -20,8 +20,8 @@
                         <thead class="bg-gray-100">
                             <tr>
                                 <th class="px-4 py-2 text-gray-600 font-medium">สินค้า</th>
-                                <th class="px-4 py-2 text-gray-600 font-medium text-center">ปริมาณ</th>
-                                <th class="px-4 py-2 text-gray-600 font-medium text-right">รวม</th>
+                                <th class="px-4 py-2 text-gray-600 font-medium text-center">จำนวน</th>
+                                <th class="px-4 py-2 text-gray-600 font-medium text-right">ราคารวม</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,7 +46,7 @@
                         </tbody>
                         <tfoot class="bg-gray-100">
                             <tr>
-                                <td class="px-4 py-2 font-semibold">ยอดรวม</td>
+                                <td class="px-4 py-2 font-semibold">ยอดรวมทั้งสิ้น</td>
                                 <td class="px-4 py-2 text-center font-semibold"></td>
                                 <td class="px-4 py-2 font-semibold text-right">{{ number_format($totalAmount, 2) }} baht
                                 </td>

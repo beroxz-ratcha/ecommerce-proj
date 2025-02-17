@@ -58,7 +58,7 @@ Running the Project
 `npm run web` -> Run Node.js Vite Mix
 `npm run dev` -> Run Vue.js \*มีการ setting ใน package.json `cd backend && npm run dev` -->
 
-`npm run dev`: "npm-run-all --parallel serve:backend serve:web serve:frontend",
+`npm start`: "npm-run-all --parallel serve:backend serve:web serve:frontend",
 `npm run serve:backend`: "php artisan serve", -> Run PHP Server
 `npm run serve:web`: "vite --port=3001", -> Run Node.js Vite Mix
 `npm run serve:frontend`: "cd backend && npm run dev", -> Run Vue.js
