@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -36,6 +37,7 @@ Route::middleware(['guestOrVerified'])->group(function () {
         Route::post('/remove/{product:slug}', [CartController::class, 'remove'])->name('remove');
         Route::post('/update-quantity/{product:slug}', [CartController::class, 'updateQuantity'])->name('update-quantity');
     });
+
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -51,6 +53,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/orders/{order}', [OrderController::class, 'view'])->name('order.view');
     Route::get('/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
     Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+    Route::get('/payment/bank', [PaymentController::class, 'viewBank'])->name('payment.bank');
+    Route::post('/payment/qrcode', [PaymentController::class, 'generateQR'])->name('payment.qrcode');
+    Route::get('/payment/summary', [PaymentController::class, 'summary'])->name('payment.summary');
 });
 
 Route::post('/webhook/stripe', [CheckoutController::class, 'webhook']);

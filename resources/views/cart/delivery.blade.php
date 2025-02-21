@@ -1,16 +1,8 @@
 <x-app-layout>
     <!-- Header Section -->
-    <div class="mb-6">
-        <h1 class="text-gray-700 text-3xl font-bold">รายละเอียดการจัดส่ง</h1>
-        <nav class="mt-2">
-            <a href="{{ route('home') }}" class="text-gray-700 hover:text-indigo-500">หน้าหลัก</a>
-            <span class="text-gray-700">/</span>
-            <a href="{{ route('cart.index') }}" class="text-gray-700 hover:text-indigo-500">ตะกร้าสินค้า</a>
-            <span class="text-gray-700">/</span>
-            <span class="text-gray-700">การจัดส่ง</span>
-        </nav>
-    </div>
     <div class="container mx-auto my-10 px-4">
+        <h1 class="text-3xl font-bold text-gray-700 mb-6">รายละเอียดการจัดส่ง</h1>
+
         <div class="flex flex-col lg:flex-row gap-8">
             <!-- Your Order Details Panel -->
             <div class="w-full bg-white rounded-lg shadow p-4">
@@ -40,16 +32,17 @@
                                         <span class="ml-4">{{ $product->title }}</span>
                                     </td>
                                     <td class="px-4 py-2 text-center">{{ $quantity }}</td>
-                                    <td class="px-4 py-2 text-right">{{ number_format($total, 2) }} baht</td>
+                                    <td class="px-4 py-2 text-right">{{ number_format($total, 2) }} บาท</td>
                                 </tr>
                             @endforeach
                         </tbody>
                         <tfoot class="bg-gray-100">
                             <tr>
-                                <td class="px-4 py-2 font-semibold">ยอดรวมทั้งสิ้น</td>
-                                <td class="px-4 py-2 text-center font-semibold"></td>
-                                <td class="px-4 py-2 font-semibold text-right">{{ number_format($totalAmount, 2) }} baht
-                                </td>
+                                <td class="px-4 py-2 font-semibold">ยอดรวมทั้งหมด</td>
+                                <td></td>
+                                <td class="px-4 py-2 text-right font-bold text-emerald-600">
+                                    {{ number_format($totalAmount, 2) }}
+                                    บาท</td>
                             </tr>
                         </tfoot>
                     </table>
@@ -64,7 +57,7 @@
                     </button>
                 </form>
                 <a href="{{ route('cart.index') }}" class="inline-block mt-4 text-indigo-600 hover:underline">
-                    กลับสู่ตะกร้าสินค้า
+                    กลับไปที่หน้าตะกร้าสินค้า
                 </a>
             </div>
         </div>

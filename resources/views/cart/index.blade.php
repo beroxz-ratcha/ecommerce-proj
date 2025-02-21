@@ -99,15 +99,22 @@
                                     {{-- <button type="submit" class="btn-primary w-full py-3 text-lg">
                                         Credit Card
                                     </button> --}}
+                                    <a href="{{ route('payment.bank') }}"
+                                        class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-emerald-500 rounded shadow text-center w-full py-3 text-lg flex items-center justify-center gap-2">
+                                        <i class="fas fa-university"></i>
+                                        ชำระผ่านบัญชีธนาคาร
+                                    </a>
+
                                     <a href="{{ route('cart.delivery') }}"
-                                        class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-emerald-500 rounded shadow text-center w-full py-3 text-lg">
+                                        class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-emerald-500 rounded shadow text-center w-full py-3 text-lg flex items-center justify-center gap-2">
+                                        <i class="fas fa-wallet"></i>
                                         เก็บเงินปลายทาง
                                     </a>
                                 </div>
                             </div>
                         </form>
                         <a href="{{ route('shop') }}" class="inline-block mt-4 text-indigo-600 hover:underline">
-                            กลับไปช็อปต่อ
+                            กลับไปหน้าร้านค้า
                         </a>
                     </div>
                 </div>
