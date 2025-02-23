@@ -10,6 +10,8 @@ enum OrderStatus: string
     case Cancelled = 'Cancelled';
     case Shipped = 'Shipped';
     case Completed = 'Completed';
+    case WaitingForConfirmation = 'Waiting For Confirmation';
+    case PaymentPending = 'Payment Pending';
 
     public static function getStatuses(): array
     {
@@ -20,6 +22,8 @@ enum OrderStatus: string
             self::Shipped,
             self::Completed,
             self::Delivered,
+            self::WaitingForConfirmation,
+            self::PaymentPending,
         ];
     }
 }
