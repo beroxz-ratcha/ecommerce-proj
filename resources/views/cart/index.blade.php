@@ -102,7 +102,7 @@
                                     <a href="{{ route('payment.bank') }}"
                                         class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-emerald-500 rounded shadow text-center w-full py-3 text-lg flex items-center justify-center gap-2">
                                         <i class="fas fa-university"></i>
-                                        ชำระผ่านบัญชีธนาคาร
+                                        ชำระผ่านบัญชีธนาคาร/QR Code PromptPay
                                     </a>
 
                                     <a href="{{ route('cart.delivery') }}"

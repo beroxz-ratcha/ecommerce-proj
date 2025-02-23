@@ -87,7 +87,7 @@ document.addEventListener('alpine:init', async () => {
           .then((result) => {
             this.$dispatch('cart-change', { count: result.count });
             this.$dispatch('notify', {
-              message: 'ปริมาณสินค้าถูกอัปเดต',
+              message: 'ปริมาณสินค้าถูกแก้ไข',
             });
           })
           .catch((response) => {

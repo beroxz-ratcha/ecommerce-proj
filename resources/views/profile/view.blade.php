@@ -129,7 +129,7 @@
                         <label for="sameAsBillingAddress" class="text-gray-700">
                             <input @change="$event.target.checked ? shippingAddress = {...billingAddress} : ''"
                                 id="sameAsBillingAddress" type="checkbox"
-                                class="text-green-600 focus:ring-green-500 mr-2"> Same as Billing
+                                class="text-green-600 focus:ring-green-500 mr-2"> เช่นเดียวกับที่อยู่เรียกเก็บเงิน
                         </label>
                     </div>
                     <div class="grid grid-cols-2 gap-3 mb-3">

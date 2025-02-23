@@ -67,7 +67,7 @@
 
                 <!-- Amount Section -->
                 <p class="text-lg text-gray-700">
-                    <span class="text-xl font-semibold text-gray-900">ยอดเงิน:</span>
+                    <span class="text-xl font-semibold text-gray-900">ยอดเงิน :</span>
                     <strong class="text-2xl text-green-600">{{ number_format($totalAmount, 2) }} บาท</strong>
                 </p>
 
@@ -76,23 +76,25 @@
                     <i>กรุณาสแกน QR Code ด้านบนเพื่อชำระเงินผ่าน PromptPay</i>
                 </p>
 
-                <!-- Button Section -->
-                {{-- <div class="mt-8">
-                    <button
-                        class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-                        ยืนยันการชำระเงิน
-                    </button>
-                </div> --}}
+                <!-- Download Button Section -->
+                <div class="mt-8">
+                    <a href="{{ asset('qrcodes/final_payment_qr.png') }}" download="payment_qr.png">
+                        <button
+                            class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                            ดาวน์โหลด QR Code
+                        </button>
+                    </a>
+                </div>
             </div>
 
             <!-- Slip Upload Section -->
-            <div class="bg-white rounded-lg shadow p-6 mb-8 text-center w-1/2 flex flex-col justify-between">
-                <h2 class="text-2xl font-bold text-gray-700">อัปโหลดสลิปชำระเงิน</h2>
+            <div class="bg-white rounded-lg shadow-lg p-8 mb-8 text-center w-1/2 flex flex-col">
+                <h2 class="text-2xl font-bold text-gray-700 mb-6">อัปโหลดสลิปชำระเงิน</h2>
 
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('payment.withqrcode') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
-                    <div id="imagePreview" class="mb-6" onclick="document.getElementById('slipInput').click()">
+                    <div id="imagePreview" class="mb-6 mx-auto" onclick="document.getElementById('slipInput').click()">
                         <div id="placeholder"
                             class="w-64 h-64 mx-auto border-4 border-gray-300 rounded-lg shadow-md flex justify-center items-center text-gray-400">
                             <span>กรุณาอัปโหลดสลิป</span>
@@ -103,10 +105,10 @@
                         <i>*กรุณาแนบหลักฐานการโอนเงิน</i>
                     </p>
 
-                    <input type="file" name="slip" class="mb-4" required id="slipInput" style="display: none;"
+                    <input type="file" name="slipInput" class="mb-4" required id="slipInput" style="display: none;"
                         onchange="previewImage(event)" oninput="resetPreview()">
 
-                    <div class="mt-8">
+                    <div class="mt-20">
                         <button type="submit"
                             class="bg-primary text-white py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
                             ยืนยันการชำระเงิน
@@ -136,43 +138,48 @@
         }
 
         reader.onload = function(e) {
+            const imagePreview = document.getElementById("imagePreview");
+
+            // ลบ <img> ทุกตัวที่อยู่ภายใน imagePreview
+            const existingImages = imagePreview.getElementsByTagName("img");
+            for (let i = 0; i < existingImages.length; i++) {
+                existingImages[i].remove(); // ลบทุก <img>
+            }
+
+            // สร้างและแสดงภาพใหม่
             const img = document.createElement("img");
             img.src = e.target.result;
-            img.classList.add("w-64", "h-64", "mx-auto", "border-4", "border-gray-300", "rounded-lg",
-                "shadow-md");
+            img.classList.add("w-64", "h-64", "mx-auto", "border-4", "border-gray-300", "rounded-lg", "shadow-md");
 
+            // ซ่อน placeholder และแสดงภาพใหม่
             document.getElementById("placeholder").style.display = 'none';
-            document.getElementById("imagePreview").appendChild(img);
+            imagePreview.appendChild(img);
 
-            document.getElementById("deletePreview").style.display = 'block';
+            // ถ้าต้องการแสดงปุ่มลบ
+            // document.getElementById("deletePreview").style.display = 'block';
         };
 
         reader.readAsDataURL(file);
     }
-
-    function removeImagePreview() {
-        const previewContainer = document.getElementById("imagePreview");
-        previewContainer.innerHTML = '';
-
-        const placeholder = document.getElementById("placeholder");
-        previewContainer.appendChild(placeholder);
-
-        document.getElementById("deletePreview").style.display = 'none';
-
-        document.getElementById('slipInput').value = '';
-    }
-
 
     function resetPreview() {
         const fileInput = document.getElementById("slipInput");
 
         if (fileInput.files.length === 0) {
             const previewContainer = document.getElementById("imagePreview");
-            previewContainer.innerHTML = '';
 
-            const placeholder = document.getElementById("placeholder");
+            // ลบ <img> ทุกตัวที่อยู่ใน previewContainer
+            const existingImages = previewContainer.getElementsByTagName("img");
+            for (let i = 0; i < existingImages.length; i++) {
+                existingImages[i].remove();
+            }
+
+            // แสดง placeholder ใหม่'
+            const placeholder = document.getElementById("placeholder").style.display = '';
             previewContainer.appendChild(placeholder);
-            window.location.reload(true);
+
+            // ถ้าอยากรีเฟรชหน้าให้โหลดใหม่
+            // window.location.reload(true); // ปิดไว้ถ้าไม่ต้องการให้รีเฟรช
         }
     }
 </script>

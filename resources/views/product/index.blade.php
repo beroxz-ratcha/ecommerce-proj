@@ -88,7 +88,7 @@ $categoryList = \App\Models\Category::getActiveAsTree();
                     <button
                         class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-emerald-500 rounded shadow flex items-center space-x-2"
                         @click="addToCart()">
-                        <i class="fas fa-cart-plus"></i>
+                        <i class="fas fa-cart-plus mr-2"></i>
                         เพิ่มลงในตะกร้า
                     </button>
                 </div>

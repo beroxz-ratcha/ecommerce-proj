@@ -37,7 +37,7 @@
                             <td class="py-2 px-4 text-center">฿{{ number_format($order->total_price, 2) }}</td>
                             <td class="py-2 px-4 text-center whitespace-nowrap">{{ $order->items_count }} item(s)</td>
                             <td class="py-2 px-4 flex justify-center">
-                                @if (!$order->isPaid() && !$order->isDelivered())
+                                @if (!$order->isPaid() && !$order->isDelivered() && !$order->isWaitingForConfirmation())
                                     <form action="{{ route('cart.checkout-order', $order) }}" method="POST">
                                         @csrf
                                         <button
