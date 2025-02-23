@@ -1,13 +1,13 @@
 <template>
   <div class="mb-2 flex items-center justify-between">
-    <h1 class="text-3xl font-semibold">Dashboard</h1>
+    <h1 class="text-3xl font-semibold">Dashboard / ภาพรวม</h1>
     <div class="flex items-center">
-      <label class="mr-2">Change Date Period</label>
+      <label class="mr-2">เปลี่ยนช่วงวันที่แสดง</label>
       <CustomInput
         type="select"
         v-model="chosenDate"
         @change="onDatePickerChange"
-        :select-options="dateOptions"
+        :select-options="dateThOptions"
       />
     </div>
   </div>
@@ -16,7 +16,7 @@
     <div
       class="animate-fade-in-down bg-white py-6 px-5 rounded-lg shadow flex flex-col items-center justify-center"
     >
-      <label class="text-lg font-semibold block mb-2">Active Customers</label>
+      <label class="text-lg font-semibold block mb-2">ลูกค้าที่ใช้งาน</label>
       <template v-if="!loading.customersCount">
         <span class="text-3xl font-semibold">{{ customersCount }}</span>
       </template>
@@ -28,7 +28,7 @@
       class="animate-fade-in-down bg-white py-6 px-5 rounded-lg shadow flex flex-col items-center justify-center"
       style="animation-delay: 0.1s"
     >
-      <label class="text-lg font-semibold block mb-2">Active Products</label>
+      <label class="text-lg font-semibold block mb-2">สินค้าที่ลงขาย</label>
       <template v-if="!loading.productsCount">
         <span class="text-3xl font-semibold">{{ productsCount }}</span>
       </template>
@@ -40,7 +40,9 @@
       class="animate-fade-in-down bg-white py-6 px-5 rounded-lg shadow flex flex-col items-center justify-center"
       style="animation-delay: 0.2s"
     >
-      <label class="text-lg font-semibold block mb-2">Paid Orders</label>
+      <label class="text-lg font-semibold block mb-2"
+        >คำสั่งซื้อที่ชำระเงินแล้ว</label
+      >
       <template v-if="!loading.paidOrders">
         <span class="text-3xl font-semibold">{{ paidOrders }}</span>
       </template>
@@ -52,7 +54,7 @@
       class="animate-fade-in-down bg-white py-6 px-5 rounded-lg shadow flex flex-col items-center"
       style="animation-delay: 0.3s"
     >
-      <label class="text-lg font-semibold block mb-2">Total Income</label>
+      <label class="text-lg font-semibold block mb-2">รายได้รวม</label>
       <template v-if="!loading.totalIncome">
         <span class="text-3xl font-semibold">{{ totalIncome }}</span>
       </template>
@@ -67,7 +69,7 @@
     <div
       class="col-span-1 md:col-span-2 row-span-1 md:row-span-2 bg-white py-6 px-5 rounded-lg shadow"
     >
-      <label class="text-lg font-semibold block mb-2">Latest Orders</label>
+      <label class="text-lg font-semibold block mb-2">คำสั่งซื้อล่าสุด</label>
       <template v-if="!loading.latestOrders">
         <div
           v-for="o of latestOrders"
@@ -94,14 +96,16 @@
     <div
       class="bg-white py-6 px-5 rounded-lg shadow flex flex-col items-center justify-center"
     >
-      <label class="text-lg font-semibold block mb-2">Orders by Province</label>
+      <label class="text-lg font-semibold block mb-2">แสดงตามจังหวัด</label>
       <template v-if="!loading.ordersByState">
         <DoughnutChart :width="140" :height="200" :data="ordersByState" />
       </template>
       <Spinner v-else text="" class="" />
     </div>
     <div class="bg-white py-6 px-5 rounded-lg shadow">
-      <label class="text-lg font-semibold block mb-2">Latest Customers</label>
+      <label class="text-lg font-semibold block mb-2"
+        >ลูกค้าที่สั่งซื้อล่าสุด</label
+      >
       <template v-if="!loading.latestCustomers">
         <router-link
           :to="{ name: 'app.customers.view', params: { id: c.id } }"
@@ -135,7 +139,7 @@ import CustomInput from '../components/core/CustomInput.vue';
 import { useStore } from 'vuex';
 
 const store = useStore();
-const dateOptions = computed(() => store.state.dateOptions);
+const dateThOptions = computed(() => store.state.dateThOptions);
 const chosenDate = ref('all');
 
 const loading = ref({

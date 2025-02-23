@@ -21,7 +21,7 @@
       <span class="mr-2 text-gray-300">
         <HomeIcon class="w-5" />
       </span>
-      <span class="text-xs"> Dashboard </span>
+      <span class="text-xs"> หน้าหลัก </span>
     </router-link>
 
     <router-link
@@ -33,7 +33,7 @@
       <span class="mr-2 text-gray-300">
         <HomeIcon class="w-5" />
       </span>
-      <span class="text-xs"> Dashboard </span>
+      <span class="text-xs"> หน้าหลัก </span>
     </router-link>
 
     <!-- Categories management link only for Admin -->
@@ -46,7 +46,7 @@
       <span class="mr-2 text-gray-300">
         <CollectionIcon class="w-5" />
       </span>
-      <span class="text-xs"> Categories </span>
+      <span class="text-xs"> หมวดหมู่ </span>
     </router-link>
 
     <!-- Product management link only for Seller -->
@@ -59,7 +59,7 @@
       <span class="mr-2 text-gray-300">
         <CubeIcon class="w-5" />
       </span>
-      <span class="text-xs"> Products </span>
+      <span class="text-xs"> สินค้า </span>
     </router-link>
 
     <!-- Order management link for Seller -->
@@ -72,7 +72,7 @@
       <span class="mr-2 text-gray-300">
         <ShoppingCartIcon class="w-5" />
       </span>
-      <span class="text-xs"> Orders </span>
+      <span class="text-xs"> คำสั่งซื้อ </span>
     </router-link>
 
     <!-- User management link only for Admin -->
@@ -85,7 +85,7 @@
       <span class="mr-2 text-gray-300">
         <UsersIcon class="w-5" />
       </span>
-      <span class="text-xs"> Users </span>
+      <span class="text-xs"> ผู้ใช้ทั้งหมด </span>
     </router-link>
 
     <!-- Seller management link only for Admin -->
@@ -98,7 +98,7 @@
       <span class="mr-2 text-gray-300">
         <UserGroupIcon class="w-5" />
       </span>
-      <span class="text-xs"> Sellers </span>
+      <span class="text-xs"> ผู้ขาย </span>
     </router-link>
 
     <!-- Customers link for both Admin -->
@@ -111,7 +111,7 @@
       <span class="mr-2 text-gray-300">
         <UserGroupIcon class="w-5" />
       </span>
-      <span class="text-xs"> Customers </span>
+      <span class="text-xs"> ลูกค้า </span>
     </router-link>
 
     <router-link
@@ -122,7 +122,7 @@
       <span class="mr-2 text-gray-300">
         <ChartBarIcon class="w-5" />
       </span>
-      <span class="text-xs"> Reports </span>
+      <span class="text-xs"> รายงาน </span>
     </router-link>
   </div>
 </template>

@@ -23,7 +23,7 @@
             :sort-direction="sortDirection"
             @click="sortCategories('name')"
           >
-            Name
+            ชื่อ
           </TableHeaderCell>
           <TableHeaderCell
             field="slug"
@@ -31,7 +31,7 @@
             :sort-direction="sortDirection"
             @click="sortCategories('slug')"
           >
-            Slug
+            ข้อความย่อ
           </TableHeaderCell>
           <TableHeaderCell
             field="active"
@@ -39,7 +39,7 @@
             :sort-direction="sortDirection"
             @click="sortCategories('active')"
           >
-            Active
+            สถานะใช้งาน
           </TableHeaderCell>
           <TableHeaderCell
             field="parent_id"
@@ -47,7 +47,7 @@
             :sort-direction="sortDirection"
             @click="sortCategories('parent_id')"
           >
-            Parent
+            กลุ่มของหมวดหมู่
           </TableHeaderCell>
           <TableHeaderCell
             field="created_at"
@@ -55,42 +55,42 @@
             :sort-direction="sortDirection"
             @click="sortCategories('created_at')"
           >
-            Create Date
+            เพิ่มเมื่อวันที่
           </TableHeaderCell>
-          <TableHeaderCell field="actions"> Actions </TableHeaderCell>
+          <TableHeaderCell field="actions"> การดำเนินการ </TableHeaderCell>
         </tr>
       </thead>
       <tbody v-if="categories.loading || !categories.data.length">
         <tr>
           <td colspan="7">
             <Spinner v-if="categories.loading" />
-            <p v-else class="text-center py-8 text-gray-700">
-              There are no categories
-            </p>
+            <p v-else class="text-center py-8 text-gray-700">ไม่มีหมวดหมู่</p>
           </td>
         </tr>
       </tbody>
       <tbody v-else>
         <tr v-for="(category, index) of categories.data">
-          <td class="border-b p-2">{{ category.id }}</td>
-          <td class="border-b p-2">
+          <td class="border-b p-2 text-center text-center">
+            {{ category.id }}
+          </td>
+          <td class="border-b p-2 text-center">
             {{ category.name }}
           </td>
           <td
-            class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis"
+            class="border-b p-2 text-center max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis"
           >
             {{ category.slug }}
           </td>
-          <td class="border-b p-2">
+          <td class="border-b p-2 text-center">
             {{ category.active ? 'Yes' : 'No' }}
           </td>
-          <td class="border-b p-2">
+          <td class="border-b p-2 text-center">
             {{ category.parent?.name }}
           </td>
-          <td class="border-b p-2">
+          <td class="border-b p-2 text-center">
             {{ category.created_at }}
           </td>
-          <td class="border-b p-2">
+          <td class="border-b p-2 text-center">
             <Menu as="div" class="relative inline-block text-left">
               <div>
                 <MenuButton
@@ -128,7 +128,7 @@
                           class="mr-2 h-5 w-5 text-indigo-400"
                           aria-hidden="true"
                         />
-                        Edit
+                        แก้ไข
                       </button>
                     </MenuItem>
                     <MenuItem v-slot="{ active }">
@@ -144,7 +144,7 @@
                           class="mr-2 h-5 w-5 text-indigo-400"
                           aria-hidden="true"
                         />
-                        Delete
+                        ลบ
                       </button>
                     </MenuItem>
                   </div>
@@ -221,11 +221,11 @@ function showAddNewModal() {
 }
 
 function deleteCategory(category) {
-  if (!confirm(`Are you sure you want to delete the category?`)) {
+  if (!confirm(`คุณแน่ใจหรือไม่ว่าต้องการลบหมวดหมู่นี้ ?`)) {
     return;
   }
   store.dispatch('deleteCategory', category).then((res) => {
-    store.commit('showToast', 'Category was successfully deleted');
+    store.commit('showToast', 'ลบหมวดหมู่เรียบร้อยแล้ว');
     store.dispatch('getCategories');
   });
 }

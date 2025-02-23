@@ -6,13 +6,13 @@
           :to="{ name: 'reports.orders', params: route.params }"
           class="bg-white py-2 px-3 text-gray-700 rounded-md text-center"
           active-class="text-indigo-600 bg-indigo-50"
-          >Orders Report
+          >รายงานคำสั่งซื้อ
         </router-link>
         <router-link
           :to="{ name: 'reports.customers', params: route.params }"
           class="bg-white py-2 px-3 text-gray-700 rounded-md text-center"
           active-class="text-indigo-600 bg-indigo-50"
-          >Customers Report
+          >รายงานลูกค้า
         </router-link>
       </div>
       <div>
@@ -20,7 +20,7 @@
           type="select"
           v-model="chosenDate"
           @change="onDatePickerChange"
-          :select-options="dateOptions"
+          :select-options="dateThOptions"
         />
       </div>
     </div>
@@ -39,7 +39,7 @@ import { useStore } from 'vuex';
 const store = useStore();
 const router = useRouter();
 const route = useRoute();
-const dateOptions = computed(() => store.state.dateOptions);
+const dateThOptions = computed(() => store.state.dateThOptions);
 const chosenDate = ref('all');
 
 function onDatePickerChange() {

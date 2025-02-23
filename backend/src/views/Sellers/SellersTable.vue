@@ -21,7 +21,7 @@
           v-model="search"
           @change="getSellers(null)"
           class="appearance-none relative block w-48 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-          placeholder="Type to Search sellers"
+          placeholder="พิมพ์เพื่อค้นหาผู้ขาย"
         />
       </div>
     </div>
@@ -43,7 +43,7 @@
             :sort-direction="sortDirection"
             @click="sortSellers('store_name')"
           >
-            Store Name
+            ชื่อร้านค้า
           </TableHeaderCell>
           <TableHeaderCell
             field="seller_name"
@@ -51,7 +51,7 @@
             :sort-direction="sortDirection"
             @click="sortSellers('seller_name')"
           >
-            Name
+            ชื่อ Owner
           </TableHeaderCell>
           <TableHeaderCell
             field="store_phone"
@@ -59,7 +59,7 @@
             :sort-direction="sortDirection"
             @click="sortSellers('store_phone')"
           >
-            Store Phone
+            เบอร์ติดต่อร้านค้า
           </TableHeaderCell>
           <!-- <TableHeaderCell
             field="store_rating"
@@ -75,7 +75,7 @@
             :sort-direction="sortDirection"
             @click="sortSellers('status')"
           >
-            Status
+            สถานะใช้งาน
           </TableHeaderCell>
           <TableHeaderCell
             field="created_at"
@@ -83,31 +83,29 @@
             :sort-direction="sortDirection"
             @click="sortSellers('created_at')"
           >
-            Register Date
+            วันที่สมัครเข้าใช้งาน
           </TableHeaderCell>
-          <TableHeaderCell field="actions"> Actions </TableHeaderCell>
+          <TableHeaderCell field="actions"> การดำเนินการ </TableHeaderCell>
         </tr>
       </thead>
       <tbody v-if="sellers.loading || !sellers.data.length">
         <tr>
           <td colspan="8">
             <Spinner v-if="sellers.loading" />
-            <p v-else class="text-center py-8 text-gray-700">
-              There are no sellers
-            </p>
+            <p v-else class="text-center py-8 text-gray-700">ไม่มีผู้ขาย</p>
           </td>
         </tr>
       </tbody>
       <tbody v-else>
         <tr v-for="(seller, index) of sellers.data" :key="seller.id">
-          <td class="border-b p-2">{{ seller.id }}</td>
-          <td class="border-b p-2">{{ seller.store_name }}</td>
-          <td class="border-b p-2">{{ seller.seller_name }}</td>
-          <td class="border-b p-2">{{ seller.store_phone }}</td>
-          <!-- <td class="border-b p-2">{{ seller.store_rating }}</td> -->
-          <td class="border-b p-2">{{ seller.status }}</td>
-          <td class="border-b p-2">{{ seller.created_at }}</td>
-          <td class="border-b p-2">
+          <td class="border-b p-2 text-center">{{ seller.id }}</td>
+          <td class="border-b p-2 text-center">{{ seller.store_name }}</td>
+          <td class="border-b p-2 text-center">{{ seller.seller_name }}</td>
+          <td class="border-b p-2 text-center">{{ seller.store_phone }}</td>
+          <!-- <td class="border-b p- text-center">{{ seller.store_rating }}</td> -->
+          <td class="border-b p-2 text-center">{{ seller.status }}</td>
+          <td class="border-b p-2 text-center">{{ seller.created_at }}</td>
+          <td class="border-b p-2 text-center">
             <Menu as="div" class="relative inline-block text-left">
               <div>
                 <MenuButton
@@ -147,7 +145,7 @@
                           class="mr-2 h-5 w-5 text-indigo-400"
                           aria-hidden="true"
                         />
-                        Edit
+                        แก้ไข
                       </router-link>
                     </MenuItem>
                     <MenuItem v-slot="{ active }">
@@ -163,7 +161,7 @@
                           class="mr-2 h-5 w-5 text-indigo-400"
                           aria-hidden="true"
                         />
-                        Delete
+                        ลบ
                       </button>
                     </MenuItem>
                   </div>
@@ -276,11 +274,11 @@ function showAddNewModal() {
 }
 
 function deleteSeller(seller) {
-  if (!confirm(`Are you sure you want to delete the seller?`)) {
+  if (!confirm(`คุณแน่ใจหรือไม่ว่าต้องการลบผู้ขายนี้ ?`)) {
     return;
   }
   store.dispatch('deleteSeller', seller).then((res) => {
-    store.commit('showToast', 'Seller has been successfully deleted');
+    store.commit('showToast', 'ลบผู้ขายเรียบร้อยแล้ว');
     store.dispatch('getSellers');
   });
 }

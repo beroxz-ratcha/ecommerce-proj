@@ -68,7 +68,7 @@
                   class="mr-2 h-5 w-5 text-indigo-400"
                   aria-hidden="true"
                 />
-                Logout
+                ออกจากระบบ
               </button>
             </MenuItem>
           </div>

@@ -21,7 +21,7 @@
           v-model="search"
           @change="getUsers(null)"
           class="appearance-none relative block w-48 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-          placeholder="Type to Search users"
+          placeholder="พิมพ์เพื่อค้นหาผู้ใช้"
         />
       </div>
     </div>
@@ -43,7 +43,7 @@
             :sort-direction="sortDirection"
             @click="sortUsers('email')"
           >
-            Name
+            ชื่อ
           </TableHeaderCell>
           <TableHeaderCell
             field="email"
@@ -59,36 +59,34 @@
             :sort-direction="sortDirection"
             @click="sortUsers('created_at')"
           >
-            Create Date
+            เพิ่มเมื่อวันที่
           </TableHeaderCell>
-          <TableHeaderCell field="actions"> Actions </TableHeaderCell>
+          <TableHeaderCell field="actions"> การดำเนินการ </TableHeaderCell>
         </tr>
       </thead>
       <tbody v-if="users.loading || !users.data.length">
         <tr>
           <td colspan="6">
             <Spinner v-if="users.loading" />
-            <p v-else class="text-center py-8 text-gray-700">
-              There are no users
-            </p>
+            <p v-else class="text-center py-8 text-gray-700">ไม่มีผู้ใช้</p>
           </td>
         </tr>
       </tbody>
       <tbody v-else>
         <tr v-for="(user, index) of users.data">
-          <td class="border-b p-2">{{ user.id }}</td>
-          <td class="border-b p-2">
+          <td class="border-b p-2 text-center">{{ user.id }}</td>
+          <td class="border-b p-2 text-center">
             {{ user.name }}
           </td>
           <td
-            class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis"
+            class="border-b p-2 text-center max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis"
           >
             {{ user.email }}
           </td>
-          <td class="border-b p-2">
+          <td class="border-b p-2 text-center">
             {{ user.created_at }}
           </td>
-          <td class="border-b p-2">
+          <td class="border-b p-2 text-center">
             <Menu as="div" class="relative inline-block text-left">
               <div>
                 <MenuButton
@@ -126,7 +124,7 @@
                           class="mr-2 h-5 w-5 text-indigo-400"
                           aria-hidden="true"
                         />
-                        Edit
+                        แก้ไข
                       </button>
                     </MenuItem>
                     <MenuItem v-slot="{ active }">
@@ -142,7 +140,7 @@
                           class="mr-2 h-5 w-5 text-indigo-400"
                           aria-hidden="true"
                         />
-                        Delete
+                        ลบ
                       </button>
                     </MenuItem>
                   </div>
@@ -256,11 +254,11 @@ function showAddNewModal() {
 }
 
 function deleteUser(user) {
-  if (!confirm(`Are you sure you want to delete the user?`)) {
+  if (!confirm(`คุณแน่ใจหรือไม่ว่าต้องการลบผู้ใช้นี้ ?`)) {
     return;
   }
   store.dispatch('deleteUser', user).then((res) => {
-    // TODO Show notification
+    store.commit('showToast', 'ลบผู้ใช้เรียบร้อยแล้ว');
     store.dispatch('getUsers');
   });
 }

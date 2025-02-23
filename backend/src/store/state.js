@@ -60,7 +60,7 @@ export default {
     message: '',
     delay: 5000,
   },
-  dateOptions: [
+  dateEngOptions: [
     { key: '1d', text: 'Last Day' },
     { key: '1k', text: 'Last Week' },
     { key: '2k', text: 'Last 2 Weeks' },
@@ -68,6 +68,15 @@ export default {
     { key: '3m', text: 'Last 3 Months' },
     { key: '6m', text: 'Last 6 Months' },
     { key: 'all', text: 'All Time' },
+  ],
+  dateThOptions: [
+    { key: '1d', text: 'ย้อนหลัง 1 วัน' },
+    { key: '1k', text: 'ย้อนหลัง 1 สัปดาห์' },
+    { key: '2k', text: 'ย้อนหลัง 2 สัปดาห์' },
+    { key: '1m', text: 'ย้อนหลัง 1 เดือน' },
+    { key: '3m', text: 'ย้อนหลัง 3 เดือน' },
+    { key: '6m', text: 'ย้อนหลัง 6 เดือน' },
+    { key: 'all', text: 'ทุกช่วงเวลา' },
   ],
   categories: {
     loading: false,

@@ -21,7 +21,7 @@
           v-model="search"
           @change="getProducts(null)"
           class="appearance-none relative block w-48 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-          placeholder="Type to Search products"
+          placeholder="พิมพ์เพื่อค้นหาสินค้า"
         />
       </div>
     </div>
@@ -42,7 +42,7 @@
             :sort-field="sortField"
             :sort-direction="sortDirection"
           >
-            Image
+            รูปภาพ
           </TableHeaderCell>
           <TableHeaderCell
             field="title"
@@ -50,7 +50,7 @@
             :sort-direction="sortDirection"
             @click="sortProducts('title')"
           >
-            Title
+            ชื่อ
           </TableHeaderCell>
           <TableHeaderCell
             field="price"
@@ -58,7 +58,7 @@
             :sort-direction="sortDirection"
             @click="sortProducts('price')"
           >
-            Price
+            ราคา
           </TableHeaderCell>
           <TableHeaderCell
             field="quantity"
@@ -66,7 +66,7 @@
             :sort-direction="sortDirection"
             @click="sortProducts('quantity')"
           >
-            Quantity
+            จำนวน
           </TableHeaderCell>
           <TableHeaderCell
             field="updated_at"
@@ -74,25 +74,23 @@
             :sort-direction="sortDirection"
             @click="sortProducts('updated_at')"
           >
-            Last Updated At
+            แก้ไขล่าสุดเมื่อ
           </TableHeaderCell>
-          <TableHeaderCell field="actions"> Actions </TableHeaderCell>
+          <TableHeaderCell field="actions"> การดำเนินการ </TableHeaderCell>
         </tr>
       </thead>
       <tbody v-if="products.loading || !products.data.length">
         <tr>
           <td colspan="6">
             <Spinner v-if="products.loading" />
-            <p v-else class="text-center py-8 text-gray-700">
-              There are no products
-            </p>
+            <p v-else class="text-center py-8 text-gray-700">ไม่มีสินค้า</p>
           </td>
         </tr>
       </tbody>
       <tbody v-else>
         <tr v-for="(product, index) of products.data">
-          <td class="border-b p-2">{{ product.id }}</td>
-          <td class="border-b p-2">
+          <td class="border-b p-2 text-center">{{ product.id }}</td>
+          <td class="border-b p-2 text-center">
             <img
               v-if="product.image_url"
               class="w-16 h-16 object-cover"
@@ -106,20 +104,20 @@
             />
           </td>
           <td
-            class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis"
+            class="border-b p-2 text-center max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis"
           >
             {{ product.title }}
           </td>
-          <td class="border-b p-2">
+          <td class="border-b p-2 text-center">
             {{ $filters.currencyTHB(product.price) }}
           </td>
-          <td class="border-b p-2">
+          <td class="border-b p-2 text-center">
             {{ product.quantity }}
           </td>
-          <td class="border-b p-2">
+          <td class="border-b p-2 text-center">
             {{ product.updated_at }}
           </td>
-          <td class="border-b p-2">
+          <td class="border-b p-2 text-center">
             <Menu as="div" class="relative inline-block text-left">
               <div>
                 <MenuButton
@@ -160,7 +158,7 @@
                           class="mr-2 h-5 w-5 text-indigo-400"
                           aria-hidden="true"
                         />
-                        Edit
+                        แก้ไข
                       </router-link>
                     </MenuItem>
                     <MenuItem v-slot="{ active }">
@@ -176,7 +174,7 @@
                           class="mr-2 h-5 w-5 text-indigo-400"
                           aria-hidden="true"
                         />
-                        Delete
+                        ลบ
                       </button>
                     </MenuItem>
                   </div>
@@ -285,11 +283,11 @@ function sortProducts(field) {
 }
 
 function deleteProduct(product) {
-  if (!confirm(`Are you sure you want to delete the product?`)) {
+  if (!confirm(`คุณแน่ใจหรือไม่ว่าต้องการลบสินค้านี้ ?`)) {
     return;
   }
   store.dispatch('deleteProduct', product.id).then((res) => {
-    store.commit('showToast', 'Product was successfully deleted');
+    store.commit('showToast', 'ลบสินค้าเรียบร้อยแล้ว');
     store.dispatch('getProducts');
   });
 }

@@ -21,7 +21,7 @@
           v-model="search"
           @change="getOrders(null)"
           class="appearance-none relative block w-48 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-          placeholder="Type to Search orders"
+          placeholder="พิมพ์เพื่อค้นหาคำสั่งซื้อ"
         />
       </div>
     </div>
@@ -41,7 +41,7 @@
             :sort-field="sortField"
             :sort-direction="sortDirection"
           >
-            Customer
+            ชื่อลูกค้า
           </TableHeaderCell>
           <TableHeaderCell
             field="status"
@@ -49,7 +49,7 @@
             :sort-direction="sortDirection"
             @click="sortOrders('status')"
           >
-            Status
+            สถานะ
           </TableHeaderCell>
           <TableHeaderCell
             field="total_price"
@@ -57,7 +57,7 @@
             :sort-direction="sortDirection"
             @click="sortOrders('total_price')"
           >
-            Price
+            ราคา
           </TableHeaderCell>
           <TableHeaderCell
             field="created_at"
@@ -65,39 +65,39 @@
             :sort-direction="sortDirection"
             @click="sortOrders('created_at')"
           >
-            Date
+            วันที่
           </TableHeaderCell>
-          <TableHeaderCell field="actions"> Actions </TableHeaderCell>
+          <TableHeaderCellLeft field="actions">
+            การดำเนินการ
+          </TableHeaderCellLeft>
         </tr>
       </thead>
       <tbody v-if="orders.loading || !orders.data.length">
         <tr>
           <td colspan="6">
             <Spinner v-if="orders.loading" />
-            <p v-else class="text-center py-8 text-gray-700">
-              There are no orders
-            </p>
+            <p v-else class="text-center py-8 text-gray-700">ไม่มีคำสั่งซื้อ</p>
           </td>
         </tr>
       </tbody>
       <tbody v-else>
         <tr v-for="(order, index) of orders.data">
-          <td class="border-b p-2">{{ order.id }}</td>
-          <td class="border-b p-2">
+          <td class="border-b p-2 text-center">{{ order.id }}</td>
+          <td class="border-b p-2 text-center">
             {{ order.customer.first_name }} {{ order.customer.last_name }}
           </td>
-          <td class="border-b p-2">
+          <td class="border-b p-2 text-center">
             <OrderStatus :order="order" />
           </td>
-          <td class="border-b p-2">
+          <td class="border-b p-2 text-center">
             {{ $filters.currencyTHB(order.total_price) }}
           </td>
           <td
-            class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis"
+            class="border-b p-2 text-center max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis"
           >
             {{ order.created_at }}
           </td>
-          <td class="border-b p-2">
+          <td class="border-b p-2 text-center">
             <router-link
               :to="{ name: 'app.orders.view', params: { id: order.id } }"
               class="w-8 h-8 rounded-full text-indigo-700 border border-indigo-700 flex justify-center items-center hover:text-white hover:bg-indigo-700"
@@ -167,6 +167,7 @@ import store from '../../store';
 import Spinner from '../../components/core/Spinner.vue';
 import { PRODUCTS_PER_PAGE } from '../../constants';
 import TableHeaderCell from '../../components/core/Table/TableHeaderCell.vue';
+import TableHeaderCellLeft from '../../components/core/Table/TableHeaderCellLeft.vue';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue';
 import {
   DotsVerticalIcon,
@@ -229,11 +230,11 @@ function showAddNewModal() {
 }
 
 function deleteOrder(order) {
-  if (!confirm(`Are you sure you want to delete the order?`)) {
+  if (!confirm(`คุณแน่ใจหรือไม่ว่าต้องการลบคำสั่งซื้อนี้ ?`)) {
     return;
   }
   store.dispatch('deleteOrder', order.id).then((res) => {
-    // TODO Show notification
+    store.commit('showToast', 'ลบรายการสั่งซื้อเรียบร้อยแล้ว');
     store.dispatch('getOrders');
   });
 }

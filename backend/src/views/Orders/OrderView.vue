@@ -5,21 +5,21 @@
       <h2
         class="flex justify-between items-center text-2xl font-semibold pb-4 border-b border-gray-300"
       >
-        Order Details
+        รายละเอียดการสั่งซื้อ
         <OrderStatus :order="order" />
       </h2>
       <table class="w-full mt-4">
         <tbody>
           <tr>
-            <td class="font-bold py-2 px-4">Order #</td>
+            <td class="font-bold py-2 px-4">รายการที่ #</td>
             <td class="py-2 px-4">{{ order.id }}</td>
           </tr>
           <tr>
-            <td class="font-bold py-2 px-4">Order Date</td>
+            <td class="font-bold py-2 px-4">วันที่ทำการสั่งซื้อ</td>
             <td class="py-2 px-4">{{ order.created_at }}</td>
           </tr>
           <tr>
-            <td class="font-bold py-2 px-4">Order Status</td>
+            <td class="font-bold py-2 px-4">สถานะคำสั่งซื้อ</td>
             <td class="py-2 px-4">
               <select
                 v-model="order.status"
@@ -37,7 +37,7 @@
             </td>
           </tr>
           <tr>
-            <td class="font-bold py-2 px-4">SubTotal</td>
+            <td class="font-bold py-2 px-4">ราคารวม</td>
             <td class="py-2 px-4">
               {{ $filters.currencyTHB(order.total_price) }}
             </td>
@@ -50,12 +50,12 @@
     <!--  Customer Details-->
     <div>
       <h2 class="text-2xl font-semibold mt-6 pb-4 border-b border-gray-300">
-        Customer Details
+        รายละเอียดลูกค้า
       </h2>
       <table class="w-full mt-4">
         <tbody>
           <tr>
-            <td class="font-bold py-2 px-4">Full Name</td>
+            <td class="font-bold py-2 px-4">ชื่อ</td>
             <td class="py-2 px-4">
               {{ order.customer.first_name }} {{ order.customer.last_name }}
             </td>
@@ -65,7 +65,7 @@
             <td class="py-2 px-4">{{ order.customer.email }}</td>
           </tr>
           <tr>
-            <td class="font-bold py-2 px-4">Phone</td>
+            <td class="font-bold py-2 px-4">เบอร์โทรศัพท์</td>
             <td class="py-2 px-4">{{ order.customer.phone }}</td>
           </tr>
         </tbody>
@@ -77,7 +77,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
       <div>
         <h2 class="text-2xl font-semibold pb-4 border-b border-gray-300">
-          Billing Address
+          ที่อยู่สำหรับการเรียกเก็บเงิน
         </h2>
         <!--  Billing Address Details-->
         <div class="mt-2">
@@ -92,7 +92,7 @@
       </div>
       <div>
         <h2 class="text-2xl font-semibold pb-4 border-b border-gray-300">
-          Shipping Address
+          ที่อยู่จัดส่ง
         </h2>
         <!--  Shipping Address Details-->
         <div class="mt-2">
@@ -111,7 +111,7 @@
     <!--    Order Items-->
     <div class="mt-6">
       <h2 class="text-2xl font-semibold pb-4 border-b border-gray-300">
-        Order Items
+        รายการสั่งซื้อ
       </h2>
       <div
         v-for="item of order.items"
@@ -135,7 +135,7 @@
               <h3 class="text-lg font-semibold">{{ item.product.title }}</h3>
             </div>
             <div class="flex justify-between items-center">
-              <div class="flex items-center">Qty: {{ item.quantity }}</div>
+              <div class="flex items-center">จำนวน : {{ item.quantity }}</div>
               <span class="text-lg font-semibold">
                 {{ $filters.currencyTHB(item.unit_price) }}
               </span>
@@ -153,7 +153,7 @@
         class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 text-base font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500"
         ref="cancelButtonRef"
       >
-        Submit
+        ยืนยัน
       </router-link>
     </footer>
   </div>
@@ -187,7 +187,7 @@ function onStatusChange() {
     .then(({ data }) => {
       store.commit(
         'showToast',
-        `Order status was successfully changed into "${order.value.status}"`,
+        `เปลี่ยนสถานะการสั่งซื้อเป็น "${order.value.status}" เรียบร้อยแล้ว`,
       );
     });
 }

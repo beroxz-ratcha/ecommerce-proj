@@ -21,7 +21,7 @@
           v-model="search"
           @change="getCustomers(null)"
           class="appearance-none relative block w-48 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-          placeholder="Type to Search customers"
+          placeholder="พิมพ์เพื่อค้นหาลูกค้า"
         />
       </div>
     </div>
@@ -43,7 +43,7 @@
             :sort-direction="sortDirection"
             @click="sortCustomers('name')"
           >
-            Name
+            ชื่อ
           </TableHeaderCell>
           <TableHeaderCell
             field="email"
@@ -59,7 +59,7 @@
             :sort-direction="sortDirection"
             @click="sortCustomers('phone')"
           >
-            Phone
+            เบอร์โทรศัพท์
           </TableHeaderCell>
           <TableHeaderCell
             field="status"
@@ -67,7 +67,7 @@
             :sort-direction="sortDirection"
             @click="sortCustomers('status')"
           >
-            Status
+            สถานะใช้งาน
           </TableHeaderCell>
           <TableHeaderCell
             field="created_at"
@@ -75,42 +75,40 @@
             :sort-direction="sortDirection"
             @click="sortCustomers('created_at')"
           >
-            Register Date
+            วันที่สมัครเข้าใช้งาน
           </TableHeaderCell>
-          <TableHeaderCell field="actions"> Actions </TableHeaderCell>
+          <TableHeaderCell field="actions"> การดำเนินการ </TableHeaderCell>
         </tr>
       </thead>
       <tbody v-if="customers.loading || !customers.data.length">
         <tr>
           <td colspan="7">
             <Spinner v-if="customers.loading" />
-            <p v-else class="text-center py-8 text-gray-700">
-              There are no customers
-            </p>
+            <p v-else class="text-center py-8 text-gray-700">ไม่มีลูกค้า</p>
           </td>
         </tr>
       </tbody>
       <tbody v-else>
         <tr v-for="(customer, index) of customers.data">
-          <td class="border-b p-2">{{ customer.id }}</td>
-          <td class="border-b p-2">
+          <td class="border-b p-2 text-center">{{ customer.id }}</td>
+          <td class="border-b p-2 text-center">
             {{ customer.first_name }} {{ customer.last_name }}
           </td>
           <td
-            class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis"
+            class="border-b p-2 text-center max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis"
           >
             {{ customer.email }}
           </td>
-          <td class="border-b p-2">
+          <td class="border-b p-2 text-center">
             {{ customer.phone }}
           </td>
-          <td class="border-b p-2">
+          <td class="border-b p-2 text-center">
             {{ customer.status }}
           </td>
-          <td class="border-b p-2">
+          <td class="border-b p-2 text-center">
             {{ customer.created_at }}
           </td>
-          <td class="border-b p-2">
+          <td class="border-b p-2 text-center">
             <Menu as="div" class="relative inline-block text-left">
               <div>
                 <MenuButton
@@ -151,7 +149,7 @@
                           class="mr-2 h-5 w-5 text-indigo-400"
                           aria-hidden="true"
                         />
-                        Edit
+                        แก้ไข
                       </router-link>
                     </MenuItem>
                     <MenuItem v-slot="{ active }">
@@ -167,7 +165,7 @@
                           class="mr-2 h-5 w-5 text-indigo-400"
                           aria-hidden="true"
                         />
-                        Delete
+                        ลบ
                       </button>
                     </MenuItem>
                   </div>
@@ -283,11 +281,11 @@ function showAddNewModal() {
 }
 
 function deleteCustomer(customer) {
-  if (!confirm(`Are you sure you want to delete the customer?`)) {
+  if (!confirm(`คุณแน่ใจหรือไม่ว่าต้องการลบลูกค้า ?`)) {
     return;
   }
   store.dispatch('deleteCustomer', customer).then((res) => {
-    store.commit('showToast', 'Customer has been successfully deleted');
+    store.commit('showToast', 'ลบลูกค้าเรียบร้อยแล้ว');
     store.dispatch('getCustomers');
   });
 }

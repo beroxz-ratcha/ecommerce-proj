@@ -6,32 +6,32 @@
         <CustomInput
           class="mb-2"
           v-model="customer.first_name"
-          label="First Name"
+          label="ชื่อ"
           :errors="errors.first_name"
         />
         <CustomInput
           class="mb-2"
           v-model="customer.last_name"
-          label="Last Name"
+          label="นามสกุล"
           :errors="errors.last_name"
         />
         <CustomInput
           class="mb-2"
           v-model="customer.email"
-          label="Email"
+          label="อีเมล"
           :errors="errors.email"
         />
         <CustomInput
           class="mb-2"
           v-model="customer.phone"
-          label="Phone"
+          label="เบอร์โทรศัพท์"
           :errors="errors.phone"
         />
         <CustomInput
           type="checkbox"
           class="mb-2"
           v-model="customer.status"
-          label="Active"
+          label="สถานะใช้งาน"
           :errors="errors.status"
         />
 
@@ -40,28 +40,28 @@
             <h2
               class="text-xl font-semibold mt-6 pb-2 border-b border-gray-300"
             >
-              Billing Address
+              ที่อยู่สำหรับการเรียกเก็บเงิน
             </h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
               <CustomInput
                 v-model="customer.billingAddress.address1"
-                label="Address 1"
+                label="ที่อยู่"
                 :errors="errors['billingAddress.address1']"
               />
               <CustomInput
                 v-model="customer.billingAddress.address2"
-                label="Address 2"
+                label="ตำบล/แขวง"
                 :errors="errors['billingAddress.address2']"
               />
               <CustomInput
                 v-model="customer.billingAddress.city"
-                label="City"
+                label="อำเภอ/เขต"
                 :errors="errors['billingAddress.city']"
               />
               <CustomInput
                 v-model="customer.billingAddress.zipcode"
-                label="Zip Code"
+                label="เลขที่ไปรษณีย์"
                 :errors="errors['billingAddress.zipcode']"
               />
 
@@ -69,13 +69,13 @@
                 type="select"
                 :select-options="countries"
                 v-model="customer.billingAddress.country_code"
-                label="Country"
+                label="ประเทศ"
                 :errors="errors['billingAddress.country_code']"
               />
               <CustomInput
                 v-if="billingCountry && !billingCountry.states"
                 v-model="customer.billingAddress.state"
-                label="State"
+                label="จังหวัด/เมือง"
                 :errors="errors['billingAddress.state']"
               />
               <CustomInput
@@ -83,7 +83,7 @@
                 type="select"
                 :select-options="billingStateOptions"
                 v-model="customer.billingAddress.state"
-                label="State"
+                label="จังหวัด/เมือง"
                 :errors="errors['billingAddress.state']"
               />
             </div>
@@ -93,41 +93,41 @@
             <h2
               class="text-xl font-semibold mt-6 pb-2 border-b border-gray-300"
             >
-              Shipping Address
+              ที่อยู่จัดส่ง
             </h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
               <CustomInput
                 v-model="customer.shippingAddress.address1"
-                label="Address 1"
+                label="ที่อยู่"
                 :errors="errors['shippingAddress.address1']"
               />
               <CustomInput
                 v-model="customer.shippingAddress.address2"
-                label="Address 2"
+                label="ตำบล/แขวง"
                 :errors="errors['shippingAddress.address2']"
               />
               <CustomInput
                 v-model="customer.shippingAddress.city"
-                label="City"
+                label="อำเภอ/เขต"
                 :errors="errors['shippingAddress.city']"
               />
               <CustomInput
                 v-model="customer.shippingAddress.zipcode"
-                label="Zip Code"
+                label="เลขที่ไปรษณีย์"
                 :errors="errors['shippingAddress.zipcode']"
               />
               <CustomInput
                 type="select"
                 :select-options="countries"
                 v-model="customer.shippingAddress.country_code"
-                label="Country"
+                label="ประเภท"
                 :errors="errors['shippingAddress.country_code']"
               />
               <CustomInput
                 v-if="shippingCountry && !shippingCountry.states"
                 v-model="customer.shippingAddress.state"
-                label="State"
+                label="จังหวัด/เมือง"
                 :errors="errors['shippingAddress.state']"
               />
               <CustomInput
@@ -135,7 +135,7 @@
                 type="select"
                 :select-options="shippingStateOptions"
                 v-model="customer.shippingAddress.state"
-                label="State"
+                label="จังหวัด/เมือง"
                 :errors="errors['shippingAddress.state']"
               />
             </div>
@@ -147,7 +147,7 @@
           type="submit"
           class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 text-base font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500"
         >
-          Submit
+          ยืนยัน
         </button>
         <router-link
           :to="{ name: 'app.customers' }"
@@ -155,7 +155,7 @@
           class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
           ref="cancelButtonRef"
         >
-          Cancel
+          ยกเลิก
         </router-link>
       </footer>
     </form>
@@ -235,7 +235,7 @@ function onSubmit() {
       .then((response) => {
         loading.value = false;
         if (response.status === 200) {
-          store.commit('showToast', 'Customer has been successfully updated');
+          store.commit('showToast', 'ข้อมูลลูกค้าได้รับการแก้ไขเรียบร้อยแล้ว');
           store.dispatch('getCustomers');
           router.push({ name: 'app.customers' });
         }
@@ -263,7 +263,7 @@ function onSubmit() {
 
 onMounted(() => {
   store.dispatch('getCustomer', route.params.id).then(({ data }) => {
-    title.value = `Update customer: "${data.first_name} ${data.last_name}"`;
+    title.value = `แก้ไขข้อมูลลูกค้า : "${data.first_name} ${data.last_name}"`;
     customer.value = data;
   });
 });

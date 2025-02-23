@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center justify-between mb-3">
-    <h1 class="text-3xl font-semibold">Sellers</h1>
+    <h1 class="text-3xl font-semibold">ข้อมูลผู้ขาย</h1>
   </div>
   <SellersTable @clickEdit="editSeller" />
 </template>

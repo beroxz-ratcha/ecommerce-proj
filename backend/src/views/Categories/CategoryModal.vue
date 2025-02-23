@@ -41,8 +41,8 @@
                 >
                   {{
                     category.id
-                      ? `Update category: "${props.category.name}"`
-                      : 'Create new Category'
+                      ? `แก้ไขหมวดหมู่ : "${props.category.name}"`
+                      : 'สร้างหมวดหมู่ใหม่'
                   }}
                 </DialogTitle>
                 <button
@@ -85,7 +85,7 @@
                     type="checkbox"
                     class="mb-2"
                     v-model="category.active"
-                    label="Active"
+                    label="เปิดใช้งาน"
                     :errors="errors['active']"
                   />
                 </div>
@@ -96,7 +96,7 @@
                     type="submit"
                     class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 text-base font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500"
                   >
-                    Submit
+                    ยืนยัน
                   </button>
                   <button
                     type="button"
@@ -104,7 +104,7 @@
                     @click="closeModal"
                     ref="cancelButtonRef"
                   >
-                    Cancel
+                    ยกเลิก
                   </button>
                 </footer>
               </form>
@@ -197,7 +197,7 @@ function onSubmit() {
       .then((response) => {
         loading.value = false;
         if (response.status === 200) {
-          store.commit('showToast', 'Category was successfully updated');
+          store.commit('showToast', 'แก้ไขหมวดหมู่สำเร็จแล้ว');
           store.dispatch('getCategories');
           closeModal();
         }
@@ -212,7 +212,7 @@ function onSubmit() {
       .then((response) => {
         loading.value = false;
         if (response.status === 201) {
-          store.commit('showToast', 'Category was successfully created');
+          store.commit('showToast', 'สร้างหมวดหมู่สำเร็จแล้ว');
           store.dispatch('getCategories');
           closeModal();
         }
