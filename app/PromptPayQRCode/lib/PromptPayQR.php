@@ -58,10 +58,6 @@ class PromptPayQR
 		return $data;
 	}
 
-	/*
-	 * crc16 function from https://stackoverflow.com/questions/14018508/how-to-calculate-crc16-in-php
-	 * RomKazanova, thank for code.
-	 */
 	private function crc16($data)
 	{
 		$crc = 0xFFFF;

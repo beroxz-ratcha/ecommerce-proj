@@ -56,6 +56,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/payment/bank', [PaymentController::class, 'viewBank'])->name('payment.bank');
     Route::post('/payment/qrcode', [PaymentController::class, 'generateQR'])->name('payment.qrcode');
     Route::get('/payment/summary', [PaymentController::class, 'summary'])->name('payment.summary');
+    Route::post('/payment/complete', [CheckoutController::class, 'checkoutPayment'])->name('payment.withqrcode');
 });
 
 Route::post('/webhook/stripe', [CheckoutController::class, 'webhook']);
