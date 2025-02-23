@@ -236,6 +236,106 @@ class CheckoutController extends Controller
         return redirect()->route('checkout.success')->with('order_id', $order->id);
     }
 
+    public function checkoutPayment(Request $request)
+    {
+        /** @var \App\Models\User $user */
+        $user = $request->user();
+        $customer = $user->customer;
+
+        if (!$customer->billingAddress || !$customer->shippingAddress) {
+            return redirect()->route('profile')->with('error', 'Please provide your address details first.');
+        }
+
+        [$products, $cartItems] = Cart::getProductsAndCartItems();
+
+        $totalPrice = 0;
+        $ordersData = [];
+
+        DB::beginTransaction();
+
+        foreach ($products as $product) {
+            $quantity = $cartItems[$product->id]['quantity'];
+            if ($product->quantity !== null && $product->quantity < $quantity) {
+                $message = match ($product->quantity) {
+                    0 => 'The product "' . $product->title . '" is out of stock',
+                    1 => 'There is only one item left for product "' . $product->title . '"',
+                    default => 'There are only ' . $product->quantity . ' items left for product "' . $product->title . '"',
+                };
+                return redirect()->back()->with('error', $message);
+            }
+        }
+
+        foreach ($products as $product) {
+            $quantity = $cartItems[$product->id]['quantity'];
+            $totalPrice += $product->price * $quantity;
+
+            $sellerId = $product->seller_id;
+            if (!isset($ordersData[$sellerId])) {
+                $ordersData[$sellerId] = [
+                    'items' => [],
+                    'total_price' => 0,
+                    'seller_id' => $sellerId,
+                ];
+            }
+
+            $ordersData[$sellerId]['items'][] = [
+                'product_id' => $product->id,
+                'quantity' => $quantity,
+                'unit_price' => $product->price
+            ];
+            $ordersData[$sellerId]['total_price'] += $product->price * $quantity;
+
+            if ($product->quantity !== null) {
+                $product->quantity -= $quantity;
+                $product->save();
+            }
+        }
+
+        try {
+            foreach ($ordersData as $orderData) {
+                $order = Order::create([
+                    'total_price' => $orderData['total_price'],
+                    'status' => OrderStatus::WaitingForConfirmation,
+                    'created_by' => $user->id,
+                    'updated_by' => $user->id,
+                    'seller_id' => $orderData['seller_id'],
+                ]);
+
+                foreach ($orderData['items'] as $orderItem) {
+                    $orderItem['order_id'] = $order->id;
+                    OrderItem::create($orderItem);
+                }
+
+                // อัปโหลดไฟล์สลิป
+                if ($request->hasFile('slipInput')) {
+                    $slipImage = $request->file('slipInput');
+                    $slipImagePath = $slipImage->store('payslips', 'public'); // เก็บไฟล์ในโฟลเดอร์ payslips
+
+                    $paymentData = [
+                        'order_id' => $order->id,
+                        'amount' => $orderData['total_price'],
+                        'status' => PaymentStatus::QRCode,
+                        'type' => 'qrcode',
+                        'created_by' => $user->id,
+                        'updated_by' => $user->id,
+                        'payslip_img' => $slipImagePath, // บันทึกที่อยู่ของไฟล์
+                    ];
+
+                    Payment::create($paymentData);
+                }
+            }
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            Log::critical(__METHOD__ . ' method does not work. ' . $e->getMessage());
+            throw $e;
+        }
+
+        DB::commit();
+        CartItem::where(['user_id' => $user->id])->delete();
+        return redirect()->route('checkout.success')->with('order_id', $order->id);
+    }
+
     public function success(Request $request)
     {
         /** @var \App\Models\User $user */
@@ -280,7 +380,7 @@ class CheckoutController extends Controller
             } else {
                 $order_id = $request->session()->get('order_id');
                 if (!$order_id) {
-                    return view('checkout.failure', ['message' => 'Order ID is required for Cash on Delivery']);
+                    return view('checkout.failure', ['message' => 'Order ID is required']);
                 }
 
                 $payment = Payment::where('order_id', $order_id)->first();
@@ -295,9 +395,14 @@ class CheckoutController extends Controller
                 $customer->name = $customerInfo->first_name . ' ' . $customerInfo->last_name;
                 if ($payment->status === PaymentStatus::CashOnDelivery->value) {
                     return view('checkout.success', compact('customer'));
+                } else if ($payment->status === PaymentStatus::QRCode->value) {
+                    return view('checkout.success', compact('customer'));
+                } else if ($payment->status === PaymentStatus::Bank->value) {
+                    return view('checkout.success', compact('customer'));
+                } else {
+                    return view('checkout.failure', ['message' => 'Invalid payment status']);
                 }
 
-                return view('checkout.failure', ['message' => 'Invalid payment status for Cash on Delivery']);
             }
 
         } catch (NotFoundHttpException $e) {
@@ -399,6 +504,19 @@ class CheckoutController extends Controller
         }
 
         return response('', 200);
+    }
+
+    protected function updateQrCodePayment(Payment $payment)
+    {
+        $payment->status = PaymentStatus::WaitingForConfirmation->value;
+        $payment->save();
+
+        $order = $payment->order;
+
+        $order->status = OrderStatus::WaitingForConfirmation->value;
+        $order->save();
+
+        $this->sendOrderNotificationEmails($order);
     }
 
     private function updateOrderAndSession(Payment $payment)
