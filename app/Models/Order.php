@@ -26,6 +26,11 @@ class Order extends Model
         return $this->status === OrderStatus::Delivered->value;
     }
 
+    public function isWaitingForConfirmation()
+    {
+        return $this->status === OrderStatus::WaitingForConfirmation->value;
+    }
+
     public function payment(): HasOne
     {
         return $this->hasOne(Payment::class);
