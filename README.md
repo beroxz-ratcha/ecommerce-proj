@@ -124,3 +124,7 @@ MAIL_FROM_ADDRESS="your_email@gmail.com"
 MAIL_FROM_NAME="${APP_NAME}" # ชื่อที่จะปรากฏในการส่งอีเมล เช่น "Perdis Website"
 
 share `https://drive.google.com/drive/folders/1fy-lT7PnVDeHMD5p99I-s38WaLLRZOVl?usp=sharing`
+
+npm config list
+npm config delete prefix
+npm install --no-prefix
