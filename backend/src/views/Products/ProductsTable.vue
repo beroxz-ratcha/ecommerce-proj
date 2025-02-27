@@ -115,7 +115,7 @@
             {{ product.quantity }}
           </td>
           <td class="border-b p-2 text-center">
-            {{ product.updated_at }}
+            {{ formatDateTime(product.updated_at) }}
           </td>
           <td class="border-b p-2 text-center">
             <Menu as="div" class="relative inline-block text-left">
@@ -235,6 +235,7 @@ import {
   PencilIcon,
   TrashIcon,
 } from '@heroicons/vue/outline';
+import dateTimeService from '../../services/dateTimeService';
 
 const perPage = ref(PRODUCTS_PER_PAGE);
 const search = ref('');
@@ -291,6 +292,10 @@ function deleteProduct(product) {
     store.dispatch('getProducts');
   });
 }
+
+const formatDateTime = (dateString) => {
+  return dateTimeService.formatDateTime(dateString);
+};
 </script>
 
 <style scoped></style>

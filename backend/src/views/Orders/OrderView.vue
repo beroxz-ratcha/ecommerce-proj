@@ -16,7 +16,7 @@
           </tr>
           <tr>
             <td class="font-bold py-2 px-4">วันที่ทำการสั่งซื้อ</td>
-            <td class="py-2 px-4">{{ order.created_at }}</td>
+            <td class="py-2 px-4">{{ formatDateTime(order.created_at) }}</td>
           </tr>
           <tr>
             <td class="font-bold py-2 px-4">สถานะคำสั่งซื้อ</td>
@@ -165,6 +165,7 @@ import store from '../../store';
 import { useRoute } from 'vue-router';
 import axiosClient from '../../axios.js';
 import OrderStatus from './OrderStatus.vue';
+import dateTimeService from '../../services/dateTimeService';
 
 const route = useRoute();
 
@@ -191,6 +192,10 @@ function onStatusChange() {
       );
     });
 }
+
+const formatDateTime = (dateString) => {
+  return dateTimeService.formatDateTime(dateString);
+};
 </script>
 
 <style scoped>

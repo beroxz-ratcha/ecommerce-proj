@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Helpers\Cart;
+use App\Models\Setting;
 use PromptPayQRCode\PromptPayQR;
 
 class PaymentController extends Controller
@@ -38,7 +39,8 @@ class PaymentController extends Controller
 
         $PromptPayQR = new PromptPayQR();
         $PromptPayQR->size = 5;
-        $PromptPayQR->id = getenv('PROMPTPAY_ID');
+        // $PromptPayQR->id = getenv('PROMPTPAY_ID');
+        $PromptPayQR->id = Setting::getValue('promptpay_id', env('PROMPTPAY_ID'));
         $PromptPayQR->amount = $total;
 
         $qrCodePath = public_path('qrcodes/payment_qr.png');
@@ -77,7 +79,7 @@ class PaymentController extends Controller
 
         $PromptPayQR = new PromptPayQR();
         $PromptPayQR->size = 5;
-        $PromptPayQR->id = getenv('PROMPTPAY_ID');
+        $PromptPayQR->id = Setting::getValue('promptpay_id', env('PROMPTPAY_ID'));
         $PromptPayQR->amount = $totalAmount;
         $PromptPayQR->generate($qrCodePath);
 

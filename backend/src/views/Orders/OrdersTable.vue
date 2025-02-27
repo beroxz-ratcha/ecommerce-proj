@@ -95,7 +95,7 @@
           <td
             class="border-b p-2 text-center max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis"
           >
-            {{ order.created_at }}
+            {{ formatDateTime(order.created_at) }}
           </td>
           <td class="border-b p-2 text-center">
             <router-link
@@ -175,6 +175,7 @@ import {
   TrashIcon,
 } from '@heroicons/vue/outline';
 import OrderStatus from './OrderStatus.vue';
+import dateTimeService from '../../services/dateTimeService';
 
 const perPage = ref(PRODUCTS_PER_PAGE);
 const search = ref('');
@@ -242,6 +243,10 @@ function deleteOrder(order) {
 function showOrder(p) {
   emit('clickShow', p);
 }
+
+const formatDateTime = (dateString) => {
+  return dateTimeService.formatDateTime(dateString);
+};
 </script>
 
 <style scoped></style>

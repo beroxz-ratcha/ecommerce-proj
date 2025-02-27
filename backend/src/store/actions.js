@@ -182,6 +182,45 @@ export function updateUser({ commit }, user) {
   return axiosClient.put(`/users/${user.id}`, user);
 }
 
+export function getSettings(
+  { commit, state },
+  { url = null, search = '', per_page, sort_field, sort_direction } = {},
+) {
+  commit('setSettings', [true]);
+  url = url || '/settings';
+  const params = {
+    per_page: state.users.limit,
+  };
+  return axiosClient
+    .get(url, {
+      params: {
+        ...params,
+        search,
+        per_page,
+        sort_field,
+        sort_direction,
+      },
+    })
+    .then((response) => {
+      commit('setSettings', [false, response.data]);
+    })
+    .catch(() => {
+      commit('setSettings', [false]);
+    });
+}
+
+export function createSetting({ commit }, setting) {
+  return axiosClient.post('/settings', setting);
+}
+
+export function updateSetting({ commit }, setting) {
+  return axiosClient.put(`/settings/${setting.id}`, setting);
+}
+
+export function deleteSetting({ commit }, setting) {
+  return axiosClient.delete(`/settings/${setting.id}`);
+}
+
 export function getCustomers(
   { commit, state },
   { url = null, search = '', per_page, sort_field, sort_direction } = {},

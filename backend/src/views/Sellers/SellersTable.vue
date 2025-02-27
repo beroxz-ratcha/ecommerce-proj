@@ -104,7 +104,9 @@
           <td class="border-b p-2 text-center">{{ seller.store_phone }}</td>
           <!-- <td class="border-b p- text-center">{{ seller.store_rating }}</td> -->
           <td class="border-b p-2 text-center">{{ seller.status }}</td>
-          <td class="border-b p-2 text-center">{{ seller.created_at }}</td>
+          <td class="border-b p-2 text-center">
+            {{ formatDateTime(seller.created_at) }}
+          </td>
           <td class="border-b p-2 text-center">
             <Menu as="div" class="relative inline-block text-left">
               <div>
@@ -219,6 +221,7 @@ import {
   PencilIcon,
   TrashIcon,
 } from '@heroicons/vue/outline';
+import dateTimeService from '../../services/dateTimeService';
 
 const perPage = ref(SELLERS_PER_PAGE);
 const search = ref('');
@@ -282,6 +285,10 @@ function deleteSeller(seller) {
     store.dispatch('getSellers');
   });
 }
+
+const formatDateTime = (dateString) => {
+  return dateTimeService.formatDateTime(dateString);
+};
 </script>
 
 <style scoped></style>

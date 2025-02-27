@@ -16,7 +16,9 @@
     <div
       class="animate-fade-in-down bg-white py-6 px-5 rounded-lg shadow flex flex-col items-center justify-center"
     >
-      <label class="text-lg font-semibold block mb-2">ลูกค้าที่ใช้งาน</label>
+      <label class="text-lg font-semibold block mb-2"
+        >ลูกค้าที่ใช้งาน (ทั้งหมด)</label
+      >
       <template v-if="!loading.customersCount">
         <span class="text-3xl font-semibold">{{ customersCount }}</span>
       </template>
@@ -28,7 +30,9 @@
       class="animate-fade-in-down bg-white py-6 px-5 rounded-lg shadow flex flex-col items-center justify-center"
       style="animation-delay: 0.1s"
     >
-      <label class="text-lg font-semibold block mb-2">สินค้าที่ลงขาย</label>
+      <label class="text-lg font-semibold block mb-2"
+        >สินค้าที่ลงขาย (ทั้งหมด)</label
+      >
       <template v-if="!loading.productsCount">
         <span class="text-3xl font-semibold">{{ productsCount }}</span>
       </template>
@@ -96,7 +100,9 @@
     <div
       class="bg-white py-6 px-5 rounded-lg shadow flex flex-col items-center justify-center"
     >
-      <label class="text-lg font-semibold block mb-2">แสดงตามจังหวัด</label>
+      <label class="text-lg font-semibold block mb-2"
+        >แสดงกราฟตามข้อมูลจังหวัด</label
+      >
       <template v-if="!loading.ordersByState">
         <DoughnutChart :width="140" :height="200" :data="ordersByState" />
       </template>

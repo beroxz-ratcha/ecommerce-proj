@@ -14,6 +14,7 @@ use App\Enums\CustomerStatus;
 use App\Enums\SellerStatus;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -115,7 +116,7 @@ class UserController extends Controller
             'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($user->id)],
         ];
 
-        $validator = \Validator::make($data, $emailValidation);
+        $validator = Validator::make($data, $emailValidation);
 
         if ($validator->fails()) {
             return response()->json([

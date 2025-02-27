@@ -124,6 +124,20 @@
       </span>
       <span class="text-xs"> รายงาน </span>
     </router-link>
+
+    <!-- Setting management link only for Admin -->
+    <router-link
+      v-if="currentUser.role === 1"
+      :to="{ name: 'app.setting' }"
+      class="flex items-center p-2 rounded transition-colors hover:bg-black/30"
+      active-class="bg-black/30"
+    >
+      <span class="mr-2 text-gray-300">
+        <CogIcon class="w-5" />
+      </span>
+
+      <span class="text-xs"> การตั้งค่า </span>
+    </router-link>
   </div>
 </template>
 
@@ -136,6 +150,7 @@ import {
   CubeIcon,
   CollectionIcon,
   ShoppingCartIcon,
+  CogIcon,
 } from '@heroicons/vue/outline';
 
 import store from '../store';

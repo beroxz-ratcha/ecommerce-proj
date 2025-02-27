@@ -22,6 +22,7 @@ import ProductForm from '../views/Products/ProductForm.vue';
 import Categories from '../views/Categories/Categories.vue';
 import ProfileSeller from '../views/Profile/ProfileSeller.vue';
 import ProfileAdmin from '../views/Profile/ProfileAdmin.vue';
+import Setting from '../views/Setting/Setting.vue';
 
 const routes = [
   {
@@ -73,6 +74,12 @@ const routes = [
         path: 'users',
         name: 'app.users',
         component: Users,
+        meta: { requiresAuth: true, roles: '1' },
+      },
+      {
+        path: 'setting',
+        name: 'app.setting',
+        component: Setting,
         meta: { requiresAuth: true, roles: '1' },
       },
       {

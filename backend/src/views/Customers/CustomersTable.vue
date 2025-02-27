@@ -106,7 +106,7 @@
             {{ customer.status }}
           </td>
           <td class="border-b p-2 text-center">
-            {{ customer.created_at }}
+            {{ formatDateTime(customer.created_at) }}
           </td>
           <td class="border-b p-2 text-center">
             <Menu as="div" class="relative inline-block text-left">
@@ -226,6 +226,7 @@ import {
   PencilIcon,
   TrashIcon,
 } from '@heroicons/vue/outline';
+import dateTimeService from '../../services/dateTimeService';
 
 const perPage = ref(CUSTOMERS_PER_PAGE);
 const search = ref('');
@@ -289,6 +290,10 @@ function deleteCustomer(customer) {
     store.dispatch('getCustomers');
   });
 }
+
+const formatDateTime = (dateString) => {
+  return dateTimeService.formatDateTime(dateString);
+};
 </script>
 
 <style scoped></style>

@@ -41,7 +41,7 @@
             field="name"
             :sort-field="sortField"
             :sort-direction="sortDirection"
-            @click="sortUsers('email')"
+            @click="sortUsers('name')"
           >
             ชื่อ
           </TableHeaderCell>
@@ -84,7 +84,7 @@
             {{ user.email }}
           </td>
           <td class="border-b p-2 text-center">
-            {{ user.created_at }}
+            {{ formatDateTime(user.created_at) }}
           </td>
           <td class="border-b p-2 text-center">
             <Menu as="div" class="relative inline-block text-left">
@@ -193,6 +193,7 @@ import Spinner from '../../components/core/Spinner.vue';
 import { USERS_PER_PAGE } from '../../constants';
 import TableHeaderCell from '../../components/core/Table/TableHeaderCell.vue';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue';
+import dateTimeService from '../../services/dateTimeService';
 import {
   DotsVerticalIcon,
   PencilIcon,
@@ -266,6 +267,10 @@ function deleteUser(user) {
 function editUser(p) {
   emit('clickEdit', p);
 }
+
+const formatDateTime = (dateString) => {
+  return dateTimeService.formatDateTime(dateString);
+};
 </script>
 
 <style scoped></style>
