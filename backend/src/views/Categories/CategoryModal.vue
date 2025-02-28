@@ -1,4 +1,3 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
   <TransitionRoot as="template" :show="show">
     <Dialog as="div" class="relative z-10" @close="show = false">
