@@ -22,6 +22,7 @@ class SettingResource extends JsonResource
             'key' => $this->key,
             'value' => $this->value,
             'created_at' => (new DateTime($this->created_at))->format('Y-m-d H:i:s'),
+            'updated_at' => (new DateTime($this->updated_at))->format('Y-m-d H:i:s'),
         ];
     }
 }

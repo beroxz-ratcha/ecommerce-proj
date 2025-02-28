@@ -61,6 +61,14 @@
           >
             เพิ่มเมื่อวันที่
           </TableHeaderCell>
+          <TableHeaderCell
+            field="updated_at"
+            :sort-field="sortField"
+            :sort-direction="sortDirection"
+            @click="sortSettings('updated_at')"
+          >
+            แก้ไขเมื่อวันที่
+          </TableHeaderCell>
           <TableHeaderCell field="actions"> การดำเนินการ </TableHeaderCell>
         </tr>
       </thead>
@@ -85,6 +93,9 @@
           </td>
           <td class="border-b p-2 text-center">
             {{ formatDateTime(setting.created_at) }}
+          </td>
+          <td class="border-b p-2 text-center">
+            {{ formatDateTime(setting.updated_at) }}
           </td>
           <td class="border-b p-2 text-center">
             <Menu as="div" class="relative inline-block text-left">
