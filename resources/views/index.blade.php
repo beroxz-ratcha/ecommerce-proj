@@ -421,26 +421,20 @@
                         </svg>
                     </button>
                 </div>
-                <div class="chatbot-body overflow-y-auto h-64 mb-4">
-                    <!-- ข้อความแชท -->
+
+                <!-- ส่วนข้อความแชท -->
+                <div id="chatbot-body" class="chatbot-body overflow-y-auto h-64 mb-4">
                     <div class="message mb-2 flex items-start">
-                        <!-- ใช้รูปภาพจากลิงก์ที่คุณให้มา -->
-                        {{-- <img src="https://freesvg.org/img/1538298822.png" alt="Bot Avatar"
-                            class="w-8 h-8 rounded-full mr-2"> --}}
                         <img src="{{ asset('/storage/imgfront/chat-bot.png') }}" alt="Bot Avatar"
                             class="w-8 h-8 rounded-full mr-2">
                         <p class="bg-gray-100 p-2 rounded-lg">สวัสดี! มีอะไรให้ช่วยไหมคะ?</p>
                     </div>
-                    {{-- <div class="chatbot-body overflow-y-auto h-64 mb-4">
-                        <!-- LINE Chat Plugin -->
-                        <a href="https://line.me/R/ti/p/@YOUR_LINE_ID" target="_blank">
-                            <img src="https://scdn.line-apps.com/n/line_add_friends/btn/th.png" alt="เพิ่มเพื่อน"
-                                height="36" border="0">
-                        </a>
-                    </div> --}}
                 </div>
+
+                <!-- ช่องพิมพ์ข้อความ -->
                 <div class="chatbot-footer">
-                    <input type="text" class="w-full p-2 border rounded-lg" placeholder="พิมพ์ข้อความ..." />
+                    <input id="user-input" type="text" class="w-full p-2 border rounded-lg"
+                        placeholder="พิมพ์ข้อความ..." />
                 </div>
             </div>
         </div>
@@ -497,13 +491,83 @@
         });
     });
 
-    // JavaScript สำหรั บการเปิด / ปิดแชทบอท
+    // สำหรับการเปิด / ปิดแชทบอท
     document.getElementById('chatbot-button').addEventListener('click', function() {
         document.getElementById('chatbot-window').classList.toggle('hidden');
     });
 
     document.getElementById('close-chatbot').addEventListener('click', function() {
         document.getElementById('chatbot-window').classList.add('hidden');
+    });
+
+    // 
+
+    // สำหรับ ฟังชั่นของ chatbot 
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const chatbotBody = document.getElementById("chatbot-body");
+        const userInput = document.getElementById("user-input");
+
+        // ฟังก์ชันส่งข้อความไปที่ OpenAI API
+        async function sendMessageToBot(message) {
+            const apiKey = @json($openaiApiKey);
+            const apiUrl = "https://api.openai.com/v1/chat/completions";
+
+            // เพิ่มข้อความของผู้ใช้ลงใน UI
+            appendMessage("user", message);
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${apiKey}`
+                    },
+                    body: JSON.stringify({
+                        model: "gpt-3.5-turbo",
+                        messages: [{
+                            role: "user",
+                            content: message
+                        }]
+                    })
+                });
+
+                const data = await response.json();
+                const botReply = data.choices[0].message.content;
+
+                // แสดงข้อความตอบกลับจากแชทบอท
+                appendMessage("bot", botReply);
+            } catch (error) {
+                console.error("Error:", error);
+                appendMessage("bot", "ขออภัย มีข้อผิดพลาดเกิดขึ้น");
+            }
+        }
+
+        // ฟังก์ชันเพิ่มข้อความลงใน UI
+        function appendMessage(sender, text) {
+            const messageDiv = document.createElement("div");
+            messageDiv.classList.add("message", "mb-2", "flex", "items-start");
+
+            if (sender === "user") {
+                messageDiv.innerHTML = `<p class="bg-blue-100 p-2 rounded-lg ml-auto">${text}</p>`;
+            } else {
+                messageDiv.innerHTML = `
+                <img src="{{ asset('/storage/imgfront/chat-bot.png') }}" alt="Bot Avatar" class="w-8 h-8 rounded-full mr-2">
+                <p class="bg-gray-100 p-2 rounded-lg">${text}</p>
+            `;
+            }
+
+            chatbotBody.appendChild(messageDiv);
+            chatbotBody.scrollTop = chatbotBody.scrollHeight; // เลื่อนลงอัตโนมัติ
+        }
+
+        // ดักจับ Enter เพื่อส่งข้อความ
+        userInput.addEventListener("keypress", function(event) {
+            if (event.key === "Enter" && userInput.value.trim() !== "") {
+                sendMessageToBot(userInput.value.trim());
+                userInput.value = ""; // ล้างช่อง input
+            }
+        });
     });
 </script>
 

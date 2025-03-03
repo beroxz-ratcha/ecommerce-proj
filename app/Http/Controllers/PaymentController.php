@@ -40,7 +40,7 @@ class PaymentController extends Controller
         $PromptPayQR = new PromptPayQR();
         $PromptPayQR->size = 5;
         // $PromptPayQR->id = getenv('PROMPTPAY_ID');
-        $PromptPayQR->id = Setting::getValue('promptpay_id', env('PROMPTPAY_ID'));
+        $PromptPayQR->id = Setting::getValue('PROMPTPAY_ID', env('PROMPTPAY_ID'));
         $PromptPayQR->amount = $total;
 
         $qrCodePath = public_path('qrcodes/payment_qr.png');
@@ -79,7 +79,7 @@ class PaymentController extends Controller
 
         $PromptPayQR = new PromptPayQR();
         $PromptPayQR->size = 5;
-        $PromptPayQR->id = Setting::getValue('promptpay_id', env('PROMPTPAY_ID'));
+        $PromptPayQR->id = Setting::getValue('PROMPTPAY_ID', env('PROMPTPAY_ID'));
         $PromptPayQR->amount = $totalAmount;
         $PromptPayQR->generate($qrCodePath);
 

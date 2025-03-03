@@ -1,4 +1,5 @@
 <x-app-layout>
+    {{-- testttt --}}
     <h1>PromptPay QR Code</h1>
     <p>Amount: ฿{{ number_format($amount, 2) }}</p>
     <div>{!! $qrCode !!}</div>

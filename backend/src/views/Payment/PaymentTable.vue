@@ -2,7 +2,27 @@
   <div class="bg-white p-4 rounded-lg shadow animate-fade-in-down">
     <div class="flex justify-between border-b-2 pb-3">
       <div class="flex items-center">
-        <span class="ml-3">Found {{ categories.data.length }} categories</span>
+        <span class="whitespace-nowrap mr-3">Per Page</span>
+        <select
+          @change="getSettings(null)"
+          v-model="perPage"
+          class="appearance-none relative block w-24 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+        >
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+        <span class="ml-3">Found {{ settings.total }} data</span>
+      </div>
+      <div>
+        <input
+          v-model="search"
+          @change="getSettings(null)"
+          class="appearance-none relative block w-48 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          placeholder="พิมพ์เพื่อค้นหาผู้ใช้"
+        />
       </div>
     </div>
 
@@ -13,82 +33,69 @@
             field="id"
             :sort-field="sortField"
             :sort-direction="sortDirection"
-            @click="sortCategories('id')"
+            @click="sortSettings('id')"
           >
             ID
           </TableHeaderCell>
           <TableHeaderCell
-            field="name"
+            field="key"
             :sort-field="sortField"
             :sort-direction="sortDirection"
-            @click="sortCategories('name')"
+            @click="sortSettings('key')"
           >
             ชื่อ
           </TableHeaderCell>
           <TableHeaderCell
-            field="slug"
+            field="value"
             :sort-field="sortField"
             :sort-direction="sortDirection"
-            @click="sortCategories('slug')"
+            @click="sortSettings('value')"
           >
-            ข้อความย่อ
-          </TableHeaderCell>
-          <TableHeaderCell
-            field="active"
-            :sort-field="sortField"
-            :sort-direction="sortDirection"
-            @click="sortCategories('active')"
-          >
-            สถานะใช้งาน
-          </TableHeaderCell>
-          <TableHeaderCell
-            field="parent_id"
-            :sort-field="sortField"
-            :sort-direction="sortDirection"
-            @click="sortCategories('parent_id')"
-          >
-            กลุ่มของหมวดหมู่
+            ข้อมูล
           </TableHeaderCell>
           <TableHeaderCell
             field="created_at"
             :sort-field="sortField"
             :sort-direction="sortDirection"
-            @click="sortCategories('created_at')"
+            @click="sortSettings('created_at')"
           >
             เพิ่มเมื่อวันที่
+          </TableHeaderCell>
+          <TableHeaderCell
+            field="updated_at"
+            :sort-field="sortField"
+            :sort-direction="sortDirection"
+            @click="sortSettings('updated_at')"
+          >
+            แก้ไขเมื่อวันที่
           </TableHeaderCell>
           <TableHeaderCell field="actions"> การดำเนินการ </TableHeaderCell>
         </tr>
       </thead>
-      <tbody v-if="categories.loading || !categories.data.length">
+      <tbody v-if="settings.loading || !settings.data.length">
         <tr>
-          <td colspan="7">
-            <Spinner v-if="categories.loading" />
-            <p v-else class="text-center py-8 text-gray-700">ไม่มีหมวดหมู่</p>
+          <td colspan="6">
+            <Spinner v-if="settings.loading" />
+            <p v-else class="text-center py-8 text-gray-700">ไม่มีผู้ใช้</p>
           </td>
         </tr>
       </tbody>
       <tbody v-else>
-        <tr v-for="(category, index) of categories.data">
-          <td class="border-b p-2 text-center text-center">
-            {{ category.id }}
-          </td>
+        <tr v-for="setting of settings.data" :key="setting.id">
+          <td class="border-b p-2 text-center">{{ setting.id }}</td>
           <td class="border-b p-2 text-center">
-            {{ category.name }}
+            {{ setting.key }}
           </td>
           <td
             class="border-b p-2 text-center max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis"
           >
-            {{ category.slug }}
+            {{ setting.value }}
           </td>
           <td class="border-b p-2 text-center">
-            {{ category.active ? 'Active' : 'Inactive' }}
+            {{ formatDateTime(setting.created_at) }}
           </td>
           <td class="border-b p-2 text-center">
-            {{ category.parent?.name }}
-          </td>
-          <td class="border-b p-2 text-center">
-            {{ formatDateTime(category.created_at) }}
+            {{ formatDateTime(setting.updated_at) }}
           </td>
           <td class="border-b p-2 text-center">
             <Menu as="div" class="relative inline-block text-left">
@@ -121,7 +128,7 @@
                           active ? 'bg-indigo-600 text-white' : 'text-gray-900',
                           'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                         ]"
-                        @click="editCategory(category)"
+                        @click="editSetting(setting)"
                       >
                         <PencilIcon
                           :active="active"
@@ -137,7 +144,7 @@
                           active ? 'bg-indigo-600 text-white' : 'text-gray-900',
                           'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                         ]"
-                        @click="deleteCategory(category)"
+                        @click="deleteSetting(setting)"
                       >
                         <TrashIcon
                           :active="active"
@@ -155,6 +162,41 @@
         </tr>
       </tbody>
     </table>
+
+    <div
+      v-if="!settings.loading"
+      class="flex justify-between items-center mt-5"
+    >
+      <div v-if="settings.data.length">
+        Showing from {{ settings.from }} to {{ settings.to }}
+      </div>
+      <nav
+        v-if="settings.total > settings.limit"
+        class="relative z-0 inline-flex justify-center rounded-md shadow-sm -space-x-px"
+        aria-label="Pagination"
+      >
+        <!-- Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" -->
+        <a
+          v-for="(link, i) of settings.links"
+          :key="i"
+          :disabled="!link.url"
+          href="#"
+          @click="getForPage($event, link)"
+          aria-current="page"
+          class="relative inline-flex items-center px-4 py-2 border text-sm font-medium whitespace-nowrap"
+          :class="[
+            link.active
+              ? 'z-10 bg-indigo-50 border-indigo-500 text-indigo-600'
+              : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50',
+            i === 0 ? 'rounded-l-md' : '',
+            i === settings.links.length - 1 ? 'rounded-r-md' : '',
+            !link.url ? ' bg-gray-100 text-gray-700' : '',
+          ]"
+          v-html="link.label"
+        >
+        </a>
+      </nav>
+    </div>
   </div>
 </template>
 
@@ -162,27 +204,29 @@
 import { computed, onMounted, ref } from 'vue';
 import store from '../../store';
 import Spinner from '../../components/core/Spinner.vue';
+import { SETTINGS_PER_PAGE } from '../../constants';
 import TableHeaderCell from '../../components/core/Table/TableHeaderCell.vue';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue';
+import dateTimeService from '../../services/dateTimeService';
 import {
   DotsVerticalIcon,
   PencilIcon,
   TrashIcon,
 } from '@heroicons/vue/outline';
-import CategoryModal from './CategoryModal.vue';
-import dateTimeService from '../../services/dateTimeService';
 
-const categories = computed(() => store.state.categories);
-const sortField = ref('name');
-const sortDirection = ref('asc');
+const perPage = ref(SETTINGS_PER_PAGE);
+const search = ref('');
+const settings = computed(() => store.state.settings);
+const sortField = ref('updated_at');
+const sortDirection = ref('desc');
 
-const category = ref({});
-const showCategoryModal = ref(false);
+const setting = ref({});
+const showSettingModal = ref(false);
 
 const emit = defineEmits(['clickEdit']);
 
 onMounted(() => {
-  getCategories();
+  getSettings();
 });
 
 function getForPage(ev, link) {
@@ -191,18 +235,20 @@ function getForPage(ev, link) {
     return;
   }
 
-  getCategories(link.url);
+  getSettings(link.url);
 }
 
-function getCategories(url = null) {
-  store.dispatch('getCategories', {
+function getSettings(url = null) {
+  store.dispatch('getSettings', {
     url,
+    search: search.value,
+    per_page: perPage.value,
     sort_field: sortField.value,
     sort_direction: sortDirection.value,
   });
 }
 
-function sortCategories(field) {
+function sortSettings(field) {
   if (field === sortField.value) {
     if (sortDirection.value === 'desc') {
       sortDirection.value = 'asc';
@@ -214,24 +260,24 @@ function sortCategories(field) {
     sortDirection.value = 'asc';
   }
 
-  getCategories();
+  getSettings();
 }
 
 function showAddNewModal() {
-  showCategoryModal.value = true;
+  showSettingModal.value = true;
 }
 
-function deleteCategory(category) {
-  if (!confirm(`คุณแน่ใจหรือไม่ว่าต้องการลบหมวดหมู่นี้ ?`)) {
+function deleteSetting(setting) {
+  if (!confirm(`คุณแน่ใจหรือไม่ ว่าต้องการลบข้อมูลนี้ ?`)) {
     return;
   }
-  store.dispatch('deleteCategory', category).then((res) => {
-    store.commit('showToast', 'ลบหมวดหมู่เรียบร้อยแล้ว');
-    store.dispatch('getCategories');
+  store.dispatch('deleteSetting', setting).then((res) => {
+    store.commit('showToast', 'ลบข้อมูลเรียบร้อยแล้ว');
+    store.dispatch('getSettings');
   });
 }
 
-function editCategory(p) {
+function editSetting(p) {
   emit('clickEdit', p);
 }
 

@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Tool;
 use App\Models\Review;
 use Carbon\Carbon;
+use App\Models\Setting;
 
 class IndexController extends Controller
 {
@@ -27,6 +28,7 @@ class IndexController extends Controller
             'bestSellProducts' => $bestSellProducts,
             'tools' => $tools,
             'categories' => Category::getAll(),
+            'openaiApiKey' => Setting::getValue('OPENAI_API_KEY', env('OPENAI_API_KEY'))
         ]);
     }
 

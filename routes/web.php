@@ -12,6 +12,7 @@ use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\ChatbotController;
 
 Route::get('change/{locale}', function ($locale) {
     Session::put('locale', $locale);
@@ -22,6 +23,12 @@ Route::middleware(['guestOrVerified'])->group(function () {
     Route::get('/', function () {
         return redirect('/home');
     });
+
+    Route::get('/chatbot', function () {
+        return view('chat');
+    });
+
+    Route::post('/chat', [ChatbotController::class, 'chat']);
 
     Route::get('/home', [IndexController::class, 'index'])->name('home');
     Route::get('/about', [AboutController::class, 'index'])->name('about');

@@ -13,6 +13,6 @@ class SettingSeeder extends Seeder
 {
     public function run()
     {
-        Setting::setValue('promptpay_id', '0987654321');
+        Setting::setValue('PROMPTPAY_ID', '0987654321');
     }
 }

@@ -25,7 +25,7 @@ class Setting extends Model
     }
 
     // เคลียร์ Cache
-    // Setting::setValue('promptpay_id', '0888888888');
-    // Cache::forget('setting_promptpay_id');
+    // Setting::setValue('PROMPTPAY_ID', '0888888888');
+    // Cache::forget('setting_PROMPTPAY_ID');
 
 }

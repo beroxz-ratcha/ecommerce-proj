@@ -69,7 +69,7 @@
                   <CustomInput
                     class="mb-2"
                     v-model="category.name"
-                    label="Name"
+                    label="ชื่อ"
                     :errors="errors['name']"
                   />
                   <CustomInput
@@ -77,12 +77,13 @@
                     :select-options="parentCategories"
                     class="mb-2"
                     v-model="category.parent_id"
-                    label="Parent"
+                    label="จัดกลุ่มของหมวดหมู่"
                     :errors="errors['parent_id']"
                   />
                   <CustomInput
                     type="checkbox"
                     class="mb-2"
+                    style="padding: 10px"
                     v-model="category.active"
                     label="เปิดใช้งาน"
                     :errors="errors['active']"
@@ -155,7 +156,7 @@ const show = computed({
 });
 const parentCategories = computed(() => {
   return [
-    { key: '', text: 'Select Parent Category' },
+    { key: '', text: 'เลือกหมวดหมู่หลัก' },
     ...store.state.categories.data
       .filter((c) => {
         if (category.value.id) {

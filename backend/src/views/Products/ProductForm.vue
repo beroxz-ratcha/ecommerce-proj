@@ -18,21 +18,21 @@
           <CustomInput
             class="mb-2"
             v-model="product.title"
-            label="Product Title"
+            label="ชื่อของสินค้า"
             :errors="errors['title']"
           />
           <CustomInput
             type="richtext"
             class="mb-2"
             v-model="product.description"
-            label="Description"
+            label="คำอธิบายสินค้า"
             :errors="errors['description']"
           />
           <CustomInput
             type="number"
             class="mb-2"
             v-model="product.price"
-            label="Price"
+            label="ราคา"
             prepend="฿"
             :errors="errors['price']"
           />
@@ -40,12 +40,13 @@
             type="number"
             class="mb-2"
             v-model="product.quantity"
-            label="Quantity"
+            label="จำนวน"
             :errors="errors['quantity']"
           />
           <CustomInput
             type="checkbox"
             class="mb-2"
+            style="padding: 10px"
             v-model="product.is_promotion"
             label="เลือกเป็นสินค้าโปรโมชั่น!!"
             :errors="errors['promotion']"
@@ -53,6 +54,7 @@
           <CustomInput
             type="checkbox"
             class="mb-2"
+            style="padding: 10px"
             v-model="product.published"
             label="ให้แสดงที่หน้าการขายหรือไม่ ?"
             :errors="errors['published']"
