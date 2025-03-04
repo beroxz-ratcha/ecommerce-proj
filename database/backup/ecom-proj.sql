@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 27, 2025 at 07:16 PM
+-- Generation Time: Mar 04, 2025 at 03:56 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -100,18 +100,18 @@ CREATE TABLE `countries` (
 --
 
 INSERT INTO `countries` (`code`, `name`, `states`) VALUES
-('chn', 'China', NULL),
-('fr', 'France', NULL),
-('geo', 'Georgia', NULL),
+('chn', 'China', '{\"01\":\"ไม่พบข้อมูล\"}\n'),
+('fr', 'France', '{\"01\":\"ไม่พบข้อมูล\"}\n'),
+('geo', 'Georgia', '{\"01\":\"ไม่พบข้อมูล\"}\n'),
 ('ger', 'Germany', '{\"01\":\"Baden-Württemberg\",\"02\":\"Bavaria\",\"03\":\"Berlin\",\"04\":\"Brandenburg\",\"05\":\"Bremen\",\"06\":\"Hamburg\",\"07\":\"Hesse\",\"08\":\"Mecklenburg-Vorpommern\",\"09\":\"Lower Saxony\",\"10\":\"North Rhine-Westphalia\",\"11\":\"Rhineland-Palatinate\",\"12\":\"Saarland\",\"13\":\"Saxony\",\"14\":\"Saxony-Anhalt\",\"15\":\"Schleswig-Holstein\",\"16\":\"Thuringia\"}\n'),
-('ind', 'India', NULL),
-('it', 'Italy', NULL),
-('jpn', 'Japan', NULL),
-('kor', 'South Korea', NULL),
-('lao', 'Laos', NULL),
-('tha', 'Thailand', '{\"01\":\"Bangkok\",\"02\":\"Chiang Mai\",\"03\":\"Nakhon Ratchasima\",\"04\":\"Chonburi\",\"05\":\"Phuket\",\"06\":\"Nakhon Si Thammarat\",\"07\":\"Khon Kaen\",\"08\":\"Songkhla\",\"09\":\"Rayong\",\"10\":\"Surat Thani\",\"11\":\"Samut Prakan\",\"12\":\"Samut Sakhon\",\"13\":\"Saraburi\",\"14\":\"Nonthaburi\",\"15\":\"Nakhon Pathom\",\"16\":\"Ayutthaya\",\"17\":\"Lopburi\",\"18\":\"Sukhothai\",\"19\":\"Prachinburi\",\"20\":\"Chachoengsao\",\"21\":\"Nakhon Nayok\",\"22\":\"Singburi\",\"23\":\"Lopburi\",\"24\":\"Phetchaburi\",\"25\":\"Prachuap Khiri Khan\",\"26\":\"Rayong\",\"27\":\"Chumphon\",\"28\":\"Ranong\",\"29\":\"Surat Thani\",\"30\":\"Phang Nga\",\"31\":\"Krabi\",\"32\":\"Phuket\",\"33\":\"Satun\",\"34\":\"Songkhla\",\"35\":\"Yala\",\"36\":\"Pattani\",\"37\":\"Narathiwat\",\"38\":\"Buri Ram\",\"39\":\"Surin\",\"40\":\"Si Sa Ket\",\"41\":\"Ubon Ratchathani\",\"42\":\"Amnat Charoen\",\"43\":\"Yasothon\",\"44\":\"Mukdahan\",\"45\":\"Nakhon Phanom\",\"46\":\"Khon Kaen\",\"47\":\"Loei\",\"48\":\"Nong Bua Lam Phu\",\"49\":\"Udon Thani\",\"50\":\"Sakon Nakhon\",\"51\":\"Nakhon Sawan\",\"52\":\"Phichit\",\"53\":\"Phetchabun\",\"54\":\"Uthai Thani\",\"55\":\"Ratchaburi\",\"56\":\"Kanchanaburi\",\"57\":\"Suphan Buri\",\"58\":\"Nakhon Sawan\",\"59\":\"Sing Buri\",\"60\":\"Ang Thong\",\"61\":\"Lopburi\",\"62\":\"Phra Nakhon Si Ayutthaya\",\"63\":\"Sukhothai\",\"64\":\"Kamphaeng Phet\",\"65\":\"Tak\",\"66\":\"Phang Nga\",\"67\":\"Krabi\",\"68\":\"Surat Thani\",\"69\":\"Chumphon\",\"70\":\"Nakhon Si Thammarat\",\"71\":\"Phatthalung\",\"72\":\"Songkhla\",\"73\":\"Satun\",\"74\":\"Trang\",\"75\":\"Phuket\",\"76\":\"Ranong\",\"77\":\"Chonburi\"}'),
+('ind', 'India', '{\"01\":\"ไม่พบข้อมูล\"}\n'),
+('it', 'Italy', '{\"01\":\"ไม่พบข้อมูล\"}\n'),
+('jpn', 'Japan', '{\"01\":\"ไม่พบข้อมูล\"}\n'),
+('kor', 'South Korea', '{\"01\":\"ไม่พบข้อมูล\"}\n'),
+('lao', 'Laos', '{\"01\":\"ไม่พบข้อมูล\"}\n'),
+('tha', 'ไทย', '{\"01\":\"กรุงเทพมหานคร\",\"02\":\"เชียงใหม่\",\"03\":\"นครราชสีมา\",\"04\":\"ชลบุรี\",\"05\":\"ภูเก็ต\",\"06\":\"นครศรีธรรมราช\",\"07\":\"ขอนแก่น\",\"08\":\"สงขลา\",\"09\":\"ระยอง\",\"10\":\"สุราษฎร์ธานี\",\"11\":\"สมุทรปราการ\",\"12\":\"สมุทรสาคร\",\"13\":\"สระบุรี\",\"14\":\"นนทบุรี\",\"15\":\"นครปฐม\",\"16\":\"พระนครศรีอยุธยา\",\"17\":\"ลพบุรี\",\"18\":\"สุโขทัย\",\"19\":\"ปราจีนบุรี\",\"20\":\"ฉะเชิงเทรา\",\"21\":\"นครนายก\",\"22\":\"สิงห์บุรี\",\"23\":\"ลพบุรี\",\"24\":\"เพชรบุรี\",\"25\":\"ประจวบคีรีขันธ์\",\"26\":\"ระยอง\",\"27\":\"ชุมพร\",\"28\":\"ระนอง\",\"29\":\"สุราษฎร์ธานี\",\"30\":\"พังงา\",\"31\":\"กระบี่\",\"32\":\"ภูเก็ต\",\"33\":\"สตูล\",\"34\":\"สงขลา\",\"35\":\"ยะลา\",\"36\":\"ปัตตานี\",\"37\":\"นราธิวาส\",\"38\":\"บุรีรัมย์\",\"39\":\"สุรินทร์\",\"40\":\"ศรีสะเกษ\",\"41\":\"อุบลราชธานี\",\"42\":\"อำนาจเจริญ\",\"43\":\"ยโสธร\",\"44\":\"มุกดาหาร\",\"45\":\"นครพนม\",\"46\":\"ขอนแก่น\",\"47\":\"เลย\",\"48\":\"หนองบัวลำภู\",\"49\":\"อุดรธานี\",\"50\":\"สกลนคร\",\"51\":\"นครสวรรค์\",\"52\":\"พิจิตร\",\"53\":\"เพชรบูรณ์\",\"54\":\"อุทัยธานี\",\"55\":\"ราชบุรี\",\"56\":\"กาญจนบุรี\",\"57\":\"สุพรรณบุรี\",\"58\":\"นครสวรรค์\",\"59\":\"สิงห์บุรี\",\"60\":\"อ่างทอง\",\"61\":\"ลพบุรี\",\"62\":\"พระนครศรีอยุธยา\",\"63\":\"สุโขทัย\",\"64\":\"กำแพงเพชร\",\"65\":\"ตาก\",\"66\":\"พังงา\",\"67\":\"กระบี่\",\"68\":\"สุราษฎร์ธานี\",\"69\":\"ชุมพร\",\"70\":\"นครศรีธรรมราช\",\"71\":\"พัทลุง\",\"72\":\"สงขลา\",\"73\":\"สตูล\",\"74\":\"ตรัง\",\"75\":\"ภูเก็ต\",\"76\":\"ระนอง\",\"77\":\"ชลบุรี\"}'),
 ('usa', 'United States of America', '{\"01\":\"Alabama\",\"02\":\"Alaska\",\"03\":\"Arizona\",\"04\":\"Arkansas\",\"05\":\"California\",\"06\":\"Colorado\",\"07\":\"Connecticut\",\"08\":\"Delaware\",\"09\":\"Florida\",\"10\":\"Georgia\",\"11\":\"Hawaii\",\"12\":\"Idaho\",\"13\":\"Illinois\",\"14\":\"Indiana\",\"15\":\"Iowa\",\"16\":\"Kansas\",\"17\":\"Kentucky\",\"18\":\"Louisiana\",\"19\":\"Maine\",\"20\":\"Maryland\",\"21\":\"Massachusetts\",\"22\":\"Michigan\",\"23\":\"Minnesota\",\"24\":\"Mississippi\",\"25\":\"Missouri\",\"26\":\"Montana\",\"27\":\"Nebraska\",\"28\":\"Nevada\",\"29\":\"New Hampshire\",\"30\":\"New Jersey\",\"31\":\"New Mexico\",\"32\":\"New York\",\"33\":\"North Carolina\",\"34\":\"North Dakota\",\"35\":\"Ohio\",\"36\":\"Oklahoma\",\"37\":\"Oregon\",\"38\":\"Pennsylvania\",\"39\":\"Rhode Island\",\"40\":\"South Carolina\",\"41\":\"South Dakota\",\"42\":\"Tennessee\",\"43\":\"Texas\",\"44\":\"Utah\",\"45\":\"Vermont\",\"46\":\"Virginia\",\"47\":\"Washington\",\"48\":\"West Virginia\",\"49\":\"Wisconsin\",\"50\":\"Wyoming\"}\n'),
-('vnm', 'Vietnam', NULL);
+('vnm', 'Vietnam', '{\"01\":\"ไม่พบข้อมูล\"}\n');
 
 -- --------------------------------------------------------
 
@@ -164,10 +164,10 @@ CREATE TABLE `customer_addresses` (
 --
 
 INSERT INTO `customer_addresses` (`id`, `type`, `address1`, `address2`, `city`, `state`, `zipcode`, `country_code`, `customer_id`, `created_at`, `updated_at`) VALUES
-(1, 'Shipping', '50/19', 'M2', 'Muang', '12', '74000', 'tha', 6, '2024-11-04 07:15:18', '2024-11-04 09:36:42'),
-(2, 'Billing', '50/19', 'M2', 'Muang', '12', '74000', 'tha', 6, '2024-11-04 07:15:18', '2024-11-04 09:36:42'),
-(3, 'Shipping', '661 Somdet Chao phaya', 'Khlong San', 'Bangkok', '01', '10600', 'tha', 11, '2024-11-04 08:10:51', '2024-11-04 09:36:15'),
-(4, 'Billing', '661 Somdet Chao phaya', 'Khlong San', 'Bangkok', '01', '10600', 'tha', 11, '2024-11-04 08:10:51', '2024-11-04 09:36:15');
+(1, 'Shipping', '50/19 หมู่บ้าน รักษ์ไทย', 'บ้านนอก', 'คอกนา', '12', '74000', 'tha', 6, '2024-11-04 07:15:18', '2025-03-04 07:50:37'),
+(2, 'Billing', '50/19 หมู่บ้าน รักษ์ไทย', 'บ้านนอก', 'คอกนา', '12', '74000', 'tha', 6, '2024-11-04 07:15:18', '2025-03-04 07:50:37'),
+(3, 'Shipping', '661 ถ.ประชาธิปก', 'สมเด็จเจ้าพระยา', 'คลองสาน', '01', '10600', 'tha', 11, '2024-11-04 08:10:51', '2025-03-04 07:49:31'),
+(4, 'Billing', '661 ถ.ประชาธิปก', 'สมเด็จเจ้าพระยา', 'คลองสาน', '01', '10600', 'tha', 11, '2024-11-04 08:10:51', '2025-03-04 07:49:31');
 
 -- --------------------------------------------------------
 
@@ -1421,7 +1421,8 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (35, 'App\\Models\\User', 1, 'main', 'd820f52b493c32840beaa6543e6b970e597913b4021f4cf39cccfb5cca513719', '[\"*\"]', '2024-11-13 09:41:43', NULL, '2024-11-13 09:32:18', '2024-11-13 09:41:43'),
 (37, 'App\\Models\\User', 2, 'main', 'dc3ab4a0c797177117fe35af981f07604a45ec1d78169dac05118f66b89bee78', '[\"*\"]', '2025-02-20 10:00:30', NULL, '2025-02-20 10:00:00', '2025-02-20 10:00:30'),
 (40, 'App\\Models\\User', 1, 'main', '2cb4e3b4cab7d686ae8399a61f5a61a1e2045d3700c5eb840f5d5d24020a3949', '[\"*\"]', '2025-02-27 08:38:12', NULL, '2025-02-27 07:53:33', '2025-02-27 08:38:12'),
-(45, 'App\\Models\\User', 1, 'main', '9a9d80867d6445da5b9649b94f433fa64f93994853a5eebc928ef72e11a1e981', '[\"*\"]', '2025-02-27 10:39:20', NULL, '2025-02-27 09:44:00', '2025-02-27 10:39:20');
+(45, 'App\\Models\\User', 1, 'main', '9a9d80867d6445da5b9649b94f433fa64f93994853a5eebc928ef72e11a1e981', '[\"*\"]', '2025-02-27 10:39:20', NULL, '2025-02-27 09:44:00', '2025-02-27 10:39:20'),
+(46, 'App\\Models\\User', 1, 'main', 'abcce83028a5e4f45f814d872674eca9ad7796281cbdcc40f83407c17f073707', '[\"*\"]', '2025-03-04 07:55:54', NULL, '2025-03-04 07:47:51', '2025-03-04 07:55:54');
 
 -- --------------------------------------------------------
 
@@ -1829,8 +1830,8 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `key`, `value`, `created_at`, `updated_at`) VALUES
-(1, 'PROMPTPAY_ID', '0987654321', '2025-02-27 07:49:14', '2025-02-27 10:35:06');
-(2, 'OPENAI_API_KEY', 'OPENAI_API_KEY', '2025-02-27 07:49:14', '2025-02-27 10:35:06');
+(1, 'PROMPTPAY_ID', '0987654321', '2025-02-27 07:49:14', '2025-02-27 10:35:06'),
+(2, 'OPENAI_API_KEY', 'OPENAI_API_KEY', '2025-02-28 07:49:14', '2025-02-28 10:35:06');
 
 -- --------------------------------------------------------
 
@@ -9516,7 +9517,7 @@ ALTER TABLE `payments`
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `products`
