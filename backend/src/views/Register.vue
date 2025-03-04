@@ -16,9 +16,7 @@
           @submit.prevent="register"
         >
           <div class="mb-12">
-            <h3 class="text-4xl font-extrabold text-indigo-600">
-              Create an account
-            </h3>
+            <h3 class="text-4xl font-extrabold text-indigo-600">สร้างบัญชี</h3>
           </div>
 
           <div
@@ -48,7 +46,7 @@
           </div>
 
           <div class="mt-6">
-            <label class="text-gray-800 text-xs block mb-2">Full Name</label>
+            <label class="text-gray-800 text-xs block mb-2">ชื่อ</label>
             <div class="relative flex items-center">
               <input
                 id="name"
@@ -58,7 +56,7 @@
                 required=""
                 v-model="newUser.name"
                 class="w-full bg-transparent text-sm border-b border-gray-300 focus:border-indigo-500 px-2 py-3 outline-none"
-                placeholder="Enter name"
+                placeholder="กรอกชื่อ"
               />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +74,7 @@
             </div>
           </div>
           <div class="mt-6">
-            <label class="text-gray-800 text-xs block mb-2">Store Name</label>
+            <label class="text-gray-800 text-xs block mb-2">ชื่อร้านค้า</label>
             <div class="relative flex items-center">
               <input
                 id="store_name"
@@ -86,7 +84,7 @@
                 required=""
                 v-model="newUser.store_name"
                 class="w-full bg-transparent text-sm border-b border-gray-300 focus:border-indigo-500 px-2 py-3 outline-none"
-                placeholder="Enter store name"
+                placeholder="กรอกชื่อร้านค้า"
               />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -106,7 +104,7 @@
           </div>
           <div class="mt-6">
             <label class="text-gray-800 text-xs block mb-2"
-              >Store Phone Number</label
+              >หมายเลขโทรศัพท์ของร้าน</label
             >
             <div class="relative flex items-center">
               <input
@@ -117,7 +115,7 @@
                 required
                 v-model="newUser.store_phone"
                 class="w-full bg-transparent text-sm border-b border-gray-300 focus:border-indigo-500 px-2 py-3 outline-none"
-                placeholder="Enter phone number"
+                placeholder="กรอกหมายเลขโทรศัพท์ของร้าน"
                 maxlength="10"
                 pattern="[0-9]{10}"
               />
@@ -139,7 +137,7 @@
             </div>
           </div>
           <div class="mt-6">
-            <label class="text-gray-800 text-xs block mb-2">Email</label>
+            <label class="text-gray-800 text-xs block mb-2">อีเมล</label>
             <div class="relative flex items-center">
               <input
                 id="email-address"
@@ -149,7 +147,7 @@
                 required=""
                 v-model="newUser.email"
                 class="w-full bg-transparent text-sm border-b border-gray-300 focus:border-indigo-500 px-2 py-3 outline-none"
-                placeholder="Enter email"
+                placeholder="กรอกอีเมล"
               />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -183,7 +181,7 @@
             </div>
           </div>
           <div class="mt-6">
-            <label class="text-gray-800 text-xs block mb-2">Password</label>
+            <label class="text-gray-800 text-xs block mb-2">รหัสผ่าน</label>
             <div class="relative flex items-center">
               <input
                 id="password"
@@ -193,7 +191,7 @@
                 required=""
                 v-model="newUser.password"
                 class="w-full bg-transparent text-sm border-b border-gray-300 focus:border-indigo-500 px-2 py-3 outline-none"
-                placeholder="Enter password"
+                placeholder="กรอกรหัสผ่าน"
               />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -211,7 +209,7 @@
           </div>
           <div class="mt-6">
             <label class="text-gray-800 text-xs block mb-2"
-              >Confirm Password</label
+              >ยืนยันรหัสผ่าน</label
             >
             <div class="relative flex items-center">
               <input
@@ -222,7 +220,7 @@
                 required=""
                 v-model="newUser.confirmPassword"
                 class="w-full bg-transparent text-sm border-b border-gray-300 focus:border-indigo-500 px-2 py-3 outline-none"
-                placeholder="Enter Confirm Password"
+                placeholder="กรอกรหัสผ่าน"
               />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -271,14 +269,14 @@
                 </svg>
                 Loading...
               </template>
-              <template v-else> Creat an account </template>
+              <template v-else> ยืนยันการสร้างบัญชี </template>
             </button>
             <p class="text-sm mt-6 text-center text-gray-800">
-              Already have an account?
+              มีบัญชีอยู่แล้ว?
               <a
                 href="/login"
                 class="text-indigo-600 font-semibold hover:underline ml-1"
-                >Login here</a
+                >เข้าสู่ระบบที่นี่</a
               >
             </p>
           </div>

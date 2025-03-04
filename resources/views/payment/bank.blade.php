@@ -91,7 +91,8 @@
             <div class="bg-white rounded-lg shadow-lg p-8 mb-8 text-center w-1/2 flex flex-col">
                 <h2 class="text-2xl font-bold text-gray-700 mb-6">อัปโหลดสลิปชำระเงิน</h2>
 
-                <form action="{{ route('payment.withqrcode') }}" method="POST" enctype="multipart/form-data">
+                <form id="paymentForm" action="{{ route('payment.withqrcode') }}" method="POST"
+                    enctype="multipart/form-data" onsubmit="return validateForm()">
                     @csrf
 
                     <div id="imagePreview" class="mb-6 mx-auto" onclick="document.getElementById('slipInput').click()">
@@ -105,7 +106,7 @@
                         <i>*กรุณาแนบหลักฐานการโอนเงิน</i>
                     </p>
 
-                    <input type="file" name="slipInput" class="mb-4" required id="slipInput" style="display: none;"
+                    <input type="file" name="slipInput" class="mb-4" id="slipInput" style="display: none;"
                         onchange="previewImage(event)" oninput="resetPreview()">
 
                     <div class="mt-20">
@@ -131,34 +132,37 @@
 <script>
     function previewImage(event) {
         const file = event.target.files[0];
-        const reader = new FileReader();
-
         if (!file) {
             return;
         }
 
+        // ตรวจสอบนามสกุลไฟล์
+        const allowedExtensions = ['image/jpeg', 'image/png', 'image/jpg'];
+        if (!allowedExtensions.includes(file.type)) {
+            alert('กรุณาอัปโหลดไฟล์รูปภาพที่เป็น .jpg หรือ .png เท่านั้น');
+            event.target.value = ''; // รีเซ็ตค่า input file
+            return;
+        }
+
+        const reader = new FileReader();
         reader.onload = function(e) {
             const imagePreview = document.getElementById("imagePreview");
 
-            // ลบ <img> ทุกตัวที่อยู่ภายใน imagePreview
+            // ลบ <img> ตัวเก่าถ้ามี
             const existingImages = imagePreview.getElementsByTagName("img");
-            for (let i = 0; i < existingImages.length; i++) {
-                existingImages[i].remove(); // ลบทุก <img>
+            while (existingImages.length > 0) {
+                existingImages[0].remove();
             }
 
-            // สร้างและแสดงภาพใหม่
+            // สร้าง <img> ใหม่
             const img = document.createElement("img");
             img.src = e.target.result;
             img.classList.add("w-64", "h-64", "mx-auto", "border-4", "border-gray-300", "rounded-lg", "shadow-md");
 
-            // ซ่อน placeholder และแสดงภาพใหม่
+            // ซ่อน placeholder และแสดงภาพที่อัปโหลด
             document.getElementById("placeholder").style.display = 'none';
             imagePreview.appendChild(img);
-
-            // ถ้าต้องการแสดงปุ่มลบ
-            // document.getElementById("deletePreview").style.display = 'block';
         };
-
         reader.readAsDataURL(file);
     }
 
@@ -181,5 +185,15 @@
             // ถ้าอยากรีเฟรชหน้าให้โหลดใหม่
             // window.location.reload(true); // ปิดไว้ถ้าไม่ต้องการให้รีเฟรช
         }
+    }
+
+    function validateForm() {
+        const fileInput = document.getElementById("slipInput");
+        if (!fileInput.files.length) {
+            alert("กรุณาอัปโหลดสลิปการโอนเงินก่อนทำการยืนยัน");
+            event.preventDefault(); // ป้องกันการ submit ฟอร์ม
+            return false;
+        }
+        return true;
     }
 </script>

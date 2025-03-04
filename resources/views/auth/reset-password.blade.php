@@ -2,7 +2,7 @@
     <div class="w-[400px] mx-auto my-16">
 
         <h2 class="text-2xl font-semibold text-center mb-5">
-            Enter your new password
+            ป้อนรหัสผ่านใหม่ของคุณ
         </h2>
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
@@ -15,7 +15,7 @@
 
             <!-- Email Address -->
             <div>
-                <x-label for="email" :value="__('Email')" />
+                <x-label for="email" :value="__('อีเมล')" />
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)"
                     required autofocus />
@@ -23,14 +23,14 @@
 
             <!-- Password -->
             <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+                <x-label for="password" :value="__('รหัสผ่าน')" />
 
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required />
             </div>
 
             <!-- Confirm Password -->
             <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
+                <x-label for="password_confirmation" :value="__('ยืนยันรหัสผ่าน')" />
 
                 <x-input id="password_confirmation" class="block mt-1 w-full" type="password"
                     name="password_confirmation" required />
@@ -38,7 +38,7 @@
 
             <div class="flex items-center justify-end mt-4">
                 <x-button>
-                    {{ __('Reset Password') }}
+                    {{ __('รีเซ็ตรหัสผ่าน') }}
                 </x-button>
             </div>
         </form>

@@ -16,7 +16,10 @@
           @submit.prevent="login"
         >
           <div class="mb-12">
-            <h3 class="text-4xl font-extrabold text-indigo-600">Sign in</h3>
+            <h3 class="text-3xl font-extrabold text-indigo-600">
+              Welcome to the <br />
+              Admin & Seller Portal
+            </h3>
           </div>
 
           <div
@@ -56,7 +59,7 @@
                 required=""
                 v-model="user.email"
                 class="w-full text-sm border-b border-gray-300 focus:border-indigo-600 px-2 py-3 outline-none"
-                placeholder="Enter email"
+                placeholder="อีเมล"
               />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -100,7 +103,7 @@
                 required
                 v-model="user.password"
                 class="w-full text-sm border-b border-gray-300 focus:border-indigo-600 px-2 py-3 outline-none"
-                placeholder="Enter password"
+                placeholder="รหัสผ่าน"
               />
               <svg
                 v-if="isPasswordVisible"
@@ -146,7 +149,7 @@
 
           <div class="flex flex-wrap items-center justify-between gap-4 mt-6">
             <div class="flex items-center">
-              <input
+              <!-- <input
                 id="remember-me"
                 name="remember-me"
                 type="checkbox"
@@ -155,14 +158,14 @@
               />
               <label for="remember-me" class="text-gray-800 ml-3 block text-sm">
                 Remember me
-              </label>
+              </label> -->
             </div>
             <div class="text-sm">
               <router-link
                 :to="{ name: 'requestPassword' }"
-                class="text-indigo-500 font-semibold text-sm hover:underline"
+                class="text-indigo-500 text-sm hover:underline"
               >
-                Forgot your password?
+                ลืมรหัสผ่านใช่ไหม?
               </router-link>
             </div>
           </div>
@@ -200,14 +203,14 @@
                 </svg>
                 Loading...
               </template>
-              <template v-else> Sign in </template>
+              <template v-else> เข้าสู่ระบบ </template>
             </button>
             <p class="text-gray-800 text-sm text-center mt-6">
-              Don't have an account
+              ถ้ายังไม่มีบัญชี?
               <a
                 href="/register"
                 class="text-indigo-600 font-semibold hover:underline ml-1 whitespace-nowrap"
-                >Register here</a
+                >ลงทะเบียนที่นี่</a
               >
             </p>
           </div>

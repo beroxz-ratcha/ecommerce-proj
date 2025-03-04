@@ -2,7 +2,7 @@
     <div class="w-[400px] mx-auto py-32">
 
         <div class="mb-4 text-base text-gray-600">
-            {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
+            {{ __('Thanks for signing up! ก่อนเริ่มต้น โปรดยืนยันที่อยู่อีเมลของคุณโดยคลิกลิงก์ที่เราเพิ่งส่งให้คุณทางอีเมล หากคุณไม่ได้รับอีเมล เราจะส่งอีเมลฉบับใหม่ให้คุณ') }}
         </div>
 
         @if (session('status') == 'verification-link-sent')
@@ -17,7 +17,7 @@
 
                 <div>
                     <x-button>
-                        {{ __('Resend Verification Email') }}
+                        {{ __('ส่งอีเมลยืนยันอีกครั้ง') }}
                     </x-button>
                 </div>
             </form>
