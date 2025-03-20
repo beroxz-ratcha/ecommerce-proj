@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\Api\SellerController;
 use App\Http\Controllers\Api\SettingController;
+use App\Http\Controllers\Api\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum', 'adminOrSeller'])->group(function () {
@@ -20,6 +21,7 @@ Route::middleware(['auth:sanctum', 'adminOrSeller'])->group(function () {
     Route::apiResource('customers', CustomerController::class);
     Route::apiResource('sellers', SellerController::class);
     Route::apiResource('settings', SettingController::class);
+    Route::apiResource('payments', PaymentController::class);
     Route::apiResource('categories', CategoryController::class)->except('show');
 
     Route::get('/categories/tree', [CategoryController::class, 'getAsTree']);
@@ -28,6 +30,8 @@ Route::middleware(['auth:sanctum', 'adminOrSeller'])->group(function () {
     Route::get('orders/statuses', [OrderController::class, 'getStatuses']);
     Route::post('orders/change-status/{order}/{status}', [OrderController::class, 'changeStatus']);
     Route::get('orders/{order}', [OrderController::class, 'view']);
+    Route::get('payments/{payment_trans_id}', [PaymentController::class, 'show']);
+    Route::post('payments/change-status/{payment_trans_id}/{status}', [PaymentController::class, 'changeStatus']);
 
     // Dashboard Routes
     Route::get('/dashboard/customers-count', [DashboardController::class, 'activeCustomers']);

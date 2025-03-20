@@ -3,3 +3,4 @@ export const USERS_PER_PAGE = 10;
 export const CUSTOMERS_PER_PAGE = 10;
 export const SELLERS_PER_PAGE = 10;
 export const SETTINGS_PER_PAGE = 10;
+export const PAYMENTS_PER_PAGE = 10;

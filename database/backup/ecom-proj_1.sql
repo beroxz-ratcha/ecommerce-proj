@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 20, 2025 at 08:59 PM
+-- Generation Time: Mar 04, 2025 at 03:56 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -35,6 +35,16 @@ CREATE TABLE `cart_items` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `cart_items`
+--
+
+INSERT INTO `cart_items` (`id`, `user_id`, `product_id`, `quantity`, `created_at`, `updated_at`) VALUES
+(50, 6, 7, 1, '2025-02-23 08:13:30', '2025-02-23 08:13:30'),
+(51, 6, 17, 1, '2025-02-23 08:13:33', '2025-02-23 08:13:33'),
+(52, 6, 9, 1, NULL, NULL),
+(53, 6, 18, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1200,43 +1210,31 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `total_price`, `status`, `seller_id`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
-(1, 9200.00, 'Paid', 2, '2024-11-04 07:15:27', '2025-03-20 12:57:16', 6, 6),
-(7, 7200.00, 'Paid', 2, '2024-11-04 07:22:12', '2025-03-20 12:57:16', 6, 6),
+(1, 9200.00, 'Paid', 2, '2024-11-04 07:15:27', '2024-11-04 07:28:37', 6, 6),
+(7, 7200.00, 'Paid', 2, '2024-11-04 07:22:12', '2024-11-04 07:22:28', 6, 6),
 (8, 7500.00, 'Paid', 2, '2024-11-04 08:38:56', '2024-11-04 08:39:09', 11, 11),
 (9, 1400.00, 'Paid', 12, '2024-11-04 08:38:56', '2024-11-04 08:39:18', 11, 11),
-(10, 1400.00, 'Paid', 12, '2024-11-11 08:03:47', '2025-03-20 12:57:16', 6, 6),
-(11, 1400.00, 'Paid', 2, '2024-11-11 08:03:47', '2025-03-20 12:57:16', 6, 6),
-(12, 1400.00, 'Paid', 12, '2024-11-11 08:20:35', '2025-03-20 12:57:16', 6, 6),
-(13, 1500.00, 'Paid', 2, '2024-11-11 08:20:35', '2025-03-20 12:57:17', 6, 6),
-(14, 1400.00, 'Paid', 12, '2024-11-11 09:05:45', '2025-03-20 12:57:17', 6, 6),
-(15, 4400.00, 'Paid', 2, '2024-11-11 09:05:45', '2025-03-20 12:57:17', 6, 6),
-(16, 1400.00, 'Paid', 12, '2024-11-12 08:28:09', '2025-03-20 12:57:17', 6, 6),
-(17, 8300.00, 'Paid', 12, '2024-11-12 08:29:47', '2025-03-20 12:57:17', 6, 6),
-(18, 6300.00, 'Paid', 2, '2024-11-12 08:29:47', '2025-03-20 12:57:17', 6, 6),
-(19, 7100.00, 'Paid', 12, '2025-02-13 07:30:23', '2025-03-20 12:57:17', 6, 6),
-(20, 3800.00, 'Paid', 2, '2025-02-13 07:30:23', '2025-03-20 12:57:17', 6, 6),
-(21, 6900.00, 'Paid', 12, '2025-02-23 05:06:58', '2025-03-20 12:57:17', 6, 6),
-(22, 4400.00, 'Paid', 2, '2025-02-23 05:06:59', '2025-03-20 12:57:17', 6, 6),
-(24, 1600.00, 'Paid', 12, '2025-02-23 05:31:42', '2025-03-20 12:57:17', 6, 6),
-(25, 2900.00, 'Paid', 2, '2025-02-23 05:31:42', '2025-03-20 12:57:17', 6, 6),
-(26, 2300.00, 'Paid', 12, '2025-02-23 05:34:00', '2025-03-20 12:57:17', 6, 6),
-(27, 2900.00, 'Paid', 2, '2025-02-23 05:34:00', '2025-03-20 12:57:17', 6, 6),
-(28, 700.00, 'Paid', 12, '2025-02-23 05:38:52', '2025-03-20 12:57:17', 6, 6),
-(29, 2900.00, 'Paid', 2, '2025-02-23 05:38:52', '2025-03-20 12:57:17', 6, 6),
-(30, 700.00, 'Paid', 12, '2025-02-23 05:49:59', '2025-03-20 12:57:17', 6, 6),
-(31, 700.00, 'Paid', 12, '2025-02-23 07:59:20', '2025-03-20 12:57:17', 6, 6),
-(32, 3700.00, 'Paid', 12, '2025-03-05 06:32:19', '2025-03-20 12:57:17', 6, 6),
-(33, 1500.00, 'Paid', 2, '2025-03-05 06:32:19', '2025-03-20 12:57:17', 6, 6),
-(34, 5100.00, 'Paid', 12, '2025-03-20 08:52:25', '2025-03-20 12:57:17', 6, 6),
-(35, 1500.00, 'Paid', 2, '2025-03-20 08:52:26', '2025-03-20 12:57:17', 6, 6),
-(36, 700.00, 'Paid', 12, '2025-03-20 08:54:45', '2025-03-20 12:57:17', 6, 6),
-(37, 1500.00, 'Paid', 2, '2025-03-20 08:54:45', '2025-03-20 12:57:17', 6, 6),
-(38, 3000.00, 'Unpaid', 12, '2025-03-20 08:57:21', '2025-03-20 12:11:18', 6, 6),
-(39, 1500.00, 'Waiting For Confirmation', 2, '2025-03-20 08:57:21', '2025-03-20 08:57:21', 6, 6),
-(40, 7600.00, 'Paid', 12, '2025-03-20 09:19:11', '2025-03-20 12:10:57', 6, 6),
-(41, 3100.00, 'Waiting For Confirmation', 2, '2025-03-20 09:19:12', '2025-03-20 09:19:12', 6, 6),
-(42, 1600.00, 'Paid', 12, '2025-03-20 11:50:43', '2025-03-20 12:10:22', 6, 6),
-(43, 3200.00, 'Waiting For Confirmation', 2, '2025-03-20 11:50:43', '2025-03-20 11:50:43', 6, 6);
+(10, 1400.00, 'Delivered', 12, '2024-11-11 08:03:47', '2024-11-11 08:03:47', 6, 6),
+(11, 1400.00, 'Completed', 2, '2024-11-11 08:03:47', '2024-11-11 08:05:15', 6, 6),
+(12, 1400.00, 'Paid', 12, '2024-11-11 08:20:35', '2024-11-11 08:21:21', 6, 6),
+(13, 1500.00, 'Paid', 2, '2024-11-11 08:20:35', '2024-11-11 08:21:34', 6, 6),
+(14, 1400.00, 'Delivered', 12, '2024-11-11 09:05:45', '2024-11-11 09:05:45', 6, 6),
+(15, 4400.00, 'Delivered', 2, '2024-11-11 09:05:45', '2024-11-11 09:05:45', 6, 6),
+(16, 1400.00, 'Paid', 12, '2024-11-12 08:28:09', '2024-11-12 08:28:30', 6, 6),
+(17, 8300.00, 'Paid', 12, '2024-11-12 08:29:47', '2025-01-24 10:44:46', 6, 6),
+(18, 6300.00, 'Paid', 2, '2024-11-12 08:29:47', '2024-11-13 09:28:54', 6, 6),
+(19, 7100.00, 'Delivered', 12, '2025-02-13 07:30:23', '2025-02-13 07:30:23', 6, 6),
+(20, 3800.00, 'Delivered', 2, '2025-02-13 07:30:23', '2025-02-13 07:30:23', 6, 6),
+(21, 6900.00, 'Waiting For Confirmation', 12, '2025-02-23 05:06:58', '2025-02-23 05:06:58', 6, 6),
+(22, 4400.00, 'Waiting For Confirmation', 2, '2025-02-23 05:06:59', '2025-02-23 05:06:59', 6, 6),
+(24, 1600.00, 'Delivered', 12, '2025-02-23 05:31:42', '2025-02-23 05:31:42', 6, 6),
+(25, 2900.00, 'Delivered', 2, '2025-02-23 05:31:42', '2025-02-23 05:31:42', 6, 6),
+(26, 2300.00, 'Waiting For Confirmation', 12, '2025-02-23 05:34:00', '2025-02-23 05:34:00', 6, 6),
+(27, 2900.00, 'Waiting For Confirmation', 2, '2025-02-23 05:34:00', '2025-02-23 05:34:00', 6, 6),
+(28, 700.00, 'Waiting For Confirmation', 12, '2025-02-23 05:38:52', '2025-02-23 05:38:52', 6, 6),
+(29, 2900.00, 'Paid', 2, '2025-02-23 05:38:52', '2025-02-23 06:10:02', 6, 6),
+(30, 700.00, 'Waiting For Confirmation', 12, '2025-02-23 05:49:59', '2025-02-23 05:49:59', 6, 6),
+(31, 700.00, 'Waiting For Confirmation', 12, '2025-02-23 07:59:20', '2025-02-23 07:59:20', 6, 6);
 
 -- --------------------------------------------------------
 
@@ -1323,27 +1321,7 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `unit_pri
 (57, 28, 7, 1, 700.00, '2025-02-23 05:38:52', '2025-02-23 05:38:52'),
 (58, 29, 16, 1, 2900.00, '2025-02-23 05:38:52', '2025-02-23 05:38:52'),
 (59, 30, 7, 1, 700.00, '2025-02-23 05:49:59', '2025-02-23 05:49:59'),
-(60, 31, 7, 1, 700.00, '2025-02-23 07:59:20', '2025-02-23 07:59:20'),
-(61, 32, 7, 1, 700.00, '2025-03-05 06:32:19', '2025-03-05 06:32:19'),
-(62, 32, 9, 1, 1600.00, '2025-03-05 06:32:19', '2025-03-05 06:32:19'),
-(63, 32, 17, 1, 1400.00, '2025-03-05 06:32:19', '2025-03-05 06:32:19'),
-(64, 33, 18, 1, 1500.00, '2025-03-05 06:32:19', '2025-03-05 06:32:19'),
-(65, 34, 7, 1, 700.00, '2025-03-20 08:52:25', '2025-03-20 08:52:25'),
-(66, 34, 9, 1, 1600.00, '2025-03-20 08:52:25', '2025-03-20 08:52:25'),
-(67, 34, 17, 2, 1400.00, '2025-03-20 08:52:25', '2025-03-20 08:52:25'),
-(68, 35, 18, 1, 1500.00, '2025-03-20 08:52:26', '2025-03-20 08:52:26'),
-(69, 36, 7, 1, 700.00, '2025-03-20 08:54:45', '2025-03-20 08:54:45'),
-(70, 37, 18, 1, 1500.00, '2025-03-20 08:54:45', '2025-03-20 08:54:45'),
-(71, 38, 9, 1, 1600.00, '2025-03-20 08:57:21', '2025-03-20 08:57:21'),
-(72, 38, 17, 1, 1400.00, '2025-03-20 08:57:21', '2025-03-20 08:57:21'),
-(73, 39, 18, 1, 1500.00, '2025-03-20 08:57:21', '2025-03-20 08:57:21'),
-(74, 40, 9, 1, 1600.00, '2025-03-20 09:19:11', '2025-03-20 09:19:11'),
-(75, 40, 11, 1, 6000.00, '2025-03-20 09:19:11', '2025-03-20 09:19:11'),
-(76, 41, 15, 1, 1700.00, '2025-03-20 09:19:12', '2025-03-20 09:19:12'),
-(77, 41, 20, 1, 1400.00, '2025-03-20 09:19:12', '2025-03-20 09:19:12'),
-(78, 42, 9, 1, 1600.00, '2025-03-20 11:50:43', '2025-03-20 11:50:43'),
-(79, 43, 15, 1, 1700.00, '2025-03-20 11:50:43', '2025-03-20 11:50:43'),
-(80, 43, 18, 1, 1500.00, '2025-03-20 11:50:43', '2025-03-20 11:50:43');
+(60, 31, 7, 1, 700.00, '2025-02-23 07:59:20', '2025-02-23 07:59:20');
 
 -- --------------------------------------------------------
 
@@ -1365,7 +1343,6 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `payments` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `payment_trans_id` varchar(250) DEFAULT NULL,
   `order_id` bigint(20) UNSIGNED NOT NULL,
   `amount` decimal(10,2) NOT NULL,
   `status` varchar(45) NOT NULL,
@@ -1382,44 +1359,32 @@ CREATE TABLE `payments` (
 -- Dumping data for table `payments`
 --
 
-INSERT INTO `payments` (`id`, `payment_trans_id`, `order_id`, `amount`, `status`, `type`, `created_at`, `updated_at`, `created_by`, `updated_by`, `session_id`, `payslip_img`) VALUES
-(1, 'PAY_fcf41a19e507a7b', 1, 9200.00, 'Paid', 'cod', '2024-11-04 07:15:27', '2025-03-20 12:57:16', 6, 6, NULL, ''),
-(2, 'PAY_fcf41a19e507a7b', 7, 7200.00, 'Paid', 'cc', '2024-11-04 07:22:13', '2025-03-20 12:57:16', 6, 6, 'cs_test_b1AWMbNuTITNHQlMcgIb0RGqk1OGSzZMiDW5AgStI5drgdY8YFjjcMlIjN', ''),
-(3, 'PAY_308a1568312caec', 8, 7500.00, 'Paid', 'cc', '2024-11-04 08:38:57', '2024-11-04 08:39:09', 11, 11, 'cs_test_b1bAryUOn3F1dUD5G3foAq6fDLKWqm1F60R9b4Wei6U9DbTn5GE5j06alm', ''),
-(4, 'PAY_308a1568312caec', 9, 1400.00, 'Paid', 'cc', '2024-11-04 08:38:57', '2024-11-04 08:39:18', 11, 11, 'cs_test_b1bAryUOn3F1dUD5G3foAq6fDLKWqm1F60R9b4Wei6U9DbTn5GE5j06alm', ''),
-(5, 'PAY_fcf41a19e507a7b', 10, 1400.00, 'Paid', 'cod', '2024-11-11 08:03:47', '2025-03-20 12:57:16', 6, 6, NULL, ''),
-(6, 'PAY_fcf41a19e507a7b', 11, 1400.00, 'Paid', 'cod', '2024-11-11 08:03:47', '2025-03-20 12:57:16', 6, 6, NULL, ''),
-(7, 'PAY_fcf41a19e507a7b', 12, 1400.00, 'Paid', 'cc', '2024-11-11 08:20:44', '2025-03-20 12:57:16', 6, 6, 'cs_test_b1N5rffOjgl2OKixIX57nDsAxR7uadbdfqq2ejeBC9D1TEXgefKwKj7Maj', ''),
-(8, 'PAY_fcf41a19e507a7b', 13, 1500.00, 'Paid', 'cc', '2024-11-11 08:20:44', '2025-03-20 12:57:16', 6, 6, 'cs_test_b1N5rffOjgl2OKixIX57nDsAxR7uadbdfqq2ejeBC9D1TEXgefKwKj7Maj', ''),
-(9, 'PAY_fcf41a19e507a7b', 14, 1400.00, 'Paid', 'cod', '2024-11-11 09:05:45', '2025-03-20 12:57:17', 6, 6, NULL, ''),
-(10, 'PAY_fcf41a19e507a7b', 15, 4400.00, 'Paid', 'cod', '2024-11-11 09:05:45', '2025-03-20 12:57:17', 6, 6, NULL, ''),
-(11, 'PAY_fcf41a19e507a7b', 16, 1400.00, 'Paid', 'cc', '2024-11-12 08:28:17', '2025-03-20 12:57:17', 6, 6, 'cs_test_a1AsFfSF5YEPR3tM7ji1C17GChMr8IaTXUorntqh3dHnsU1E5ol1YotmQs', ''),
-(12, 'PAY_fcf41a19e507a7b', 17, 8300.00, 'Paid', 'cod', '2024-11-12 08:29:47', '2025-03-20 12:57:17', 6, 6, NULL, ''),
-(13, 'PAY_fcf41a19e507a7b', 18, 6300.00, 'Paid', 'cod', '2024-11-12 08:29:47', '2025-03-20 12:57:17', 6, 6, NULL, ''),
-(14, 'PAY_fcf41a19e507a7b', 19, 7100.00, 'Paid', 'cod', '2025-02-13 07:30:23', '2025-03-20 12:57:17', 6, 6, NULL, ''),
-(15, 'PAY_fcf41a19e507a7b', 20, 3800.00, 'Paid', 'cod', '2025-02-13 07:30:23', '2025-03-20 12:57:17', 6, 6, NULL, ''),
-(16, 'PAY_fcf41a19e507a7b', 21, 6900.00, 'Paid', 'qrcode', '2025-02-23 05:06:59', '2025-03-20 12:57:17', 6, 6, NULL, 'payslips/n81OcMisNtCEGtVVENXWVB0f1w1eROqoucCC2kRa.jpg'),
-(17, 'PAY_fcf41a19e507a7b', 22, 4400.00, 'Paid', 'qrcode', '2025-02-23 05:06:59', '2025-03-20 12:57:17', 6, 6, 'cs_test_b1Lhps7f8OLQYFuKS90wFbYepB4MW30VR2gsdf3HHaYCL9O6bHgdKuqy9W', 'payslips/n81OcMisNtCEGtVVENXWVB0f1w1eROqoucCC2kRa.jpg'),
-(18, 'PAY_fcf41a19e507a7b', 24, 1600.00, 'Paid', 'cod', '2025-02-23 05:31:42', '2025-03-20 12:57:17', 6, 6, NULL, NULL),
-(19, 'PAY_fcf41a19e507a7b', 25, 2900.00, 'Paid', 'cod', '2025-02-23 05:31:42', '2025-03-20 12:57:17', 6, 6, NULL, NULL),
-(20, 'PAY_fcf41a19e507a7b', 26, 2300.00, 'Paid', 'qrcode', '2025-02-23 05:34:00', '2025-03-20 12:57:17', 6, 6, NULL, 'payslips/WXxmmb9TxXzLfeD51lkIe9XYpRBZR9pjjwpZxqge.jpg'),
-(21, 'PAY_fcf41a19e507a7b', 27, 2900.00, 'Paid', 'qrcode', '2025-02-23 05:34:00', '2025-03-20 12:57:17', 6, 6, NULL, 'payslips/WXxmmb9TxXzLfeD51lkIe9XYpRBZR9pjjwpZxqge.jpg'),
-(22, 'PAY_fcf41a19e507a7b', 28, 700.00, 'Paid', 'qrcode', '2025-02-23 05:38:52', '2025-03-20 12:57:17', 6, 6, NULL, 'payslips/5q5y4oRalyGWemtaY3tHKKUuAC9nFwcCKNp6Aau4.jpg'),
-(23, 'PAY_fcf41a19e507a7b', 29, 2900.00, 'Paid', 'qrcode', '2025-02-23 05:38:52', '2025-03-20 12:57:17', 6, 6, NULL, 'payslips/5q5y4oRalyGWemtaY3tHKKUuAC9nFwcCKNp6Aau4.jpg'),
-(24, 'PAY_fcf41a19e507a7b', 30, 700.00, 'Paid', 'qrcode', '2025-02-23 05:49:59', '2025-03-20 12:57:17', 6, 6, NULL, 'payslips/Hf2gfkvF5wyPpQYfgq7U1BdgY979rzUJD2dmZycG.jpg'),
-(25, 'PAY_fcf41a19e507a7b', 31, 700.00, 'Paid', 'qrcode', '2025-02-23 07:59:20', '2025-03-20 12:57:17', 6, 6, 'cs_test_a1qmiSES3U7sxwIwrKOa2FZ9fGFvDPY7J5PFh5Fhf6frAc3FtAD4XJ5ntC', 'payslips/b5BcZNKC84CETy79Gt3Bs79x37ovdWxXVAil32M4.jpg'),
-(26, 'PAY_fcf41a19e507a7b', 32, 3700.00, 'Paid', 'qrcode', '2025-03-05 06:32:19', '2025-03-20 12:57:17', 6, 6, NULL, 'payslips/Yn4fyq93iY5z0LbYAktOVuYyHc8xgSauWGKaHVOe.jpg'),
-(27, 'PAY_fcf41a19e507a7b', 33, 1500.00, 'Paid', 'qrcode', '2025-03-05 06:32:19', '2025-03-20 12:57:17', 6, 6, NULL, 'payslips/Yn4fyq93iY5z0LbYAktOVuYyHc8xgSauWGKaHVOe.jpg'),
-(28, 'PAY_fcf41a19e507a7b', 34, 5100.00, 'Paid', 'qrcode', '2025-03-20 08:52:26', '2025-03-20 12:57:17', 6, 6, NULL, 'payslips/mS34Frb14MKhb2ENWotrEDbD5aaP3c454Pks9Y1Z.jpg'),
-(29, 'PAY_fcf41a19e507a7b', 35, 1500.00, 'Paid', 'qrcode', '2025-03-20 08:52:26', '2025-03-20 12:57:17', 6, 6, NULL, 'payslips/mS34Frb14MKhb2ENWotrEDbD5aaP3c454Pks9Y1Z.jpg'),
-(30, 'PAY_fcf41a19e507a7b', 36, 700.00, 'Paid', 'qrcode', '2025-03-20 08:54:45', '2025-03-20 12:57:17', 6, 6, NULL, 'payslips/iJ9eG7r4XmwU9yxqpcSPgBNQlPwGgxL0jLAkzZ4b.jpg'),
-(31, 'PAY_fcf41a19e507a7b', 37, 1500.00, 'Paid', 'qrcode', '2025-03-20 08:54:45', '2025-03-20 12:57:17', 6, 6, NULL, 'payslips/iJ9eG7r4XmwU9yxqpcSPgBNQlPwGgxL0jLAkzZ4b.jpg'),
-(32, 'PAY_76033d89902d6', 38, 3000.00, 'Unpaid', 'qrcode', '2025-03-20 08:57:21', '2025-03-20 12:11:18', 6, 6, NULL, 'payslips/jYtU2Z1wLVwywm5a32eL44v3IQVGNCSptzqsWmD7.png'),
-(33, 'PAY_76033d89902d6', 39, 1500.00, 'QRCode', 'qrcode', '2025-03-20 08:57:21', '2025-03-20 08:57:21', 6, 6, NULL, 'payslips/jYtU2Z1wLVwywm5a32eL44v3IQVGNCSptzqsWmD7.png'),
-(34, 'PAY_67dc3fff9b5b22', 40, 7600.00, 'Paid', 'qrcode', '2025-03-20 09:19:12', '2025-03-20 12:10:57', 6, 6, NULL, 'payslips/D0cW0e2IotyXYwkFdlbfUGR3duH4MzksRh0IYEhh.jpg'),
-(35, 'PAY_67dc3fff9b5b22', 41, 3100.00, 'QRCode', 'qrcode', '2025-03-20 09:19:12', '2025-03-20 09:19:12', 6, 6, NULL, 'payslips/D0cW0e2IotyXYwkFdlbfUGR3duH4MzksRh0IYEhh.jpg'),
-(36, 'PAY_d5c34e065e7f4h6', 42, 1600.00, 'Paid', 'qrcode', '2025-03-20 11:50:43', '2025-03-20 12:10:22', 6, 6, NULL, 'payslips/mI1pokefXeqiTRAZWreEZGyTg0dkoP1FH7tproFm.jpg'),
-(37, 'PAY_d5c34e065e7f4h6', 43, 3200.00, 'QRCode', 'qrcode', '2025-03-20 11:50:43', '2025-03-20 11:50:43', 6, 6, NULL, 'payslips/mI1pokefXeqiTRAZWreEZGyTg0dkoP1FH7tproFm.jpg');
+INSERT INTO `payments` (`id`, `order_id`, `amount`, `status`, `type`, `created_at`, `updated_at`, `created_by`, `updated_by`, `session_id`, `payslip_img`) VALUES
+(1, 1, 9200.00, 'Cash On Delivery', 'cod', '2024-11-04 07:15:27', '2024-11-04 07:15:27', 6, 6, NULL, ''),
+(2, 7, 7200.00, 'Paid', 'cc', '2024-11-04 07:22:13', '2024-11-04 07:22:28', 6, 6, 'cs_test_b1AWMbNuTITNHQlMcgIb0RGqk1OGSzZMiDW5AgStI5drgdY8YFjjcMlIjN', ''),
+(3, 8, 7500.00, 'Paid', 'cc', '2024-11-04 08:38:57', '2024-11-04 08:39:09', 11, 11, 'cs_test_b1bAryUOn3F1dUD5G3foAq6fDLKWqm1F60R9b4Wei6U9DbTn5GE5j06alm', ''),
+(4, 9, 1400.00, 'Paid', 'cc', '2024-11-04 08:38:57', '2024-11-04 08:39:18', 11, 11, 'cs_test_b1bAryUOn3F1dUD5G3foAq6fDLKWqm1F60R9b4Wei6U9DbTn5GE5j06alm', ''),
+(5, 10, 1400.00, 'Cash On Delivery', 'cod', '2024-11-11 08:03:47', '2024-11-11 08:03:47', 6, 6, NULL, ''),
+(6, 11, 1400.00, 'Cash On Delivery', 'cod', '2024-11-11 08:03:47', '2024-11-11 08:03:47', 6, 6, NULL, ''),
+(7, 12, 1400.00, 'Paid', 'cc', '2024-11-11 08:20:44', '2024-11-11 08:21:21', 6, 6, 'cs_test_b1N5rffOjgl2OKixIX57nDsAxR7uadbdfqq2ejeBC9D1TEXgefKwKj7Maj', ''),
+(8, 13, 1500.00, 'Paid', 'cc', '2024-11-11 08:20:44', '2024-11-11 08:21:34', 6, 6, 'cs_test_b1N5rffOjgl2OKixIX57nDsAxR7uadbdfqq2ejeBC9D1TEXgefKwKj7Maj', ''),
+(9, 14, 1400.00, 'Cash On Delivery', 'cod', '2024-11-11 09:05:45', '2024-11-11 09:05:45', 6, 6, NULL, ''),
+(10, 15, 4400.00, 'Cash On Delivery', 'cod', '2024-11-11 09:05:45', '2024-11-11 09:05:45', 6, 6, NULL, ''),
+(11, 16, 1400.00, 'Paid', 'cc', '2024-11-12 08:28:17', '2024-11-12 08:28:30', 6, 6, 'cs_test_a1AsFfSF5YEPR3tM7ji1C17GChMr8IaTXUorntqh3dHnsU1E5ol1YotmQs', ''),
+(12, 17, 8300.00, 'Cash On Delivery', 'cod', '2024-11-12 08:29:47', '2024-11-12 08:29:47', 6, 6, NULL, ''),
+(13, 18, 6300.00, 'Cash On Delivery', 'cod', '2024-11-12 08:29:47', '2024-11-12 08:29:47', 6, 6, NULL, ''),
+(14, 19, 7100.00, 'Cash On Delivery', 'cod', '2025-02-13 07:30:23', '2025-02-13 07:30:23', 6, 6, NULL, ''),
+(15, 20, 3800.00, 'Cash On Delivery', 'cod', '2025-02-13 07:30:23', '2025-02-13 07:30:23', 6, 6, NULL, ''),
+(16, 21, 6900.00, 'QRCode', 'qrcode', '2025-02-23 05:06:59', '2025-02-23 05:06:59', 6, 6, NULL, 'payslips/n81OcMisNtCEGtVVENXWVB0f1w1eROqoucCC2kRa.jpg'),
+(17, 22, 4400.00, 'QRCode', 'qrcode', '2025-02-23 05:06:59', '2025-02-23 05:10:55', 6, 6, 'cs_test_b1Lhps7f8OLQYFuKS90wFbYepB4MW30VR2gsdf3HHaYCL9O6bHgdKuqy9W', 'payslips/n81OcMisNtCEGtVVENXWVB0f1w1eROqoucCC2kRa.jpg'),
+(18, 24, 1600.00, 'Cash On Delivery', 'cod', '2025-02-23 05:31:42', '2025-02-23 05:31:42', 6, 6, NULL, NULL),
+(19, 25, 2900.00, 'Cash On Delivery', 'cod', '2025-02-23 05:31:42', '2025-02-23 05:31:42', 6, 6, NULL, NULL),
+(20, 26, 2300.00, 'QRCode', 'qrcode', '2025-02-23 05:34:00', '2025-02-23 05:34:00', 6, 6, NULL, 'payslips/WXxmmb9TxXzLfeD51lkIe9XYpRBZR9pjjwpZxqge.jpg'),
+(21, 27, 2900.00, 'QRCode', 'qrcode', '2025-02-23 05:34:00', '2025-02-23 05:34:00', 6, 6, NULL, 'payslips/WXxmmb9TxXzLfeD51lkIe9XYpRBZR9pjjwpZxqge.jpg'),
+(22, 28, 700.00, 'QRCode', 'qrcode', '2025-02-23 05:38:52', '2025-02-23 05:38:52', 6, 6, NULL, 'payslips/5q5y4oRalyGWemtaY3tHKKUuAC9nFwcCKNp6Aau4.jpg'),
+(23, 29, 2900.00, 'QRCode', 'qrcode', '2025-02-23 05:38:52', '2025-02-23 05:38:52', 6, 6, NULL, 'payslips/5q5y4oRalyGWemtaY3tHKKUuAC9nFwcCKNp6Aau4.jpg'),
+(24, 30, 700.00, 'QRCode', 'qrcode', '2025-02-23 05:49:59', '2025-02-23 05:49:59', 6, 6, NULL, 'payslips/Hf2gfkvF5wyPpQYfgq7U1BdgY979rzUJD2dmZycG.jpg'),
+(25, 31, 700.00, 'QRCode', 'qrcode', '2025-02-23 07:59:20', '2025-02-23 08:00:17', 6, 6, 'cs_test_a1qmiSES3U7sxwIwrKOa2FZ9fGFvDPY7J5PFh5Fhf6frAc3FtAD4XJ5ntC', 'payslips/b5BcZNKC84CETy79Gt3Bs79x37ovdWxXVAil32M4.jpg');
 
 -- --------------------------------------------------------
 
@@ -1457,9 +1422,7 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (37, 'App\\Models\\User', 2, 'main', 'dc3ab4a0c797177117fe35af981f07604a45ec1d78169dac05118f66b89bee78', '[\"*\"]', '2025-02-20 10:00:30', NULL, '2025-02-20 10:00:00', '2025-02-20 10:00:30'),
 (40, 'App\\Models\\User', 1, 'main', '2cb4e3b4cab7d686ae8399a61f5a61a1e2045d3700c5eb840f5d5d24020a3949', '[\"*\"]', '2025-02-27 08:38:12', NULL, '2025-02-27 07:53:33', '2025-02-27 08:38:12'),
 (45, 'App\\Models\\User', 1, 'main', '9a9d80867d6445da5b9649b94f433fa64f93994853a5eebc928ef72e11a1e981', '[\"*\"]', '2025-02-27 10:39:20', NULL, '2025-02-27 09:44:00', '2025-02-27 10:39:20'),
-(49, 'App\\Models\\User', 1, 'main', '3f9c8f529b793010e500844f8a14d5790b5499256f582e14de21b8ecbef0e8c9', '[\"*\"]', '2025-03-20 07:09:39', NULL, '2025-03-20 07:05:46', '2025-03-20 07:09:39'),
-(51, 'App\\Models\\User', 2, 'main', '82f6dbf2dcb5174a77e6abf2518b5c6c8ac4326356106ee064ec13fa48cb75cd', '[\"*\"]', '2025-03-20 12:57:46', NULL, '2025-03-20 08:13:51', '2025-03-20 12:57:46'),
-(52, 'App\\Models\\User', 1, 'main', '19832c01e511df25e67df12f0af922d3b76d0a6d8a9408bb20b509ace2398fbc', '[\"*\"]', '2025-03-20 12:58:07', NULL, '2025-03-20 12:40:16', '2025-03-20 12:58:07');
+(46, 'App\\Models\\User', 1, 'main', 'abcce83028a5e4f45f814d872674eca9ad7796281cbdcc40f83407c17f073707', '[\"*\"]', '2025-03-04 07:55:54', NULL, '2025-03-04 07:47:51', '2025-03-04 07:55:54');
 
 -- --------------------------------------------------------
 
@@ -1496,20 +1459,20 @@ INSERT INTO `products` (`id`, `title`, `slug`, `description`, `price`, `seller_i
 (4, 'Natasja', 'natasja', '<p>Natasja Branched Birch Fig - Real Indoor Plant, Ficus Benjamini - Height Approx. 30 cm, Pot Diameter 12 cm</p>', 600.00, 2, 0, 10, 2, 2, NULL, NULL, '2024-11-03 10:46:45', '2024-11-03 10:46:45', 1),
 (5, 'Window leaf', 'window-leaf', '<p>Window leaf, easy-care houseplant, Monstera \"Monkey\", height: approx. 25 cm, pot diameter: 12 cm</p>', 1300.00, 2, 0, 10, 2, 2, NULL, NULL, '2024-11-03 10:51:50', '2024-11-03 10:52:09', 1),
 (6, 'Pachira Aquatica', 'pachira-aquatica', '<p>The plant has a height of 60 to 70 cm upon delivery, measured with the nursery pot. The plant comes in a nursery pot with a diameter of 17 cm., Beautifully braided trunk, Symbolizes luck and prosperity, Grows large webbed leaves divided into 5 glossy leaflets</p><p><br>&nbsp;</p>', 1800.00, 2, 0, 20, 2, 2, NULL, NULL, '2024-11-03 10:53:37', '2024-11-03 10:54:25', 1),
-(7, 'Golden Pothos', 'golden-pothos', '<p>Dominik Blumen und Pflanzen, Ivy, Epipremnum aureum, 2 plants, Houseplants, Climbing, Ampel</p>', 700.00, 12, 0, 10, 2, 2, NULL, NULL, '2024-11-03 10:56:15', '2025-03-20 12:38:42', 1),
+(7, 'Golden Pothos', 'golden-pothos', '<p>Dominik Blumen und Pflanzen, Ivy, Epipremnum aureum, 2 plants, Houseplants, Climbing, Ampel</p>', 700.00, 12, 0, 3, 2, 2, NULL, NULL, '2024-11-03 10:56:15', '2025-02-23 07:59:20', 1),
 (8, 'Ocean Spider Plant', 'ocean-spider-plant', '<p>Ocean Spider Plant Smit Bambino Easy Care Chlorophytum Ocean Height Approx. 15 cm Pot Diameter 5.5 cm</p><p>About this item</p><ul><li>Indoor temperature improvement</li><li>Requires plenty of water and a semi-shaded spot</li><li>For home and office use</li><li>Pot diameter 5.5 cm and height 12 cm</li></ul>', 500.00, 2, 0, 20, 2, 2, NULL, NULL, '2024-11-03 10:58:14', '2024-11-03 10:58:14', 1),
-(9, 'Dracaena trifasciata', 'dracaena-trifasciata', '<p>Dracaena trifasciata (Mother-in-Law\'s Tongue or Snake Plant)<br>Care Instructions</p><ul><li>Light: Prefers medium to bright light but can also thrive in low-light conditions.</li><li>Water: Water infrequently. Allow the soil to dry out completely between waterings, as Snake Plants are drought-tolerant. Overwatering may cause root rot.</li><li>Soil: Prefers well-draining soil, such as sandy soil or a cactus potting mix.</li><li>Temperature: Grows well in normal room temperatures (15-30°C). It dislikes temperatures below 10°C.</li></ul>', 1600.00, 12, 0, 17, 2, 2, NULL, NULL, '2024-11-03 11:02:13', '2025-03-20 12:38:42', 1),
-(10, 'Turmeric', 'turmeric', '<p>Turmeric – Real Indoor Plant, Turmeric, Height Approx. 55 cm, Pot Diameter 14 cm</p>', 900.00, 2, 0, 20, 2, 2, NULL, NULL, '2024-11-03 11:03:25', '2025-03-20 12:38:42', 1),
-(11, 'Calathéa crocata', 'calathea-crocata', '<p>is a species of flowering plant in the family Marantaceae, native to Bahia and Espírito Santo states of eastern Brazil.&nbsp;</p>', 6000.00, 12, 0, 19, 2, 2, NULL, NULL, '2024-11-03 11:05:40', '2025-03-20 12:38:42', 1),
-(12, 'Hibiscus', 'hibiscus', '<p>Hibiscus Care</p><p>The care you provide your hibiscus will vary depending on whether it is a hardy or tropical variety and whether it is grown indoors or outdoors. Here are the main care requirements for growing hibiscus:</p><ul><li>In northern locations, plant hibiscus in full sun. In the south, filtered sunlight is preferable.</li><li>The soil should be fertile and loamy. All hibiscus needs consistently moist soil with good drainage. Keep the soil moist and water as needed.</li><li>Select varieties that tolerate the temperatures in your location year-round. Alternatively, grow hibiscus in pots and overwinter it indoors.</li><li>Fertilize the plant regularly during the growing season.</li></ul>', 4000.00, 2, 0, 20, 2, 2, NULL, NULL, '2024-11-03 11:09:03', '2025-03-20 12:38:42', 1),
+(9, 'Dracaena trifasciata', 'dracaena-trifasciata', '<p>Dracaena trifasciata (Mother-in-Law\'s Tongue or Snake Plant)<br>Care Instructions</p><ul><li>Light: Prefers medium to bright light but can also thrive in low-light conditions.</li><li>Water: Water infrequently. Allow the soil to dry out completely between waterings, as Snake Plants are drought-tolerant. Overwatering may cause root rot.</li><li>Soil: Prefers well-draining soil, such as sandy soil or a cactus potting mix.</li><li>Temperature: Grows well in normal room temperatures (15-30°C). It dislikes temperatures below 10°C.</li></ul>', 1600.00, 12, 0, 10, 2, 2, NULL, NULL, '2024-11-03 11:02:13', '2025-02-23 05:34:00', 1),
+(10, 'Turmeric', 'turmeric', '<p>Turmeric – Real Indoor Plant, Turmeric, Height Approx. 55 cm, Pot Diameter 14 cm</p>', 900.00, 2, 0, 18, 2, 2, NULL, NULL, '2024-11-03 11:03:25', '2025-02-13 07:30:23', 1),
+(11, 'Calathéa crocata', 'calathea-crocata', '<p>is a species of flowering plant in the family Marantaceae, native to Bahia and Espírito Santo states of eastern Brazil.&nbsp;</p>', 6000.00, 12, 0, 19, 2, 2, NULL, NULL, '2024-11-03 11:05:40', '2024-11-12 08:29:47', 1),
+(12, 'Hibiscus', 'hibiscus', '<p>Hibiscus Care</p><p>The care you provide your hibiscus will vary depending on whether it is a hardy or tropical variety and whether it is grown indoors or outdoors. Here are the main care requirements for growing hibiscus:</p><ul><li>In northern locations, plant hibiscus in full sun. In the south, filtered sunlight is preferable.</li><li>The soil should be fertile and loamy. All hibiscus needs consistently moist soil with good drainage. Keep the soil moist and water as needed.</li><li>Select varieties that tolerate the temperatures in your location year-round. Alternatively, grow hibiscus in pots and overwinter it indoors.</li><li>Fertilize the plant regularly during the growing season.</li></ul>', 4000.00, 2, 0, 19, 2, 2, NULL, NULL, '2024-11-03 11:09:03', '2024-11-12 08:29:47', 1),
 (13, 'Calathea', 'calathea', '<p>Briful Calathea 33cm Tall Artificial Indoor Plant with 8 Coloured Leaves in Plastic Pot - Green/Red</p>', 1400.00, 12, 0, 10, 2, 2, NULL, NULL, '2024-11-03 11:12:07', '2024-11-03 11:12:07', 1),
 (14, 'Boston Fern', 'boston-fern', '<p>Hollyone Artificial Boston Fern in Pot 50cm Indoor Outdoor Indoor Garden Patio Balcony Entryway Office Living Room</p>', 3500.00, 12, 0, 20, 2, 2, NULL, NULL, '2024-11-03 11:13:39', '2024-11-03 11:13:39', 1),
-(15, 'Camellia Plant', 'camellia-plant', '<p>Oairse Artificial Camellia Plant 28cm Artificial Plants Potted Small Bonsai Plants for Home Bedroom Office Kitchen</p>', 1700.00, 2, 1, 9, 2, 2, NULL, NULL, '2024-11-03 11:14:55', '2025-03-20 12:38:41', 1),
-(16, 'Majesty Palm', 'majesty-palm', '<p>The majesty palm\'s stems grow in elegant upward arches and host long, thin leaves. It\'s the perfect plant to place next to your throne (a.k.a loveseat) to add a touch of charm and class.</p>', 2900.00, 2, 0, 30, 2, 2, NULL, NULL, '2024-11-03 11:25:25', '2025-03-20 12:38:42', 1),
-(17, 'Golden Pothos Plant', 'golden-pothos-plant', '<p>The Golden Pothos plant might win the award for the most popular houseplant. You’ll see it in indoor buildings, offices, and most greenhouses.</p><p>The scientific name for the Golden Pothos is Epipremnum Aureum. It is also commonly known as Devil’s Ivy and it’s a vining foliage plant. It comes from the Araceae plant family.&nbsp;&nbsp;</p>', 1400.00, 12, 1, 48, 2, 2, NULL, NULL, '2024-11-03 11:36:05', '2025-03-20 12:38:42', 1),
-(18, 'Zanzibar Gem', 'zanzibar-gem', NULL, 1500.00, 2, 1, 28, 2, 2, NULL, NULL, '2024-11-03 11:39:26', '2025-03-20 12:38:42', 1),
+(15, 'Camellia Plant', 'camellia-plant', '<p>Oairse Artificial Camellia Plant 28cm Artificial Plants Potted Small Bonsai Plants for Home Bedroom Office Kitchen</p>', 1700.00, 2, 1, 7, 2, 2, NULL, NULL, '2024-11-03 11:14:55', '2024-11-04 08:38:55', 1),
+(16, 'Majesty Palm', 'majesty-palm', '<p>The majesty palm\'s stems grow in elegant upward arches and host long, thin leaves. It\'s the perfect plant to place next to your throne (a.k.a loveseat) to add a touch of charm and class.</p>', 2900.00, 2, 0, 22, 2, 2, NULL, NULL, '2024-11-03 11:25:25', '2025-02-23 05:38:52', 1),
+(17, 'Golden Pothos Plant', 'golden-pothos-plant', '<p>The Golden Pothos plant might win the award for the most popular houseplant. You’ll see it in indoor buildings, offices, and most greenhouses.</p><p>The scientific name for the Golden Pothos is Epipremnum Aureum. It is also commonly known as Devil’s Ivy and it’s a vining foliage plant. It comes from the Araceae plant family.&nbsp;&nbsp;</p>', 1400.00, 12, 1, 42, 2, 2, NULL, NULL, '2024-11-03 11:36:05', '2025-02-23 05:06:58', 1),
+(18, 'Zanzibar Gem', 'zanzibar-gem', NULL, 1500.00, 2, 1, 23, 2, 2, NULL, NULL, '2024-11-03 11:39:26', '2025-02-23 05:06:58', 1),
 (19, 'test', 'test', '<p>asdas</p>', 3534.00, 2, 1, 34543, 2, 2, '2024-11-03 11:43:30', NULL, '2024-11-03 11:43:15', '2024-11-03 11:43:30', 1),
-(20, 'Swiss cheese plant', 'swiss-cheese-plant', '<p>Monstera deliciosa, the Swiss cheese plant or split-leaf philodendron is a species of flowering plant native to tropical forests of southern Mexico, south to Panama. It has been introduced to many tropical areas, and has become a mildly invasive species in Hawaii, Seychelles, Ascension Island and the Society Islands</p>', 1400.00, 2, 1, 39, 2, 2, NULL, NULL, '2024-11-03 11:45:31', '2025-03-20 12:38:42', 1),
+(20, 'Swiss cheese plant', 'swiss-cheese-plant', '<p>Monstera deliciosa, the Swiss cheese plant or split-leaf philodendron is a species of flowering plant native to tropical forests of southern Mexico, south to Panama. It has been introduced to many tropical areas, and has become a mildly invasive species in Hawaii, Seychelles, Ascension Island and the Society Islands</p>', 1400.00, 2, 1, 35, 2, 2, NULL, NULL, '2024-11-03 11:45:31', '2024-11-12 08:29:47', 1),
 (21, 'safas', 'safas', '<p>sfdsf</p>', 345.00, 2, 1, 345, 2, 2, '2024-11-03 11:48:58', NULL, '2024-11-03 11:47:56', '2024-11-03 11:48:58', 1),
 (22, 'testtt', 'testtt', '<p>klhkljsdjfpsdlj</p>', 13456.00, 12, 1, 34, 2, 2, '2024-11-03 11:57:08', NULL, '2024-11-03 11:49:24', '2024-11-03 11:57:08', 1),
 (23, 'testtt', 'testtt-1', '<p>dfsdfsd</p>', 324324.00, 2, 1, 4234, 2, 2, '2024-11-03 11:57:03', NULL, '2024-11-03 11:51:59', '2024-11-03 11:57:03', 1),
@@ -1868,7 +1831,7 @@ CREATE TABLE `settings` (
 
 INSERT INTO `settings` (`id`, `key`, `value`, `created_at`, `updated_at`) VALUES
 (1, 'PROMPTPAY_ID', '0987654321', '2025-02-27 07:49:14', '2025-02-27 10:35:06'),
-(2, 'OPENAI_API_KEY', 'sk-xxxxxxxxxxxxxxxxxxxxx', '2025-02-28 07:49:14', '2025-03-20 07:09:38');
+(2, 'OPENAI_API_KEY', 'OPENAI_API_KEY', '2025-02-28 07:49:14', '2025-02-28 10:35:06');
 
 -- --------------------------------------------------------
 
@@ -9488,7 +9451,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart_items`
 --
 ALTER TABLE `cart_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -9530,7 +9493,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `order_details`
@@ -9542,19 +9505,19 @@ ALTER TABLE `order_details`
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `products`

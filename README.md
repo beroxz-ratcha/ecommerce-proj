@@ -128,3 +128,8 @@ share `https://drive.google.com/drive/folders/1fy-lT7PnVDeHMD5p99I-s38WaLLRZOVl?
 npm config list
 npm config delete prefix
 npm install --no-prefix
+
+run on sql
+
+ALTER TABLE payments
+ADD COLUMN payment_trans_id VARCHAR(250) COLLATE utf8mb4_unicode_ci NULL AFTER id;

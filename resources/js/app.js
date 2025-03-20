@@ -64,7 +64,6 @@ document.addEventListener('alpine:init', async () => {
             });
           })
           .catch((response) => {
-            console.log(response);
             this.$dispatch('notify', {
               message:
                 response.message ||

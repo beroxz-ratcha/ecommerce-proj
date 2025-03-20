@@ -524,7 +524,7 @@
                         "Authorization": `Bearer ${apiKey}`
                     },
                     body: JSON.stringify({
-                        model: "gpt-3.5-turbo",
+                        model: "gpt-4o",
                         messages: [{
                             role: "user",
                             content: message
@@ -533,10 +533,14 @@
                 });
 
                 const data = await response.json();
-                const botReply = data.choices[0].message.content;
+                if (data.choices && data.choices.length > 0) {
+                    const botReply = data.choices[0].message.content;
 
-                // แสดงข้อความตอบกลับจากแชทบอท
-                appendMessage("bot", botReply);
+                    // แสดงข้อความตอบกลับจากแชทบอท
+                    appendMessage("bot", botReply);
+                } else {
+                    appendMessage("bot", "ขออภัย มีข้อผิดพลาดเกิดขึ้น");
+                }
             } catch (error) {
                 console.error("Error:", error);
                 appendMessage("bot", "ขออภัย มีข้อผิดพลาดเกิดขึ้น");

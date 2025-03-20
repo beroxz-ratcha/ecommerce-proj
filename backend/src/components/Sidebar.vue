@@ -62,14 +62,14 @@
     />
     <NavLink
       v-if="currentUser.role === 1"
-      to="app.payment"
+      to="app.payments"
       :icon="CashIcon"
       text="การชำระเงิน"
     />
     <NavLink to="reports.orders" :icon="ChartBarIcon" text="รายงาน" />
     <NavLink
       v-if="currentUser.role === 1"
-      to="app.setting"
+      to="app.settings"
       :icon="CogIcon"
       text="การตั้งค่า"
     />

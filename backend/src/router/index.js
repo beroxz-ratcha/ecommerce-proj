@@ -24,6 +24,7 @@ import ProfileSeller from '../views/Profile/ProfileSeller.vue';
 import ProfileAdmin from '../views/Profile/ProfileAdmin.vue';
 import Setting from '../views/Setting/Setting.vue';
 import Payment from '../views/Payment/Payment.vue';
+import PaymentView from '../views/Payment/PaymentView.vue';
 
 const routes = [
   {
@@ -78,15 +79,21 @@ const routes = [
         meta: { requiresAuth: true, roles: '1' },
       },
       {
-        path: 'setting',
-        name: 'app.setting',
+        path: 'settings',
+        name: 'app.settings',
         component: Setting,
         meta: { requiresAuth: true, roles: '1' },
       },
       {
-        path: 'payment',
-        name: 'app.payment',
+        path: 'payments',
+        name: 'app.payments',
         component: Payment,
+        meta: { requiresAuth: true, roles: '1' },
+      },
+      {
+        path: 'payments/:id',
+        name: 'app.payments.view',
+        component: PaymentView,
         meta: { requiresAuth: true, roles: '1' },
       },
       {

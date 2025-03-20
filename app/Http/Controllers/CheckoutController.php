@@ -200,6 +200,8 @@ class CheckoutController extends Controller
         }
 
         try {
+            $paymentTransId = 'PAY_' . substr(md5($user->id . microtime(true)), 0, 15);
+
             foreach ($ordersData as $orderData) {
                 $order = Order::create([
                     'total_price' => $orderData['total_price'],
@@ -215,6 +217,7 @@ class CheckoutController extends Controller
                 }
 
                 $paymentData = [
+                    'payment_trans_id' => $paymentTransId,
                     'order_id' => $order->id,
                     'amount' => $orderData['total_price'],
                     'status' => PaymentStatus::CashOnDelivery,
@@ -238,7 +241,6 @@ class CheckoutController extends Controller
 
     public function checkoutPayment(Request $request)
     {
-        /** @var \App\Models\User $user */
         $user = $request->user();
         $customer = $user->customer;
 
@@ -292,6 +294,8 @@ class CheckoutController extends Controller
         }
 
         try {
+            $paymentTransId = 'PAY_' . substr(md5($user->id . microtime(true)), 0, 15);
+
             foreach ($ordersData as $orderData) {
                 $order = Order::create([
                     'total_price' => $orderData['total_price'],
@@ -312,6 +316,7 @@ class CheckoutController extends Controller
                     $slipImagePath = $slipImage->store('payslips', 'public'); // เก็บไฟล์ในโฟลเดอร์ payslips
 
                     $paymentData = [
+                        'payment_trans_id' => $paymentTransId, // ✅ ใช้ payment_trans_id เดียวกัน
                         'order_id' => $order->id,
                         'amount' => $orderData['total_price'],
                         'status' => PaymentStatus::QRCode,
@@ -326,7 +331,6 @@ class CheckoutController extends Controller
             }
         } catch (\Exception $e) {
             DB::rollBack();
-
             Log::critical(__METHOD__ . ' method does not work. ' . $e->getMessage());
             throw $e;
         }

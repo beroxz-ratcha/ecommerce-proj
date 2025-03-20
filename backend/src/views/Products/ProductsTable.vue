@@ -90,7 +90,7 @@
       <tbody v-else>
         <tr v-for="(product, index) of products.data">
           <td class="border-b p-2 text-center">{{ product.id }}</td>
-          <td class="border-b p-2 text-center">
+          <td class="border-b p-2 text-center flex justify-center items-center">
             <img
               v-if="product.image_url"
               class="w-16 h-16 object-cover"

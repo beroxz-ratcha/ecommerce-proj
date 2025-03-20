@@ -81,7 +81,7 @@
         </tr>
       </tbody>
       <tbody v-else>
-        <tr v-for="(order, index) of orders.data">
+        <tr v-for="order of orders.data" :key="order.id">
           <td class="border-b p-2 text-center">{{ order.id }}</td>
           <td class="border-b p-2 text-center">
             {{ order.customer.first_name }} {{ order.customer.last_name }}
@@ -97,7 +97,7 @@
           >
             {{ formatDateTime(order.created_at) }}
           </td>
-          <td class="border-b p-2 text-center">
+          <td class="border-b p-2 text-center" style="justify-items: center">
             <router-link
               :to="{ name: 'app.orders.view', params: { id: order.id } }"
               class="w-8 h-8 rounded-full text-indigo-700 border border-indigo-700 flex justify-center items-center hover:text-white hover:bg-indigo-700"

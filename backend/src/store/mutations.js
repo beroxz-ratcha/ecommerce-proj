@@ -64,6 +64,22 @@ export function setSettings(state, [loading, data = null]) {
   state.settings.loading = loading;
 }
 
+export function setPayments(state, [loading, data = null]) {
+  if (data) {
+    state.payments = {
+      ...state.payments,
+      data: data.data,
+      links: data.meta?.links,
+      page: data.meta.current_page,
+      limit: data.meta.per_page,
+      from: data.meta.from,
+      to: data.meta.to,
+      total: data.meta.total,
+    };
+  }
+  state.payments.loading = loading;
+}
+
 export function setCustomers(state, [loading, data = null]) {
   if (data) {
     state.customers = {
@@ -77,7 +93,7 @@ export function setCustomers(state, [loading, data = null]) {
       total: data.meta.total,
     };
   }
-  state.products.loading = loading;
+  state.customers.loading = loading;
 }
 
 export function setSellers(state, [loading, data = null]) {

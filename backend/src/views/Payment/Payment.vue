@@ -12,24 +12,24 @@ import { computed, onMounted, ref } from 'vue';
 import store from '../../store';
 import PaymentTable from './PaymentTable.vue';
 
-const DEFAULT_SETTING = {};
+const DEFAULT_PAYMENT = {};
 
-const settings = computed(() => store.state.settings);
+const payments = computed(() => store.state.payments);
 
-const settingModel = ref({ ...DEFAULT_SETTING });
-const showSettingModal = ref(false);
+const paymentModel = ref({ ...DEFAULT_PAYMENT });
+const showPaymentModal = ref(false);
 
 function showAddNewModal() {
-  showSettingModal.value = true;
+  showPaymentModal.value = true;
 }
 
 function editSetting(u) {
-  settingModel.value = u;
+  paymentModel.value = u;
   showAddNewModal();
 }
 
 function onModalClose() {
-  settingModel.value = { ...DEFAULT_SETTING };
+  paymentModel.value = { ...DEFAULT_PAYMENT };
 }
 </script>
 
