@@ -101,6 +101,7 @@ export function createProduct({ commit }, product) {
     form.append('title', product.title);
     product.images.forEach((im) => form.append('images[]', im));
     form.append('description', product.description || '');
+    form.append('search_description', product.search_description || '');
     form.append('published', product.published ? 1 : 0);
     form.append('is_promotion', product.is_promotion ? 1 : 0);
     form.append('price', product.price);
@@ -131,6 +132,7 @@ export function updateProduct({ commit }, product) {
       form.append(`image_positions[${id}]`, product.image_positions[id]);
     }
     form.append('description', product.description || '');
+    form.append('search_description', product.search_description || '');
     form.append('published', product.published ? 1 : 0);
     form.append('is_promotion', product.is_promotion ? 1 : 0);
     form.append('price', product.price);

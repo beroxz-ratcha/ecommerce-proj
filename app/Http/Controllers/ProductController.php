@@ -71,15 +71,24 @@ class ProductController extends Controller
 
             $query->orderBy($sortField, $sortDirection);
         }
+
+        $searchTerms = explode(' ', $search); // แยกคำค้นเป็นคำ ๆ
+
         $products = $query
             ->where('published', '=', 1)
-            ->where(function ($query) use ($search) {
-                /** @var $query \Illuminate\Database\Eloquent\Builder */
-                $query->where('products.title', 'like', "%$search%")
-                    ->orWhere('products.description', 'like', "%$search%");
+            ->where(function ($query) use ($searchTerms) {
+                foreach ($searchTerms as $term) {
+                    // ค้นหาคำใน title, description, และ search_description
+                    $query->orWhere(function ($subQuery) use ($term) {
+                        $subQuery->where('products.title', 'like', "%$term%")
+                            ->orWhere('products.description', 'like', "%$term%")
+                            ->orWhere('products.search_description', 'like', "%$term%");
+                    });
+                }
             })
-
             ->paginate(12);
+
+
 
         return view('product.index', [
             'products' => $products

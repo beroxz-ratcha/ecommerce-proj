@@ -15,12 +15,24 @@
     <form v-if="!loading" @submit.prevent="onSubmit">
       <div class="grid grid-cols-3">
         <div class="col-span-2 px-4 pt-5 pb-4">
+          <label
+            for="title"
+            class="block text-sm font-medium text-gray-700 mb-1"
+          >
+            ชื่อของสินค้า
+          </label>
           <CustomInput
             class="mb-2"
             v-model="product.title"
             label="ชื่อของสินค้า"
             :errors="errors['title']"
           />
+          <label
+            for="description"
+            class="block text-sm font-medium text-gray-700 mb-1"
+          >
+            คำอธิบายสินค้า
+          </label>
           <CustomInput
             type="richtext"
             class="mb-2"
@@ -28,6 +40,25 @@
             label="คำอธิบายสินค้า"
             :errors="errors['description']"
           />
+          <label
+            for="search_description"
+            class="block text-sm font-medium text-gray-700 mb-1"
+          >
+            คำอธิบายสินค้า สำหรับการค้นหา
+          </label>
+          <CustomInput
+            type="richtext"
+            class="mb-2"
+            v-model="product.search_description"
+            label="คำอธิบายสินค้า search"
+            :errors="errors['search_description']"
+          />
+          <label
+            for="price"
+            class="block text-sm font-medium text-gray-700 mb-1"
+          >
+            ราคาสินค้า
+          </label>
           <CustomInput
             type="number"
             class="mb-2"
@@ -36,6 +67,12 @@
             prepend="฿"
             :errors="errors['price']"
           />
+          <label
+            for="quantity"
+            class="block text-sm font-medium text-gray-700 mb-1"
+          >
+            จำนวน
+          </label>
           <CustomInput
             type="number"
             class="mb-2"
@@ -135,6 +172,7 @@ const product = ref({
   deleted_images: [],
   image_positions: {},
   description: '',
+  search_description: '',
   price: null,
   quantity: null,
   published: false,

@@ -409,10 +409,10 @@
             </button>
 
             <!-- แชทบอท -->
-            <div id="chatbot-window"
-                class="hidden bg-white rounded-lg shadow-lg w-80 h-96 fixed bottom-20 right-4 p-4">
+            <div id="chatbot-window" class="hidden bg-white rounded-lg shadow-lg fixed bottom-20 right-4 p-4"
+                style="width: 340px; height: 400px;">
                 <div class="chatbot-header flex justify-between items-center mb-4">
-                    <h3 class="text-lg font-semibold">แชทบอท</h3>
+                    <h3 class="text-lg font-semibold">สอบถามผู้เชี่ยวชาญ</h3>
                     <button id="close-chatbot" class="text-gray-500 hover:text-gray-700">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
@@ -423,11 +423,11 @@
                 </div>
 
                 <!-- ส่วนข้อความแชท -->
-                <div id="chatbot-body" class="chatbot-body overflow-y-auto h-64 mb-4">
+                <div id="chatbot-body" class="chatbot-body overflow-y-auto mb-4" style="height: 264px;">
                     <div class="message mb-2 flex items-start">
                         <img src="{{ asset('/storage/imgfront/chat-bot.png') }}" alt="Bot Avatar"
                             class="w-8 h-8 rounded-full mr-2">
-                        <p class="bg-gray-100 p-2 rounded-lg">สวัสดี! มีอะไรให้ช่วยไหมคะ?</p>
+                        <p class="bg-gray-100 p-2 rounded-lg">สวัสดี! มีอะไรให้ช่วยไหมครับ?</p>
                     </div>
                 </div>
 
@@ -524,7 +524,8 @@
                         "Authorization": `Bearer ${apiKey}`
                     },
                     body: JSON.stringify({
-                        model: "gpt-4o",
+                        // model: "gpt-4",
+                        model: "gpt-3.5-turbo",
                         messages: [{
                             role: "user",
                             content: message
@@ -539,11 +540,12 @@
                     // แสดงข้อความตอบกลับจากแชทบอท
                     appendMessage("bot", botReply);
                 } else {
-                    appendMessage("bot", "ขออภัย มีข้อผิดพลาดเกิดขึ้น");
+                    appendMessage("bot",
+                        "ขออภัย มีข้อผิดพลาดเกิดขึ้น, กรุณาลองใหม่อีกครั้ง หรือติดต่อ admin");
                 }
             } catch (error) {
                 console.error("Error:", error);
-                appendMessage("bot", "ขออภัย มีข้อผิดพลาดเกิดขึ้น");
+                appendMessage("bot", "ขออภัย มีข้อผิดพลาดเกิดขึ้น, กรุณาลองใหม่อีกครั้ง หรือติดต่อ admin");
             }
         }
 
