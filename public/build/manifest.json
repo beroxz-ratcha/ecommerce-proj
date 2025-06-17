@@ -1,15 +1,15 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-D2cbWpiu.css",
+    "file": "assets/app-nfnCt2Sn.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
-  "resources/fonts/Poppins/Poppins-Light.ttf": {
-    "file": "assets/Poppins-Light-DT6-CsId.ttf",
-    "src": "resources/fonts/Poppins/Poppins-Light.ttf"
+  "resources/fonts/Kanit/Kanit-Light.ttf": {
+    "file": "assets/Kanit-Light-CF1_efBj.ttf",
+    "src": "resources/fonts/Kanit/Kanit-Light.ttf"
   },
   "resources/js/app.js": {
-    "file": "assets/app-jyg5iFB7.js",
+    "file": "assets/app-BZ5u9VmH.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true

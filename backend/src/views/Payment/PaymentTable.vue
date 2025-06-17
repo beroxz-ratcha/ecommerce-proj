@@ -112,7 +112,7 @@
             <img
               v-if="payment.payslip_img"
               class="w-16 h-16 object-cover"
-              :src="'http://localhost:8000/storage/' + payment.payslip_img"
+              :src="getPayslipImgUrl(payment.payslip_img)"
               :alt="payment.order_id"
             />
             <img
@@ -279,6 +279,10 @@ function editPayment(p) {
 const formatDateTime = (dateString) => {
   return dateTimeService.formatDateTime(dateString);
 };
+
+function getPayslipImgUrl(img) {
+  return `${import.meta.env.VITE_API_BASE_URL}/storage/${img}`;
+}
 </script>
 
 <style scoped></style>

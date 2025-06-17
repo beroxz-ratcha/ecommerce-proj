@@ -12,67 +12,103 @@
       }}
     </h2>
 
-    <NavLink
+    <router-link
+      :to="{ name: 'app.dashboard' }"
+      class="flex items-center rounded transition-colors hover:bg-black/30 px-2 py-2"
+      active-class="bg-black/30"
+    >
+      <HomeIcon class="w-5 mr-2 text-gray-300" />
+      <span class="text-sm">หน้าหลัก</span>
+    </router-link>
+
+    <router-link
       v-if="currentUser.role === 1"
-      to="app.dashboard"
-      :icon="HomeIcon"
-      text="หน้าหลัก"
-    />
-    <NavLink
+      :to="{ name: 'app.categories' }"
+      class="flex items-center rounded transition-colors hover:bg-black/30 px-2 py-2"
+      active-class="bg-black/30"
+    >
+      <CollectionIcon class="w-5 mr-2 text-gray-300" />
+      <span class="text-sm">หมวดหมู่</span>
+    </router-link>
+
+    <router-link
       v-if="currentUser.role === 2"
-      to="app.dashboard"
-      :icon="HomeIcon"
-      text="หน้าหลัก"
-    />
-    <NavLink
-      v-if="currentUser.role === 1"
-      to="app.categories"
-      :icon="CollectionIcon"
-      text="หมวดหมู่"
-    />
-    <NavLink
+      :to="{ name: 'app.products' }"
+      class="flex items-center rounded transition-colors hover:bg-black/30 px-2 py-2"
+      active-class="bg-black/30"
+    >
+      <CubeIcon class="w-5 mr-2 text-gray-300" />
+      <span class="text-sm">สินค้า</span>
+    </router-link>
+
+    <router-link
       v-if="currentUser.role === 2"
-      to="app.products"
-      :icon="CubeIcon"
-      text="สินค้า"
-    />
-    <NavLink
-      v-if="currentUser.role === 2"
-      to="app.orders"
-      :icon="ShoppingCartIcon"
-      text="คำสั่งซื้อ"
-    />
-    <NavLink
+      :to="{ name: 'app.orders' }"
+      class="flex items-center rounded transition-colors hover:bg-black/30 px-2 py-2"
+      active-class="bg-black/30"
+    >
+      <ShoppingCartIcon class="w-5 mr-2 text-gray-300" />
+      <span class="text-sm">คำสั่งซื้อ</span>
+    </router-link>
+
+    <router-link
       v-if="currentUser.role === 1"
-      to="app.users"
-      :icon="UsersIcon"
-      text="ผู้ใช้ทั้งหมด"
-    />
-    <NavLink
+      :to="{ name: 'app.users' }"
+      class="flex items-center rounded transition-colors hover:bg-black/30 px-2 py-2"
+      active-class="bg-black/30"
+    >
+      <UsersIcon class="w-5 mr-2 text-gray-300" />
+      <span class="text-sm">ผู้ใช้ทั้งหมด</span>
+    </router-link>
+
+    <router-link
       v-if="currentUser.role === 1"
-      to="app.sellers"
-      :icon="UserGroupIcon"
-      text="ผู้ขาย"
-    />
-    <NavLink
+      :to="{ name: 'app.sellers' }"
+      class="flex items-center rounded transition-colors hover:bg-black/30 px-2 py-2"
+      active-class="bg-black/30"
+    >
+      <UserGroupIcon class="w-5 mr-2 text-gray-300" />
+      <span class="text-sm">ผู้ขาย</span>
+    </router-link>
+
+    <router-link
       v-if="currentUser.role === 1"
-      to="app.customers"
-      :icon="UserGroupIcon"
-      text="ลูกค้า"
-    />
-    <NavLink
+      :to="{ name: 'app.customers' }"
+      class="flex items-center rounded transition-colors hover:bg-black/30 px-2 py-2"
+      active-class="bg-black/30"
+    >
+      <UserGroupIcon class="w-5 mr-2 text-gray-300" />
+      <span class="text-sm">ลูกค้า</span>
+    </router-link>
+
+    <router-link
       v-if="currentUser.role === 1"
-      to="app.payments"
-      :icon="CashIcon"
-      text="การชำระเงิน"
-    />
-    <NavLink to="reports.orders" :icon="ChartBarIcon" text="รายงาน" />
-    <NavLink
+      :to="{ name: 'app.payments' }"
+      class="flex items-center rounded transition-colors hover:bg-black/30 px-2 py-2"
+      active-class="bg-black/30"
+    >
+      <CashIcon class="w-5 mr-2 text-gray-300" />
+      <span class="text-sm">การชำระเงิน</span>
+    </router-link>
+
+    <router-link
+      :to="{ name: 'reports.orders' }"
+      class="flex items-center rounded transition-colors hover:bg-black/30 px-2 py-2"
+      active-class="bg-black/30"
+    >
+      <ChartBarIcon class="w-5 mr-2 text-gray-300" />
+      <span class="text-sm">รายงาน</span>
+    </router-link>
+
+    <router-link
       v-if="currentUser.role === 1"
-      to="app.settings"
-      :icon="CogIcon"
-      text="การตั้งค่า"
-    />
+      :to="{ name: 'app.settings' }"
+      class="flex items-center rounded transition-colors hover:bg-black/30 px-2 py-2"
+      active-class="bg-black/30"
+    >
+      <CogIcon class="w-5 mr-2 text-gray-300" />
+      <span class="text-sm">การตั้งค่า</span>
+    </router-link>
   </div>
 </template>
 
@@ -93,23 +129,6 @@ import store from '../store';
 import { computed } from 'vue';
 
 const currentUser = computed(() => store.state.user.data);
-
-const NavLink = {
-  props: ['to', 'icon', 'text'],
-  template: `
-    <router-link
-      :to="{ name: to }"
-      class="flex items-center rounded transition-colors hover:bg-black/30"
-      style="padding: 10px"
-      active-class="bg-black/30"
-    >
-      <span class="mr-2 text-gray-300">
-        <component :is="icon" class="w-5" />
-      </span>
-      <span class="text-sm">{{ text }}</span>
-    </router-link>
-  `,
-};
 </script>
 
 <style scoped>

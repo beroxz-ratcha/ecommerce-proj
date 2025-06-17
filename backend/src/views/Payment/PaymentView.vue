@@ -47,7 +47,7 @@
             <td class="py-2 px-4">
               <!-- Display the payslip image with a stylish border and shadow -->
               <img
-                :src="'http://localhost:8000/storage/' + order.payslip_img"
+                :src="getPayslipImgUrl(order.payslip_img)"
                 alt="Payslip Image"
                 class="max-w-full max-h-[300px] object-contain mx-auto rounded-lg shadow-lg border-2 border-gray-300 cursor-pointer"
                 @click="openModal"
@@ -67,7 +67,7 @@
     >
       <div class="relative">
         <img
-          :src="'http://localhost:8000/storage/' + order.payslip_img"
+          :src="getPayslipImgUrl(order.payslip_img)"
           alt="Payslip Image"
           class="max-w-full max-h-[80vh] object-contain rounded-lg"
         />
@@ -242,6 +242,10 @@ function onStatusChange() {
 const formatDateTime = (dateString) => {
   return dateTimeService.formatDateTime(dateString);
 };
+
+function getPayslipImgUrl(img) {
+  return `${import.meta.env.VITE_API_BASE_URL}/storage/${img}`;
+}
 </script>
 
 <style scoped>

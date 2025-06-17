@@ -16,6 +16,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\URL;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CheckoutController extends Controller
@@ -312,21 +315,34 @@ class CheckoutController extends Controller
 
                 // อัปโหลดไฟล์สลิป
                 if ($request->hasFile('slipInput')) {
-                    $slipImage = $request->file('slipInput');
-                    $slipImagePath = $slipImage->store('payslips', 'public'); // เก็บไฟล์ในโฟลเดอร์ payslips
+                    // $slipImage = $request->file('slipInput');
+                    // $slipImagePath = $slipImage->store('payslips', 'public'); // เก็บไฟล์ในโฟลเดอร์ payslips
 
-                    $paymentData = [
-                        'payment_trans_id' => $paymentTransId, // ✅ ใช้ payment_trans_id เดียวกัน
+                    $image = $request->file('slipInput');
+
+                    $path = 'payslips'; // ไม่มีโฟลเดอร์สุ่มแล้ว
+                    $name = Str::random(20) . '.' . $image->getClientOriginalExtension();
+
+                    if (!Storage::exists('public/' . $path)) {
+                        Storage::makeDirectory('public/' . $path, 0755, true);
+                    }
+
+                    if (!Storage::putFileAs('public/' . $path, $image, $name)) {
+                        throw new \Exception("Unable to save file \"{$image->getClientOriginalName()}\"");
+                    }
+
+                    $relativePath = $path . '/' . $name;
+
+                    Payment::create([
+                        'payment_trans_id' => $paymentTransId,
                         'order_id' => $order->id,
                         'amount' => $orderData['total_price'],
                         'status' => PaymentStatus::QRCode,
                         'type' => 'qrcode',
                         'created_by' => $user->id,
                         'updated_by' => $user->id,
-                        'payslip_img' => $slipImagePath, // บันทึกที่อยู่ของไฟล์
-                    ];
-
-                    Payment::create($paymentData);
+                        'payslip_img' => URL::to(Storage::url($relativePath)),
+                    ]);
                 }
             }
         } catch (\Exception $e) {

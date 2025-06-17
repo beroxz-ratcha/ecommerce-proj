@@ -1,0 +1,236 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
+
+@font-face {
+  font-family: 'Poppins';
+  /* src: url('/resources/fonts/Asangha/Asangha-Thin.otf') format('opentype'); */
+  /* src: url('/resources/fonts/Open_Sans/static/OpenSans-Regular.ttf')
+    format('opentype'); */
+  /* src: url('/resources/fonts/Poppins/Poppins-Light.ttf') format('opentype'); */
+  src: url('/resources/fonts/Kanit/Kanit-Light.ttf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.font-semibold.sm {
+  font-size: 12px;
+}
+.font-semibold.md {
+  font-size: 16px;
+}
+.font-semibold.lg {
+  font-size: 20px;
+}
+.font-semibold.xl {
+  font-size: 24px;
+}
+
+.font-bold.sm {
+  font-size: 12px;
+}
+.font-bold.md {
+  font-size: 16px;
+}
+.font-bold.lg {
+  font-size: 20px;
+}
+.font-bold.xl {
+  font-size: 24px;
+}
+
+@layer base {
+  .py-navbar-item {
+    @apply py-6;
+  }
+
+  .pt-navbar-item {
+    @apply pt-6;
+  }
+
+  .pb-navbar-item {
+    @apply pb-6;
+  }
+
+  .px-navbar-item {
+    @apply px-3;
+  }
+
+  .pl-navbar-item {
+    @apply pl-3;
+  }
+
+  .pr-navbar-item {
+    @apply pr-3;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    border-radius: 0.25rem;
+    --tw-bg-opacity: 1;
+    background-color: #7faa78;
+    padding: 0.5rem 1rem;
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+    --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+      0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color),
+      0 2px 4px -2px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+      var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    transition-property: color, background-color, border-color, fill, stroke,
+      -webkit-text-decoration-color;
+    transition-property: color, background-color, border-color,
+      text-decoration-color, fill, stroke;
+    transition-property: color, background-color, border-color,
+      text-decoration-color, fill, stroke, -webkit-text-decoration-color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.15s;
+  }
+  .btn-primary:hover {
+    --tw-bg-opacity: 1;
+    background-color: #678e61;
+  }
+  .btn-primary:active {
+    --tw-bg-opacity: 1;
+    background-color: #7faa78;
+  }
+
+  .text-base-custom {
+    --tw-text-opacity: 1;
+    color: #659e38;
+  }
+}
+
+body {
+  background-color: #e5e7eb;
+}
+
+footer {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.wysiwyg-content > blockquote,
+.wysiwyg-content > dl,
+.wysiwyg-content > dd,
+.wysiwyg-content > h1,
+.wysiwyg-content > h2,
+.wysiwyg-content > h3,
+.wysiwyg-content > h4,
+.wysiwyg-content > h5,
+.wysiwyg-content > h6,
+.wysiwyg-content > hr,
+.wysiwyg-content > figure,
+.wysiwyg-content > p,
+.wysiwyg-content > pre {
+  margin: revert;
+}
+
+.wysiwyg-content > ol,
+.wysiwyg-content > ul {
+  list-style: revert;
+  margin: revert;
+  padding: revert;
+}
+
+.wysiwyg-content > table {
+  border-collapse: revert;
+}
+
+.wysiwyg-content > h1,
+.wysiwyg-content > h2,
+.wysiwyg-content > h3,
+.wysiwyg-content > h4,
+.wysiwyg-content > h5,
+.wysiwyg-content > h6 {
+  font-size: revert;
+  font-weight: revert;
+}
+
+.table > tbody > tr > td,
+.table > thead > tr > th {
+  padding: 0.5rem;
+}
+
+.table-sm > tbody > tr > td,
+.table-sm > thead > tr > th {
+  padding: 0.25rem;
+}
+
+.category-list > .category-item:hover > .category-list {
+  display: flex;
+}
+
+.category-list
+  > .category-item
+  > .category-list
+  > .category-item
+  > .category-list {
+  left: 100%;
+  top: 0;
+}
+
+.bg-nav-custom {
+  --tw-bg-opacity: 1;
+  background-color: #678e6198;
+}
+
+.bg-primary {
+  --tw-bg-opacity: 1;
+  background-color: #678e61;
+}
+
+.bg-footer-custom {
+  --tw-bg-opacity: 1;
+  background-color: #678e6198;
+}
+
+.text-green-primary {
+  --tw-text-opacity: 1;
+  color: #659e38;
+}
+
+.border-emerald-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(8 101 55 / 85%);
+}
+
+/* ################################################################ */
+
+.tabs {
+  display: flex;
+  justify-content: center;
+}
+
+.tab-button {
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.tab-button.active {
+  background: #f5f5f5;
+  border-color: #aaa;
+}
+
+.tab-button:hover {
+  background: #f1eeee;
+  border-color: #aaa;
+}
