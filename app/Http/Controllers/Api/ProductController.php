@@ -130,7 +130,8 @@ class ProductController extends Controller
             ProductImage::create([
                 'product_id' => $product->id,
                 'path' => $relativePath,
-                'url' => URL::to(Storage::url($relativePath)),
+                // 'url' => URL::to(Storage::url($relativePath)),
+                'url' => URL::to('storage/app/public/' . $relativePath),
                 'mime' => $image->getClientMimeType(),
                 'size' => $image->getSize(),
                 'position' => $positions[$id] ?? $id + 1

@@ -341,7 +341,7 @@ class CheckoutController extends Controller
                         'type' => 'qrcode',
                         'created_by' => $user->id,
                         'updated_by' => $user->id,
-                        'payslip_img' => URL::to(Storage::url($relativePath)),
+                        'payslip_img' => $relativePath,
                     ]);
                 }
             }
