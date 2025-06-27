@@ -21,6 +21,7 @@ class Setting extends Model
 
     public static function setValue($key, $value)
     {
+        Cache::forget("setting_{$key}");
         return self::updateOrCreate(['key' => $key], ['value' => $value]);
     }
 

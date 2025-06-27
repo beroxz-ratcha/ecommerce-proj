@@ -3,9 +3,9 @@
         <h1 class="text-3xl font-bold text-gray-700 mb-6">ชำระผ่านบัญชีธนาคาร/QR Code PromptPay</h1>
 
         <!-- รายละเอียดคำสั่งซื้อ -->
-        <div class="bg-white rounded-lg shadow p-6 mb-6">
+        <div class="bg-white rounded-lg shadow p-6 mb-6 overflow-x-auto">
             <h2 class="text-xl font-semibold mb-4">รายละเอียดคำสั่งซื้อของคุณ</h2>
-            <table class="w-full text-left table-auto">
+            <table class="w-full min-w-[600px] text-left table-auto">
                 <thead class="bg-gray-100">
                     <tr>
                         <th class="px-4 py-2 text-gray-600 font-medium">สินค้า</th>
@@ -20,12 +20,11 @@
                             $total = $product->price * $quantity;
                         @endphp
                         <tr class="border-b">
-                            <td class="px-4 py-2 flex items-center">
-                                <!-- Image Container -->
-                                <div class="w-36 h-32 flex items-center justify-center overflow-hidden">
+                            <td class="px-4 py-2 flex items-center space-x-4">
+                                <div class="w-24 h-20 flex items-center justify-center overflow-hidden">
                                     <img src="{{ $product->image }}" class="object-cover h-full" alt="">
                                 </div>
-                                <span class="ml-4">{{ $product->title }}</span>
+                                <span>{{ $product->title }}</span>
                             </td>
                             <td class="px-4 py-2 text-center">{{ $quantity }}</td>
                             <td class="px-4 py-2 text-right">{{ number_format($total, 2) }} บาท</td>
@@ -43,7 +42,6 @@
             </table>
         </div>
 
-
         {{-- <div class="bg-white rounded-lg shadow p-6 mb-6 text-center">
             <h2 class="text-xl font-semibold mb-4">สแกนเพื่อชำระเงิน</h2>
             <img src="{{ asset('qrcodes/payment_qr.png') }}" alt="QR Code" class="w-64 h-64 mx-auto mb-4">
@@ -54,9 +52,10 @@
         </div> --}}
 
         <!-- QR Code สำหรับชำระเงิน -->
-        <div class="flex gap-6">
+        <div class="flex flex-col sm:flex-row gap-6">
             <!-- QR Code Payment Section -->
-            <div class="bg-white rounded-lg shadow-lg p-8 mb-8 text-center w-1/2 flex flex-col justify-between">
+            <div
+                class="bg-white rounded-lg shadow-lg p-8 mb-8 text-center w-full sm:w-1/2 flex flex-col justify-between">
                 <h2 class="text-2xl font-bold text-gray-700 mb-6">สแกนเพื่อชำระเงิน</h2>
 
                 <!-- QR Code Display -->
@@ -88,7 +87,7 @@
             </div>
 
             <!-- Slip Upload Section -->
-            <div class="bg-white rounded-lg shadow-lg p-8 mb-8 text-center w-1/2 flex flex-col">
+            <div class="bg-white rounded-lg shadow-lg p-8 mb-8 text-center w-full sm:w-1/2 flex flex-col">
                 <h2 class="text-2xl font-bold text-gray-700 mb-6">อัปโหลดสลิปชำระเงิน</h2>
 
                 <form id="paymentForm" action="{{ route('payment.withqrcode') }}" method="POST"
@@ -117,10 +116,9 @@
                     </div>
                 </form>
                 {{-- <div id="deletePreview" class="mt-2">
-                    <a href="javascript:void(0);" onclick="removeImagePreview()" class="text-sm text-red-500">ลบภาพ</a>
-                </div> --}}
+            <a href="javascript:void(0);" onclick="removeImagePreview()" class="text-sm text-red-500">ลบภาพ</a>
+        </div> --}}
             </div>
-
         </div>
         <!-- Back Link Section -->
         <a href="{{ route('cart.index') }}" class="inline-block mt-4 text-indigo-600 hover:underline">
