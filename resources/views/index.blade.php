@@ -427,7 +427,10 @@
                     <div class="message mb-2 flex items-start">
                         <img src="{{ asset('/storage/imgfront/chat-bot.png') }}" alt="Bot Avatar"
                             class="w-8 h-8 rounded-full mr-2">
-                        <p class="bg-gray-100 p-2 rounded-lg">สวัสดี! มีอะไรให้ช่วยไหมครับ?</p>
+                        {{-- <p class="bg-gray-100 p-2 rounded-lg max-w-[80%]">สวัสดี! มีอะไรให้ช่วยไหมครับ?</p> --}}
+                        <div class="bg-gray-100 p-2 rounded-lg max-w-[80%]"> สวัสดี! มีอะไรให้ช่วยไหม?<br>
+                            (Hello! Is there anything I can help you with?)
+                        </div>
                     </div>
                 </div>
 
@@ -508,13 +511,47 @@
         const chatbotBody = document.getElementById("chatbot-body");
         const userInput = document.getElementById("user-input");
 
-        // ฟังก์ชันส่งข้อความไปที่ OpenAI API
+        async function translate(text, fromLang, toLang) {
+            const apiKey = @json($openaiApiKey);
+            const modelId = "Helsinki-NLP/opus-mt-th-en";
+            const apiUrl = `https://api-inference.huggingface.co/models/${modelId}`;
+
+            const response = await fetch(apiUrl, {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${apiKey}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    inputs: text
+                }),
+            });
+
+            const data = await response.json();
+            if (Array.isArray(data) && data[0].translation_text) {
+                return data[0].translation_text;
+            }
+            throw new Error("Translation failed");
+        }
+
         async function sendMessageToBot(message) {
             const apiKey = @json($openaiApiKey);
-            const apiUrl = "https://api.openai.com/v1/chat/completions";
+            const apiUrl = @json($apiUrlAI);
 
-            // เพิ่มข้อความของผู้ใช้ลงใน UI
             appendMessage("user", message);
+
+            function filterAnswer(responseText, question) {
+                if (!responseText) return "";
+                const trimmedResponse = responseText.trim();
+                const trimmedQuestion = question.trim();
+                if (trimmedResponse.startsWith(trimmedQuestion)) {
+                    return trimmedResponse.slice(trimmedQuestion.length).trim();
+                }
+                return trimmedResponse;
+            }
+
+            const typingId = `typing-${Date.now()}`;
+            appendMessage("bot", "กำลังพิมพ์...", typingId);
 
             try {
                 const response = await fetch(apiUrl, {
@@ -524,24 +561,116 @@
                         "Authorization": `Bearer ${apiKey}`
                     },
                     body: JSON.stringify({
-                        // model: "gpt-4",
-                        model: "gpt-3.5-turbo",
+                        model: 'gpt-4o-mini',
                         messages: [{
+                            "role": "system",
+                            "content": `
+                                คุณคือแชทบอทผู้เชี่ยวชาญด้านการให้ข้อมูลเว็บไซต์ Perdis Store ขายต้นไม้แห่งหนึ่ง ที่มีร้านค้ามาเปิดขายต้นไม้ได้
+
+                                🏪 ข้อมูลเว็บไซต์ Perdis Store:
+                                - เว็บไซต์มีหน้าหลักแสดงสินค้ายอดฮิต สินค้าขายดี สินค้าโปรโมชั่น และสินค้าทั่วไป
+                                - เป็นแพลตฟอร์มที่ให้ร้านค้าต่างๆ มาเปิดขายต้นไม้ได้
+
+                                📂 เว็บไซต์มีหมวดหมู่ต้นไม้ดังนี้:
+                                - ต้นไม้ในร่ม
+                                - ต้นไม้นอกบ้าน/กลางแจ้ง
+                                - ต้นไม้ขนาดเล็ก
+                                - ต้นไม้คลุมดิน
+                                - ต้นไม้เลื้อย
+                                - ต้นไม้ดอก
+                                - ต้นไม้ใบสวยงาม
+                                - ต้นไม้มีผล
+                                - ต้นไม้กรองฝุ่น
+                                - ต้นไม้หลากสี
+                                - ต้นไม้พุ่มไม้
+
+                                🏪 ร้านค้าในระบบ:
+                                - dckshop
+                                - bowtree
+                                - gunflower
+                                - Flower Paradise
+                                - Tropical Garden
+                                - Tree Shop
+                                - Plants Ball Shop
+
+                                🌱 สินค้าในระบบ:
+                                - ต้นชลอรัม (Chlorophytum comosum/Spider Plant) ราคา ฿500.00
+                                - ต้นแสงทอง/ต้นลิ้นมังกร (Dracaena trifasciata/Snake Plant) ราคา ฿1,600.00
+                                - ต้นขมิ้น (Turmeric) ราคา ฿900.00 
+                                - คาลาเธีย โครคาต้า/ต้นกะบากส้ม (Calathea crocata) ราคา ฿6,000.00 
+                                - ต้นชบา (Hibiscus) ราคา ฿4,000.00 
+                                - คาลาเธีย (Calathea) ราคา ฿1,400.00 
+                                - เฟิร์นบอสตัน (Boston Fern) ราคา ฿3,500.00 
+                                - ปาล์มใหญ่ (Majesty Palm) ราคา ฿2,900.00 
+                                - คาเมลเลีย (Camellia) ราคา ฿1,700.00  [Hot Item]
+                                - ต้นพลูด่าง (Epipremnum aureum/Golden Pothos) ราคา ฿1,400.00  [Hot Item]
+                                - ต้นกวักมรกต (Zamioculcas zamiifolia/ZZ Plant) ราคา ฿1,500.00 [Hot Item]
+                                - มอนสเตอร่า (Monstera deliciosa) ราคา ฿1,400.00  [Hot Item]
+                                - ต้นไผ่เบญจมาศ/ต้นไทรใบเล็ก (Ficus benjamina) ราคา ฿600.00 
+                                - มอนสเตอร่า อาดานโซนี (Monstera adansonii/Swiss Cheese Plant) ราคา ฿1,300.00 
+                                - ต้นเงินไหลมา (Pachira aquatica/Money Tree) ราคา ฿1,800.00 
+                                - ต้นโพธอส (Epipremnum aureum/Pothos) ราคา ฿700.00 
+                                - กล้วยไม้ (orchid) ราคา ฿200.00 
+                                - เฟิร์นบอสตัน (Boston fern) ราคา ฿350.00 
+                                - ต้นหน้าต่างใบ (Window leaf) ราคา ฿1,300.00 
+                                - ต้นเศรษฐีเรือนนอก (Ocean Spider Plant) ราคา ฿500.00 
+
+                                📋 สิ่งที่คุณสามารถช่วยได้:
+                                1. ข้อมูลเว็บไซต์ Perdis Store และร้านค้าต่างๆ
+                                2. ข้อมูลสินค้าต้นไม้ ราคา คะแนน รีวิว
+                                3. ความรู้เกี่ยวกับต้นไม้ เช่น:
+                                - วิธีการปลูกและดูแล
+                                - การใช้ประโยชน์จากต้นไม้
+                                - การแก้ไขปัญหาต้นไม้
+                                - การเลือกต้นไม้ที่เหมาะสม
+                                - เทคนิคการจัดสวน
+                                - โรคและแมลงของต้นไม้
+                                4. แนะนำสินค้ายอดฮิต สินค้าขายดี และโปรโมชั่น
+
+                                ❌ สิ่งที่คุณไม่ควรตอบ: เช่น การเมือง, ข่าว, ดารา, เทคโนโลยี, ข้อมูลส่วนตัว เช่น บัตรประชาชน เบอร์โทร ฯลฯ
+                                หากผู้ใช้ถามเรื่อง❌ สิ่งที่คุณไม่ควรตอบ ให้ตอบว่า "ขออภัยค่ะ ฉันเป็นผู้ช่วยเฉพาะเรื่องต้นไม้และเว็บไซต์ Perdis Store เท่านั้น มีอะไรเกี่ยวกับต้นไม้ที่ฉันช่วยได้ไหมคะ"
+
+                                Perdis Store มีรูปแบบการชำเงิน สองวิธีคือ ผ่าน Qr Code พร้อมเพย์ และ ชำระเงินปลายทาง
+                                
+                               ✅ การจัดรูปแบบผลลัพธ์:
+                                - ถ้าเป็นข้อมูลเกี่ยวกับสินค้า ให้แสดงแบบขึ้นบรรทัดใหม่ แล้วก็แสดง เป็นข้อ 1 2 3...
+                                - ข้อมูลที่เป็น ข้อ 1 2 3... ให้ขึ้นบรรทัดใหม่ด้วย
+                                - แสดงราคาในรูปแบบ "ราคา: ฿1,700.00"
+                                - หากมี [Hot Item] ให้ใช้ <em> แสดงท้ายรายการ
+                                - ให้ system เป็นผู้หญิง ใช้ คำสุภาพเป็น คะ ค่ะ
+
+                                โปรดส่งข้อความตอบกลับในรูปแบบ HTML ที่สามารถแสดงผลในกล่องแชทได้โดยตรง โดย:
+                                - ใช้แท็ก < br > สำหรับขึ้นบรรทัดใหม่
+                                - หากเป็นรายการลำดับให้ใช้ < ol > < li > ... < /li></ol >
+                                - หากเป็นรายการแบบไม่เรียงลำดับให้ใช้ < ul > < li > ... < /li></ul >
+                                - ข้อความชื่อสินค้าหรือหัวข้อให้แสดงเลขข้อเพื่อบอกลำดับตัวเลข เช่น 1. ต้นพลูด่าง (Epipremnum aureum/Golden Pothos) ราคา: ฿1,400.00 [Hot Item]
+                                - ถ้าสินค้าเป็น Hot Item ให้ใช้ < em > ต่อท้าย
+                                - อย่าใช้แท็ก < html >, < body > หรือ CSS ใด ๆ แทรกในข้อความ
+                                - อย่าส่งกลับใน < code > หรือ markdown format (เช่น \`\`\`)
+                                - ทำตัวหนา หรือหัวข้อรายการตามความเหมาะสมและสวยงาม 
+                                - ให้ตอบกลับด้วยภาษาที่สุภาพแบบผู้หญิง
+
+                                ✅ หากผู้ใช้ถามถึงชื่อของพันธุ์ไม้ต่าง ๆ ที่มีอยู่จริง เช่น กล้วยไม้ มอนสเตอร่า ฯลฯ ให้ตอบได้
+                                ✅ ถ้าชื่อต้นไม้ตรงกับสินค้าที่มีในระบบ ให้ตอบข้อมูลราคาด้วย  
+                                `
+                        }, {
                             role: "user",
                             content: message
-                        }]
+                        }],
+                        temperature: 0.7,
+                        max_tokens: 1000
                     })
                 });
 
                 const data = await response.json();
-                if (data.choices && data.choices.length > 0) {
-                    const botReply = data.choices[0].message.content;
+                const typingEl = document.getElementById(typingId);
+                if (typingEl) typingEl.remove();
 
-                    // แสดงข้อความตอบกลับจากแชทบอท
-                    appendMessage("bot", botReply);
+                if (data.choices && data.choices.length > 0 && data.choices[0].message?.content) {
+                    const rawReply = data.choices[0].message.content;
+                    appendMessage("bot", rawReply);
                 } else {
-                    appendMessage("bot",
-                        "ขออภัย มีข้อผิดพลาดเกิดขึ้น, กรุณาลองใหม่อีกครั้ง หรือติดต่อ admin");
+                    appendMessage("bot", "ขออภัย ไม่สามารถให้คำตอบได้ กรุณาลองใหม่ภายหลัง");
                 }
             } catch (error) {
                 console.error("Error:", error);
@@ -558,9 +687,10 @@
                 messageDiv.innerHTML = `<p class="bg-blue-100 p-2 rounded-lg ml-auto">${text}</p>`;
             } else {
                 messageDiv.innerHTML = `
-                <img src="{{ asset('/storage/imgfront/chat-bot.png') }}" alt="Bot Avatar" class="w-8 h-8 rounded-full mr-2">
-                <p class="bg-gray-100 p-2 rounded-lg">${text}</p>
-            `;
+                    <img src="/storage/imgfront/chat-bot.png" alt="Bot Avatar" class="w-8 h-8 rounded-full mr-2">
+                    <div class="bg-gray-100 p-2 rounded-lg max-w-[80%]">${text}</div>
+                    `;
+
             }
 
             chatbotBody.appendChild(messageDiv);
@@ -593,5 +723,50 @@
         height: 40px;
         border-radius: 50%;
         margin-right: 10px;
+    }
+
+    #chatbot-body {
+        background-color: #f9fafb;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #e5e7eb;
+        max-height: 100%;
+        overflow-y: auto;
+    }
+
+    #chatbot-body .message p {
+        background-color: #e5e7eb;
+        padding: 10px 14px;
+        border-radius: 16px;
+        max-width: 80%;
+        word-break: break-word;
+        font-size: 0.95rem;
+    }
+
+    #chatbot-body .message.user {
+        justify-content: flex-end;
+    }
+
+    #chatbot-body .message.bot {
+        justify-content: flex-start;
+    }
+
+    #chatbot-body .message div {
+        background-color: #e5e7eb;
+        padding: 10px 14px;
+        border-radius: 16px;
+        max-width: 80%;
+        margin: 0;
+        line-height: 1.4;
+    }
+
+    #chatbot-body .message.user p {
+        background-color: #dbeafe;
+    }
+
+    #chatbot-body .message img {
+        width: 32px;
+        height: 32px;
+        margin-right: 8px;
     }
 </style>

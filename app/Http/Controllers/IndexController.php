@@ -28,7 +28,8 @@ class IndexController extends Controller
             'bestSellProducts' => $bestSellProducts,
             'tools' => $tools,
             'categories' => Category::getAll(),
-            'openaiApiKey' => Setting::getValue('OPENAI_API_KEY', env('OPENAI_API_KEY'))
+            'openaiApiKey' => Setting::getValue('OPENAI_API_KEY', env('OPENAI_API_KEY')),
+            'apiUrlAI' => Setting::getValue('AI_API_URL', env('AI_API_URL'))
         ]);
     }
 
